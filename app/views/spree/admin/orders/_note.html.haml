@@ -1,0 +1,27 @@
+%table.index.edit-note-table
+  %tr.edit-note.hidden.total
+    %td{ colspan: "5", data: { controller: "input-char-count" }, style: "position: relative;" }
+      %label{ for: "note" }
+        = t(".note_label")
+      = text_area_tag :note, @order.note, { id: "note", rows: 3, maxLength: 280, data: { "input-char-count-target": "input" }, style: "width: 100%;" }
+      %span.edit-note-count{ data: { "input-char-count-target": "count" }, style: "position: absolute; right: 7px; top: 7px; font-size: 11px;" }
+
+    %td.actions
+      = link_to '', '', class: 'save-note icon_link icon-ok no-text with-tip', data: { action: 'save' }, title: I18n.t('actions.save')
+      = link_to '', '', class: 'cancel-note icon_link icon-cancel no-text with-tip', data: { action: 'cancel' }, title: I18n.t('actions.cancel')
+
+  %tr.show-note.total
+    %td{ :colspan => "5" }
+      - if order.note.present?
+        %strong
+          = t(".note_label")
+        %pre{ style: "font-family: inherit;" }
+          = order.note
+      - else
+        = t(".no_note_present")
+
+    %td.actions
+      = link_to '', '', class: 'edit-note icon_link icon-edit no-text with-tip', data: { action: 'edit' }, title: Spree.t('edit')
+      - if @order.note.present?
+        = link_to '', '', class: 'delete-note icon_link icon-trash no-text with-tip', data: { action: 'remove' }, title: Spree.t('delete')
+

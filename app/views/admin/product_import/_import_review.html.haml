@@ -1,0 +1,112 @@
+%h5= t('admin.product_import.import.validation_overview')
+%br
+
+%div{ "ng-controller": 'ImportFeedbackCtrl' }
+
+  - if @importer.product_field_errors?
+    .alert-box.warning
+      = t('.not_updatable_tip')
+      %em= @non_updatable_fields.keys.join(', ') + "."
+      = t('.fields_ignored')
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"all"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"all")) == 0' }
+      .header-icon.success
+        %i.fa.fa-info-circle.info
+      .header-count
+        %strong.item-count
+          {{ count((entries | entriesFilterValid:"all")) }}
+      .header-description
+        = t('admin.product_import.import.entries_found')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"all")) == 0' }
+      = render 'entries_table', entries: 'all'
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl', "ng-hide": 'count((entries | entriesFilterValid:"invalid")) == 0' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"invalid"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"invalid")) == 0' }
+      .header-icon.error
+        %i.fa.fa-warning
+      .header-count
+        %strong.invalid-count
+          {{ count((entries | entriesFilterValid:"invalid")) }}
+      .header-description
+        = t('admin.product_import.import.entries_with_errors')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"invalid")) == 0' }
+      = render 'errors_list'
+      %br
+      = render 'entries_table', entries: 'invalid'
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl', "ng-hide": 'count((entries | entriesFilterValid:"create_product")) == 0' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"create_product"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"create_product")) == 0' }
+      .header-icon.success
+        %i.fa.fa-check-circle
+      .header-count
+        %strong.create-count
+          {{ count((entries | entriesFilterValid:"create_product")) }}
+      .header-description
+        = t('admin.product_import.import.products_to_create')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"create_product")) == 0' }
+      = render 'entries_table', entries: 'create_product'
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl', "ng-hide": 'count((entries | entriesFilterValid:"update_product")) == 0' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"update_product"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"update_product")) == 0' }
+      .header-icon.success
+        %i.fa.fa-check-circle
+      .header-count
+        %strong.update-count
+          {{ count((entries | entriesFilterValid:"update_product")) }}
+      .header-description
+        = t('admin.product_import.import.products_to_update')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"update_product")) == 0' }
+      = render 'entries_table', entries: 'update_product'
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl', "ng-hide": 'count((entries | entriesFilterValid:"create_inventory")) == 0' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"create_inventory"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"create_inventory")) == 0' }
+      .header-icon.success
+        %i.fa.fa-check-circle
+      .header-count
+        %strong.inv-create-count
+          {{ count((entries | entriesFilterValid:"create_inventory")) }}
+      .header-description
+        = t('admin.product_import.import.inventory_to_create')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"create_inventory")) == 0' }
+      = render 'entries_table', entries: 'create_inventory'
+
+  .panel-section{ "ng-controller": 'DropdownPanelsCtrl', "ng-hide": 'count((entries | entriesFilterValid:"update_inventory")) == 0' }
+    .panel-header{ "ng-click": 'togglePanel()', "ng-class": '{active: active && count((entries | entriesFilterValid:"update_inventory"))}' }
+      .header-caret
+        %i{ "ng-class": "{'icon-chevron-down': active, 'icon-chevron-right': !active}", "ng-hide": 'count((entries | entriesFilterValid:"update_inventory")) == 0' }
+      .header-icon.success
+        %i.fa.fa-check-circle
+      .header-count
+        %strong.inv-update-count
+          {{ count((entries | entriesFilterValid:"update_inventory")) }}
+      .header-description
+        = t('admin.product_import.import.inventory_to_update')
+    .panel-content{ "ng-hide": '!active || count((entries | entriesFilterValid:"update_inventory")) == 0' }
+      = render 'entries_table', entries: 'update_inventory'
+
+  .panel-section{ "ng-controller": 'ImportOptionsFormCtrl', "ng-hide": 'resetTotal == 0' }
+    .panel-header
+      .header-caret
+      .header-icon.info
+        %i.fa.fa-info-circle
+      .header-count
+        %strong.reset-count
+          {{ resetTotal }}
+      .header-description
+        -if @import_into == 'inventories'
+          = t('admin.product_import.import.inventory_to_reset')
+        - else
+          = t('admin.product_import.import.products_to_reset')
+
+  %br.panels.clearfix

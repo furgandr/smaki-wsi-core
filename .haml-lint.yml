@@ -1,0 +1,49 @@
+# Whether to ignore frontmatter at the beginning of HAML documents for
+# frameworks such as Jekyll/Middleman
+skip_frontmatter: false
+
+inherits_from: .haml-lint_todo.yml
+
+linters:
+  AltText:
+    enabled: false
+
+  ConsecutiveSilentScripts:
+    enabled: true
+    max_consecutive: 2
+
+  EmptyScript:
+    enabled: true
+
+  HtmlAttributes:
+    enabled: true
+
+  ImplicitDiv:
+    enabled: true
+
+  LeadingCommentSpace:
+    enabled: true
+
+  LineLength:
+    max: 80
+
+  MultilinePipe:
+    enabled: true
+
+  MultilineScript:
+    enabled: true
+
+  ObjectReferenceAttributes:
+    enabled: true
+
+  RuboCop:
+    enabled: false
+
+  SpaceInsideHashAttributes:
+    style: no_space
+
+  TagName:
+    enabled: true
+
+  UnnecessaryInterpolation:
+    enabled: true

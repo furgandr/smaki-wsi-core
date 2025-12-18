@@ -1,0 +1,28 @@
+# This is our main Rubocop configuration for developers. It is used when you run:
+#
+#     bundle exec rubocop
+#
+# The configuration is split into three files. Look into those files for more details.
+#
+plugins:
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+inherit_from:
+
+  # The automatically generated todo list to ignore all current violations.
+  - .rubocop_todo.yml
+
+  # The relaxed style rules as a common starting point which we can refine.
+  - .rubocop_relaxed_styleguide.yml
+
+  # Our Open Food Network style guides. If you want to see all violations,
+  # then use only that configuration:
+  #
+  #     bundle exec rubocop -c .rubocop_styleguide.yml
+  #
+  - .rubocop_styleguide.yml
+  - .rubocop_rspec_styleguide.yml

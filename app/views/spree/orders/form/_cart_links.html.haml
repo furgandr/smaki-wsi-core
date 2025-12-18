@@ -1,0 +1,3 @@
+.row.links
+  = link_to_or_disabled t(:orders_edit_continue), current_shop_products_path, class: "continue-shopping button secondary", disabled: @insufficient_stock_lines.any?
+  = link_to_or_disabled t(:orders_edit_checkout), main_app.checkout_path, class: "button primary right", disabled: @insufficient_stock_lines.any?, id: "checkout-link"

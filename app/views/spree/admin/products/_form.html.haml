@@ -1,0 +1,17 @@
+.admin-product-form-fields
+  .left.sixteen.columns.alpha
+    = f.field_container :name do
+      = f.label :name, raw(t(:name) + content_tag(:span, ' *', :class => 'required'))
+      = f.text_field :name, :class => 'fullwidth title'
+      = f.error_message_on :name
+
+    = f.field_container :description do
+      = f.label :description, t(:description)
+      = f.hidden_field :description, id: "product_description", value: @product.description
+      %trix-editor{ input: "product_description", "data-controller": "trixeditor" }
+
+  .clear
+
+  %div
+
+  .clear

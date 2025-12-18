@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require 'open_food_network/tag_rule_applicator'
+
+# Lists available order cycles for a given customer in a given distributor
+module Shop
+  class OrderCyclesList
+    def self.active_for(distributor, customer)
+      new(distributor, customer).call
+    end
+
+    def self.ready_for_checkout_for(distributor, customer)
+      new(distributor, customer).call.select do |order_cycle|
+        order = Spree::Order.new(distributor:, order_cycle:)
+        Orders::AvailablePaymentMethodsService.new(order, customer).to_a.any? &&
+          Orders::AvailableShippingMethodsService.new(order, customer).to_a.any?
+      end
+    end
+
+    def initialize(distributor, customer)
+      @distributor = distributor
+      @customer = customer
+    end
+
+    def call
+      order_cycles = OrderCycle.with_distributor(@distributor).active
+        .order(@distributor.preferred_shopfront_order_cycle_order).to_a
+
+      apply_tag_rules!(order_cycles)
+    end
+
+    private
+
+    def apply_tag_rules!(order_cycles)
+      applicator = OpenFoodNetwork::TagRuleApplicator.new(@distributor,
+                                                          "FilterOrderCycles",
+                                                          @customer&.tag_list)
+      applicator.filter(order_cycles)
+    end
+  end
+end

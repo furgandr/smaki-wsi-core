@@ -1,0 +1,140 @@
+%p
+  = t :producer_mail_greeting
+  #{" " + @producer.name},
+%p
+  = t :producer_mail_text_before
+  %ul
+    - @distributors_pickup_times.each do |distributor_name, pickup_time|
+      %li
+        #{distributor_name} (#{pickup_time})
+
+  - if @receival_instructions
+    %p
+      %b
+        =t :producer_mail_delivery_instructions
+      = @receival_instructions
+%p
+  = t :producer_mail_order_text
+  %table.order-summary.line-items
+    %thead
+      %tr
+        %th
+          = t :sku
+        - if @distributors_pickup_times.many?
+          %th
+            = t :supplier
+        %th
+          = t :product
+        %th.text-right
+          = t :quantity
+        %th.text-right
+          = t :price
+        %th.text-right
+          = t :subtotal
+        %th.text-right
+          = t :included_tax
+    %tbody
+      - @grouped_line_items.each_pair do |product_and_full_name, line_items|
+        %tr
+          %td
+            = line_items.first.variant.sku
+          - if @distributors_pickup_times.many?
+            %td
+              = line_items.first.variant.supplier.name
+          %td
+            = product_and_full_name
+          %td.text-right
+            = line_items.sum(&:quantity)
+          %td.text-right
+            = line_items.first.single_money
+          %td.text-right
+            = Spree::Money.new(line_items.sum(&:total), currency: line_items.first.currency)
+          %td.tax.text-right
+            = Spree::Money.new(line_items.sum(&:included_tax), currency: line_items.first.currency)
+      %tr.total-row
+        %td
+        - if @distributors_pickup_times.many?
+          %td
+        %td
+        %td
+        %td
+        %td.text-right
+          = @total
+        %td.text-right
+          = @tax_total
+- if @customer_line_items
+  %p
+    = t :producer_mail_order_customer_text
+  %table.order-summary.customer-order
+    %thead
+      %tr
+        %th
+          = t :sku
+        - if @distributors_pickup_times.many?
+          %th
+            = t :supplier
+        %th
+          = t :product
+        %th.text-right
+          = t :quantity
+        - if @display_customer_names
+          %th.text-right
+            = t :first_name
+          %th.text-right
+            = t :last_name
+        - if @display_business_name
+          %th.text-right
+            = t :business_name
+        %th.text-right
+          = t '.order_number'
+        - if @display_customer_names
+          %th.text-right
+            = t :phone
+          %th.text-right
+            = t :email
+    %tbody
+      - @customer_line_items.each do |line_item|
+        %tr
+          %td
+            = line_item[:sku]
+          - if @distributors_pickup_times.many?
+            %td
+              = line_item[:supplier_name]
+          %td
+            = line_item[:product_and_full_name]
+          %td.text-right
+            = line_item[:quantity]
+          - if @display_customer_names
+            %td
+              = line_item[:first_name]
+            %td
+              = line_item[:last_name]
+          - if @display_business_name
+            %td
+              = line_item[:business_name]
+          %td
+            = line_item[:order_number]
+          - if @display_customer_names
+            %td
+              = line_item[:phone]
+            %td
+              = line_item[:email]
+%p
+  = t :producer_mail_text_after
+%p
+  = t(:producer_mail_signoff)
+  ,
+  %em
+    %p
+      = @coordinator.name
+    %p
+      %br
+        = @coordinator.address.address1
+      %br
+        = @coordinator.address.city
+      %br
+        = @coordinator.address.zipcode
+    %p
+      = @coordinator.phone
+    %p
+      = @coordinator.contact.email

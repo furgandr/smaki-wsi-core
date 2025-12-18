@@ -1,0 +1,11 @@
+= render "admin/shared/attachment_field", attachment_url: @enterprise.logo_url(:thumb), attachment_name: :logo, f: f
+
+= render "admin/shared/attachment_field", attachment_url: @enterprise.promo_image_url(:large), attachment_name: :promo_image, f: f do
+  %br/
+  = t('.promo_image_placeholder')
+  %br
+  %span{ style: 'font-weight:bold' }= t('.promo_image_note1')
+  %br
+  = t('.promo_image_note2')
+  %br
+  = t('.promo_image_note3')

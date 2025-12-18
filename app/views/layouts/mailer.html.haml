@@ -1,0 +1,52 @@
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    / If you delete this meta tag, Half Life 3 will never be released.
+    %meta{:content => "width=device-width", :name => "viewport" }/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title
+      = Spree::Config[:site_name]
+    = stylesheet_link_tag 'mail'
+  %body{:bgcolor => "#FFFFFF" }
+    - unless @hide_ofn_navigation
+      %table.head-wrap
+        %tr
+          %td
+          %td.container
+            .content
+              %table
+                %tr
+                  %td
+                    = image_tag ContentConfig.url_for(:logo), class: "logo"
+                  %td.text-right
+                    %h6.collapse
+                      = Spree::Config[:site_name]
+          %td
+
+    %table.body-wrap
+      %tr
+        %td
+        %td.container{:bgcolor => "#FFFFFF"}
+          .content
+            %table
+              %tr
+                %td
+
+                  = yield
+        %td
+
+    %table.footer-wrap
+      %tr
+        %td
+        %td.container
+          .content
+            %table
+              %tr
+                %td{:align => "center"}
+                  %p
+                    - if platform_terms_required?
+                      = link_to_platform_terms
+                      |
+                    %a{:href => "#{ main_app.root_url }"}
+                      = Spree::Config[:site_name]
+                    / | <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>
+        %td

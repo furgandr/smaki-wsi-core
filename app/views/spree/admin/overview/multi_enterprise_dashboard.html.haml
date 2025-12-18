@@ -1,0 +1,25 @@
+- content_for :page_title do
+  = t('dashboard')
+
+- content_for :page_actions do
+  = render 'admin/shared/user_guide_link'
+
+%div{ 'ng-app' => 'ofn.admin' }
+  - if @enterprises.empty?
+
+    = render partial: "enterprises"
+
+  - else
+
+    - if can? :admin, Spree::Product
+      = render partial: "products"
+
+      .two.columns
+        &nbsp;
+
+    - if can? :admin, OrderCycle
+      = render partial: "order_cycles"
+
+    = render partial: "enterprises"
+
+  = render partial: "version"

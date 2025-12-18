@@ -1,0 +1,10 @@
+.row
+  .alpha.three.columns
+    = f.label :description, t('.desc_short')
+  .omega.eight.columns
+    = f.text_field :description, maxlength: 255, placeholder: t('.desc_short_placeholder')
+.row
+  .alpha.eleven.columns
+    = f.label :long_description, t('.desc_long')
+    = f.hidden_field :long_description, id: "enterprise_long_description"
+    %trix-editor{ input: "enterprise_long_description", "data-controller": "trixeditor" }
