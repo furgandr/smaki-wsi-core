@@ -12,9 +12,10 @@ Rails.application.reloader.to_prepare do
   Spree.config do |config|
     config.site_url = ENV['SITE_URL'] if ENV['SITE_URL']
     config.site_name = ENV['SITE_NAME'] if ENV['SITE_NAME']
+    config.site_name ||= 'Smaki Wsi'
     config.shipping_instructions = true
     config.address_requires_state = true
-    config.admin_interface_logo = '/default_images/ofn-logo.png'
+    config.admin_interface_logo = '/default_images/smakiwsi-logo.png'
 
     # S3 settings
     config.s3_bucket = ENV['S3_BUCKET'] if ENV['S3_BUCKET']
