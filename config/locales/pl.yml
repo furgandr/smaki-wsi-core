@@ -1484,7 +1484,7 @@ pl:
               Add or update information on your Discover Regenerative listing here.
             link_label: "Zarządzaj wpisem"
             description: "Uprawnieni producenci mogą prezentować swoje regeneratywne kwalifikacje,"
-            link_label_html: "Dowiedz się więcej o Discover Regenerative <i class="icon-external-link"></i>"
+            link_label_html: 'Dowiedz się więcej o Discover Regenerative <i class="icon-external-link"></i>'
             link_url: https://about.openfoodnetwork.org.au/regen-produce-portal/
           vine:
             title: "Silnik integracji voucherów (VINE)"
@@ -1495,7 +1495,7 @@ pl:
             vine_api_key: "Klucz API VINE"
             vine_secret: "Sekret VINE"
             description: "Aby włączyć VINE dla podmiotu, wprowadź klucz API i"
-            link_label_html: "VINE <i class="icon-external-link"></i>"
+            link_label_html: 'VINE <i class="icon-external-link"></i>'
             link_url: https://vine.openfoodnetwork.org.au
             api_parameters_empty: "Wprowadź klucz API i sekret"
             api_parameters_error: "Sprawdź, czy poprawnie wpisano klucz API i sekret,"
