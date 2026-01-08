@@ -1470,7 +1470,7 @@ pl:
             loading: "Ładowanie"
             need_to_be_manager: "Tylko menedżerowie mogą łączyć aplikacje."
             description: "INRAE i UFC QUE CHOISIR łączą siły, aby badać ceny żywności"
-            link_label_html: "Dowiedz się więcej o tym projekcie badawczym <i class="icon-external-link"></i>"
+            link_label_html: 'Dowiedz się więcej o tym projekcie badawczym <i class="icon-external-link"></i>'
             link_url: https://apropos.coopcircuits.fr/
           discover_regen:
             title: "Discover Regenerative"
