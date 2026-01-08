@@ -179,10 +179,13 @@ table#listing_enterprise_groups {
 }
 
 table#listing_enterprise_fees {
+  td {
+    vertical-align: middle;
+  }
+
   .calculator-settings {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: 8px;
 
     span.field,
