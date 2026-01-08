@@ -21,21 +21,18 @@ class SeedPolishStates < ActiveRecord::Migration[7.1]
     states = YAML.load_file(states_file)
 
     ActiveRecord::Base.transaction do
-      State.where(country_id: country.id).delete_all
       states.each do |state|
-        State.create!(
-          name: state["name"],
-          abbr: state["abbr"],
-          country_id: country.id
+        record = State.find_or_initialize_by(
+          country_id: country.id,
+          abbr: state["abbr"]
         )
+        record.name = state["name"]
+        record.save!
       end
     end
   end
 
   def down
-    country = Country.find_by(iso: "PL")
-    return unless country
-
-    State.where(country_id: country.id).delete_all
+    # no-op to avoid deleting states referenced by addresses
   end
 end
