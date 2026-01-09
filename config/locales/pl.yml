@@ -827,6 +827,9 @@ pl:
           own: Tylko własne
           sells: Sprzedaje
           sells_tip: "Brak - podmiot nie prowadzi sprzedaży bezpośredniej klientom. <br /> Własne - podmiot sprzedaje klientom własne produkty. <br /> Dowolne - podmiot może sprzedawać własne lub produkty innego podmiotu. <br />"
+          external_billing_id: "Zewnętrzny identyfikator rozliczeniowy"
+          external_billing_id_placeholder: "np. INV-2024-123456"
+          external_billing_id_tip: "To identyfikator używany przez zewnętrzny system rozliczeniowy"
           visible_in_search: Widoczne w wynikach wyszukiwania?
           visible: Publiczny
         properties:
