@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@testing-library/dom": "<11.0.0",
-    "jasmine-core": "~5.12.1",
+    "jasmine-core": "~5.13.0",
     "jest": "^27.4.7",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
