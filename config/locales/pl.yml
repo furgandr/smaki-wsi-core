@@ -1834,6 +1834,7 @@ pl:
   shopping_groups_part_of: "jest częścią:"
   shopping_producers_of_hub: "producenci %{hub}:"
   enterprises_next_closing: "Zamknięcie kolejnego zamówienia"
+  enterprises_currently_open: "Zamówienia są obecnie otwarte"
   enterprises_ready_for: "Odbiór"
   enterprises_choose: "Wybierz, kiedy chcesz zamówić:"
   maps_open: "otwarty"
