@@ -1805,7 +1805,7 @@ pl:
   email_signup_welcome: "Witamy w %{sitename}!"
   email_signup_confirmed_email: "Dziękuję za potwierdzenie adresu e-mail."
   email_signup_shop_html: "Możesz teraz zalogować się pod adresem %{link}."
-  email_signup_text: "Dzięki za przyłączenie się do sieci. Jeśli jesteś klientem, z niecierpliwością czekamy, aby przedstawić Ci wielu fantastycznych rolników, wspaniałe huby żywnościowe i pyszne jedzenie! Jeśli jesteś producentem lub przedsiębiorstwem spożywczym, cieszymy się, że jesteś częścią sieci.
+  email_signup_text: "Dzięki za przyłączenie się do sieci. Jeśli jesteś klientem, z niecierpliwością czekamy, aby przedstawić Ci wielu fantastycznych rolników, wspaniałe huby żywnościowe i pyszne jedzenie! Jeśli jesteś producentem lub przedsiębiorstwem spożywczym, cieszymy się, że jesteś częścią sieci."
   email_signup_help_html: "Czekamy na wszystkie Twoje pytania i opinie; możesz użyć przycisku <em>Prześlij opinię</em> na stronie lub wysłać do nas e-mail na adres %{email}"
   invite_email:
     greeting: "Dzień dobry!"
