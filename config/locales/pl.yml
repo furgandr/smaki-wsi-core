@@ -107,10 +107,10 @@ pl:
   errors:
     not_found:
       title: "Nie znaleziono strony (404)."
-      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Open Food Network</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, czego dotyczy brakująca strona.</p>"
+      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, czego dotyczy brakująca strona.</p>"
     internal_server_error:
       title: "Przepraszamy, coś poszło nie tak (500)."
-      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Pracujemy nad tym</b><p> Jeśli widzisz ten problem ponownie, prawdopodobnie już o nim wiemy i pracujemy nad rozwiązaniem. Rejestrujemy wszystkie błędy.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Open Food Network</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, co robiłeś, gdy pojawił się błąd.</p>"
+      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Pracujemy nad tym</b><p> Jeśli widzisz ten problem ponownie, prawdopodobnie już o nim wiemy i pracujemy nad rozwiązaniem. Rejestrujemy wszystkie błędy.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, co robiłeś, gdy pojawił się błąd.</p>"
     unprocessable_entity:
       title: "Żądana zmiana została odrzucona (422)."
       message_html: "<p>Żądana zmiana została odrzucona. Być może próbowałeś zmienić coś, do czego nie masz dostępu.<br><h3><a href='/'>Wróć do strony głównej</a></h3></p>"
@@ -217,7 +217,7 @@ pl:
         signed_up_but_unconfirmed: "Wiadomość z linkiem potwierdzającym została wysłana na Twój adres e-mail. Otwórz link, aby aktywować konto. Jeśli e-mail nie dotrze w ciągu kilku minut, sprawdź folder spam."
         unknown_error: "Wystąpił błąd podczas tworzenia konta. Sprawdź adres e-mail i spróbuj ponownie."
     failure:
-      disabled: "Twoje konto zostało zablokowane. Skontaktuj się z zespołem Open Food Network, aby rozwiązać problem."
+      disabled: "Twoje konto zostało zablokowane. Skontaktuj się z zespołem Smaki Wsi, aby rozwiązać problem."
       invalid: |
           Nieprawidłowy adres e-mail lub hasło.
           Jeśli wcześniej zamawiałeś jako gość, zarejestruj się. Jeśli nie pamiętasz hasła, zresetuj je, klikając „Zarejestruj się” lub „Zapomniałeś hasła?”.
@@ -284,16 +284,16 @@ pl:
       product: "Produkt"
   enterprise_mailer:
     confirmation_instructions:
-      subject: "Potwierdź adres e-mail %{enterprise} w Open Food Network"
+      subject: "Potwierdź adres e-mail %{enterprise} w Smaki Wsi"
     welcome:
-      subject: "%{enterprise} jest teraz częścią Open Food Network"
+      subject: "%{enterprise} jest teraz częścią Smaki Wsi"
       email_welcome: "Witamy"
       email_registered: "jest teraz częścią"
       email_userguide_html: "Podręcznik użytkownika z pomocą w konfiguracji profilu, sklepu producenta lub hubu znajdziesz tutaj: %{link}"
-      userguide: "Podręcznik Open Food Network"
+      userguide: "Podręcznik Smaki Wsi"
       email_admin_html: "Możesz zarządzać kontem, używając bezpośrednio linku %{link} lub logując się na stronie głównej i wybierając „Administracja”."
       admin_panel: "Administracja"
-      email_community_html: "Mamy też forum społeczności poświęcone Open Food Network, wyzwaniom biznesu żywnościowego i nie tylko. Dołącz do dyskusji. Stale się rozwijamy, a Twój głos wpływa na to, co będzie dalej. %{link}"
+      email_community_html: "Mamy też forum społeczności poświęcone Smaki Wsi, wyzwaniom biznesu żywnościowego i nie tylko. Dołącz do dyskusji. Stale się rozwijamy, a Twój głos wpływa na to, co będzie dalej. %{link}"
       join_community: "Dołącz do społeczności!"
     invite_manager:
       subject: "%{enterprise} zaprasza Cię jako menedżera"
@@ -355,11 +355,11 @@ pl:
         title: Inne błędy (%{count} zamówień)
         explainer: Automatyczne przetwarzanie nie powiodło się z nieznanego powodu. To nie powinno się zdarzyć — skontaktuj się z nami, jeśli to widzisz.
   home: "OFN"
-  title: "Open Food Network"
+  title: "Smaki Wsi"
   welcome_to: "Regionalne jedzenie online w"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
-  producers_join: "Zapraszamy producentów do dołączenia do Open Food Network."
+  producers_join: "Zapraszamy producentów do dołączenia do Smaki Wsi."
   charges_sales_tax: Naliczać podatki?
   business_address: "Dane firmy"
   print_invoice: "Drukuj fakturę"
@@ -590,7 +590,7 @@ pl:
     has_n_rules: "ma %{num} reguł"
     unsaved_confirm_leave: "Na tej stronie są niezapisane zmiany. Kontynuować bez zapisu?"
     available_units: "Dostępne jednostki"
-    terms_of_service_have_been_updated_html: "Zaktualizowano Regulamin Open Food Network: %{tos_link} Prosimy zaakceptować nowe warunki przed dalszym korzystaniem z platformy."
+    terms_of_service_have_been_updated_html: "Zaktualizowano Regulamin Smaki Wsi: %{tos_link} Prosimy zaakceptować nowe warunki przed dalszym korzystaniem z platformy."
     terms_of_service: Przeczytaj Regulamin
     accept_terms_of_service: Akceptuję Regulamin
     shopfront_settings:
@@ -1108,7 +1108,7 @@ pl:
           groups_tip: Wybierz grupy lub regiony, które do Ciebie pasują. To pomoże klientom znaleźć Twój podmiot.
           groups_placeholder: Zacznij pisać, aby wyszukać dostępne grupy...
           primary_producer: Producent?
-          primary_producer_tip: Wybierz "Producent", jeśli wytwarzasz własne produkty i chcesz je sprzedawać przez Open Food Network.
+          primary_producer_tip: Wybierz "Producent", jeśli wytwarzasz własne produkty i chcesz je sprzedawać przez Smaki Wsi.
           producer: Producent
           any: Wszystkie
           none: Brak
@@ -1126,9 +1126,9 @@ pl:
           permalink: Permalink (bez spacji)
           permalink_tip: "Ten permalink służy do tworzenia URL sklepu: %{link}nazwa-sklepu/shop"
           link_to_front: Link do sklepu
-          link_to_front_tip: Bezpośredni link do Twojego sklepu w Open Food Network.
+          link_to_front_tip: Bezpośredni link do Twojego sklepu w Smaki Wsi.
           ofn_uid: OFN UID
-          ofn_uid_tip: Unikalne ID identyfikujące podmiot w Open Food Network.
+          ofn_uid_tip: Unikalne ID identyfikujące podmiot w Smaki Wsi.
         shipping_methods:
           legend: "Opcje dostawy"
           name: "Nazwa opcji dostawy"
@@ -1196,14 +1196,14 @@ pl:
           linkedin_placeholder: "np. www.linkedin.com/in/TwojeImie"
         stripe_connect:
           connect_with_stripe: "Połącz ze Stripe"
-          stripe_connect_intro: "Aby akceptować płatności kartą, musisz połączyć swoje konto Stripe z Open Food Network. Użyj przycisku po prawej, aby rozpocząć."
+          stripe_connect_intro: "Aby akceptować płatności kartą, musisz połączyć swoje konto Stripe z Smaki Wsi. Użyj przycisku po prawej, aby rozpocząć."
           stripe_account_connected: "Konto Stripe połączone."
           disconnect: "Odłącz konto Stripe"
           confirm_modal:
             title: Połącz ze Stripe
-            part1: Stripe to usługa płatnicza, która pozwala sklepom w Open Food Network przyjmować płatności kartą od klientów.
-            part2: Aby korzystać z tej funkcji, musisz połączyć konto Stripe z Open Food Network. Kliknij "Zgadzam się", aby przejść na stronę Stripe, gdzie połączysz istniejące konto lub utworzysz nowe.
-            part3: Dzięki temu Open Food Network może przyjmować płatności kartą od klientów w Twoim imieniu. Pamiętaj, że potrzebujesz własnego konta Stripe, opłacasz prowizje Stripe i samodzielnie obsługujesz ewentualne zwroty oraz obsługę klienta.
+            part1: Stripe to usługa płatnicza, która pozwala sklepom w Smaki Wsi przyjmować płatności kartą od klientów.
+            part2: Aby korzystać z tej funkcji, musisz połączyć konto Stripe z Smaki Wsi. Kliknij "Zgadzam się", aby przejść na stronę Stripe, gdzie połączysz istniejące konto lub utworzysz nowe.
+            part3: Dzięki temu Smaki Wsi może przyjmować płatności kartą od klientów w Twoim imieniu. Pamiętaj, że potrzebujesz własnego konta Stripe, opłacasz prowizje Stripe i samodzielnie obsługujesz ewentualne zwroty oraz obsługę klienta.
             i_agree: Zgadzam się
             cancel: Anuluj
         tag_rules:
@@ -1288,20 +1288,20 @@ pl:
         producer_profile: Profil
         connect_ofn: Przedstaw siebie i swoje produkty
         always_free: ZAWSZE DARMOWE
-        producer_description_text: "Przedstaw siebie i swoje produkty w Open Food Network i nawiąż kontakty z innymi producentami i sklepami. \nDodaj produkty do profilu, aby inne sklepy mogły je sprzedawać. Jeśli chcesz sprzedawać własne produkty, wybierz \"Sklep producenta\"."
+        producer_description_text: "Przedstaw siebie i swoje produkty w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. \nDodaj produkty do profilu, aby inne sklepy mogły je sprzedawać. Jeśli chcesz sprzedawać własne produkty, wybierz \"Sklep producenta\"."
         producer_shop: Sklep producenta
         sell_your_produce: Sprzedawaj własne produkty
-        producer_shop_description_text: Sprzedawaj własne produkty bezpośrednio klientom przez swój sklep producenta w Open Food Network.
+        producer_shop_description_text: Sprzedawaj własne produkty bezpośrednio klientom przez swój sklep producenta w Smaki Wsi.
         producer_shop_description_text2: Sklep producenta jest tylko dla Twoich własnych produktów. Jeśli chcesz sprzedawać także produkty innych, wybierz "Sklep".
         producer_hub: Sklep
         producer_hub_text: Sprzedawaj własne produkty i produkty innych
-        producer_hub_description_text: Sprzedawaj własne produkty i produkty innych producentów lub sklepów w Open Food Network. Twój sklep jest ważnym elementem lokalnego systemu żywnościowego.
+        producer_hub_description_text: Sprzedawaj własne produkty i produkty innych producentów lub sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu żywnościowego.
         profile: Profil
         get_listing: Utwórz profil
-        profile_description_text: Przedstaw się w Open Food Network i nawiąż kontakty z innymi producentami i sklepami. Możesz być znajdowany i kontaktowany przez innych. Twój podmiot będzie widoczny na mapie i w wynikach wyszukiwania.
+        profile_description_text: Przedstaw się w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. Możesz być znajdowany i kontaktowany przez innych. Twój podmiot będzie widoczny na mapie i w wynikach wyszukiwania.
         hub_shop: Sklep
         hub_shop_text: Sprzedawaj produkty innych
-        hub_shop_description_text: Sprzedawaj produkty innych producentów lub sklepów w Open Food Network. Łączysz produkty i jesteś ważnym elementem lokalnego systemu żywnościowego.
+        hub_shop_description_text: Sprzedawaj produkty innych producentów lub sklepów w Smaki Wsi. Łączysz produkty i jesteś ważnym elementem lokalnego systemu żywnościowego.
         choose_option: Wybierz jedną z powyższych opcji.
         change_now: Zmień teraz
       enterprise_user_index:
@@ -1325,7 +1325,7 @@ pl:
         title: Nowy podmiot
         back_link: Wróć do listy podmiotów
       welcome:
-        welcome_title: Witamy w Open Food Network!
+        welcome_title: Witamy w Smaki Wsi!
         welcome_text: 'Utworzono pomyślnie:'
         next_step: Następny krok
         choose_starting_point: 'Wybierz pakiet:'
@@ -1894,9 +1894,9 @@ pl:
         message_html: "Akceptuję %{terms_and_conditions_link} sprzedawcy."
         link_text: "Regulamin"
       platform_terms_of_service:
-        message_html: "Akceptuję %{tos_link} Open Food Network."
+        message_html: "Akceptuję %{tos_link} Smaki Wsi."
       all_terms_and_conditions:
-        message_html: "Akceptuję %{terms_and_conditions_link} sprzedawcy oraz %{tos_link} Open Food Network."
+        message_html: "Akceptuję %{terms_and_conditions_link} sprzedawcy oraz %{tos_link} Smaki Wsi."
         terms_and_conditions: "Regulamin"
       submit: Zamawiam z obowiązkiem zapłaty
       cancel: Wróć - metoda płatności
@@ -1919,7 +1919,7 @@ pl:
     mailers:
       powered_by:
         open_food_network: "e-mail"
-        powered_html: "Wspierane przez Open Food Network. Wyślij nam %{open_food_network}."
+        powered_html: "Wspierane przez Smaki Wsi. Wyślij nam %{open_food_network}."
     menu:
       cart:
         cart: "Koszyk/Kasa"
@@ -1936,20 +1936,20 @@ pl:
       mobile_menu:
         cart: "Koszyk/Kasa"
     register_call:
-      selling_on_ofn: "Chcesz sprzedawać w Open Food Network?"
+      selling_on_ofn: "Chcesz sprzedawać w Smaki Wsi?"
       register: "Zarejestruj się tutaj!"
     footer:
       footer_secure: "Bezpiecznie i wiarygodnie."
-      footer_secure_text: "Open Food Network używa wszędzie szyfrowania SSL (2048-bit RSA), aby chronić informacje o zakupach i płatnościach. Nasze serwery nie przechowują danych kart, a płatności są przetwarzane przez dostawców zgodnych z PCI."
+      footer_secure_text: "Smaki Wsi używa wszędzie szyfrowania SSL (2048-bit RSA), aby chronić informacje o zakupach i płatnościach. Nasze serwery nie przechowują danych kart, a płatności są przetwarzane przez dostawców zgodnych z PCI."
       footer_contact_headline: "Kontakt i więcej ..."
       footer_contact_email: "Napisz do nas!"
       footer_nav_headline: "Kupuj lokalnie"
       footer_join_headline: "Sprzedawaj własne produkty"
-      footer_join_body: "Utwórz profil, sklep online lub grupę w Open Food Network."
+      footer_join_body: "Utwórz profil, sklep online lub grupę w Smaki Wsi."
       footer_join_cta: "Zacznij!"
       footer_legal_call: "Przeczytaj nasze"
       footer_legal_visit: "Odwiedź nas na"
-      footer_legal_text_html: "Open Food Network to darmowa platforma open-source. Nasze treści są objęte %{content_license}, a kod %{code_license}."
+      footer_legal_text_html: "Smaki Wsi to darmowa platforma open-source. Nasze treści są objęte %{content_license}, a kod %{code_license}."
       footer_data_text_with_privacy_policy_html: "Dbamy o Twoje dane. Przeczytaj %{privacy_policy} i %{cookies_policy}."
       footer_data_text_without_privacy_policy_html: "Dbamy o Twoje dane. Przeczytaj %{cookies_policy}."
       footer_data_privacy_policy: "politykę prywatności"
@@ -2106,7 +2106,7 @@ pl:
     cookies_policy:
       header: "Jak używamy cookies"
       desc_part_1: "Cookies to małe pliki tekstowe zapisywane na komputerze podczas odwiedzania niektórych stron."
-      desc_part_2: "Open Food Network szanuje Twoją prywatność. Używamy tylko cookies niezbędnych do świadczenia usługi kupna/sprzedaży żywności online. Nie sprzedajemy Twoich danych. W przyszłości możemy zaproponować udostępnienie części danych, aby rozwijać usługi przydatne dla ekosystemu (np. logistykę regionalnych systemów żywności), ale na razie tego nie robimy i nie zrobimy bez Twojej zgody. :-)"
+      desc_part_2: "Smaki Wsi szanuje Twoją prywatność. Używamy tylko cookies niezbędnych do świadczenia usługi kupna/sprzedaży żywności online. Nie sprzedajemy Twoich danych. W przyszłości możemy zaproponować udostępnienie części danych, aby rozwijać usługi przydatne dla ekosystemu (np. logistykę regionalnych systemów żywności), ale na razie tego nie robimy i nie zrobimy bez Twojej zgody. :-)"
       desc_part_3: "Używamy cookies głównie po to, by pamiętać, kim jesteś po zalogowaniu, oraz by zapamiętać pozycje w koszyku, nawet gdy nie jesteś zalogowany. Jeśli korzystasz ze strony bez kliknięcia „Akceptuję cookies”, uznajemy, że zgadzasz się na przechowywanie cookies niezbędnych do działania strony. Oto lista używanych cookies!"
       essential_cookies: "Niezbędne cookies"
       essential_cookies_desc: "Poniższe cookies są niezbędne do działania naszej strony."
@@ -2125,7 +2125,7 @@ pl:
       cookie_matomo_heatmap_desc: "Cookie Matomo Heatmap i nagrywania sesji."
       cookie_matomo_ignore_desc: "Cookie wykluczające użytkownika ze śledzenia."
       disabling_cookies_header: "Ostrzeżenie dotyczące wyłączania cookies"
-      disabling_cookies_desc: "Jako użytkownik możesz zawsze zezwolić, zablokować lub usunąć cookies Open Food Network lub innych stron, korzystając z ustawień przeglądarki. Działa to inaczej w każdej przeglądarce. Szczegóły znajdziesz pod poniższymi linkami:"
+      disabling_cookies_desc: "Jako użytkownik możesz zawsze zezwolić, zablokować lub usunąć cookies Smaki Wsi lub innych stron, korzystając z ustawień przeglądarki. Działa to inaczej w każdej przeglądarce. Szczegóły znajdziesz pod poniższymi linkami:"
       disabling_cookies_firefox_link: "https://support.mozilla.org/de/kb/verbesserter-schutz-aktivitatenverfolgung-desktop"
       disabling_cookies_chrome_link: "https://support.google.com/chrome/answer/95647"
       disabling_cookies_ie_link: "https://support.microsoft.com/de-de/topic/l%C3%B6schen-und-verwalten-von-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
@@ -2145,7 +2145,7 @@ pl:
   brandstory_part2: "Kupuj w sklepach gospodarstw, na targach, w food hubach albo dołącz do grup zakupowych, spółdzielni, kooperatyw czy rolnictwa wspieranego społecznie."
   brandstory_part3: "Dostawcy tworzą regionalną sieć, w której kupujący i sprzedający znów się znają, a relacje opierają się na zaufaniu i szacunku."
   brandstory_part4: "Kod tej platformy jest publicznie dostępny (open source), należy więc także do Ciebie i nie jest na sprzedaż. Cały przychód wraca na rozwój sieci!"
-  brandstory_part5_strong: "To jest Open Food Network."
+  brandstory_part5_strong: "To jest Smaki Wsi."
   brandstory_part6: "Kochasz swoje jedzenie! Teraz możesz pokochać także swój lokalny system żywności."
   system_headline: "Tak łatwo kupować lokalnie:"
   system_step1: "1. Gdzie mogę kupić lokalne i sezonowe produkty?"
@@ -2153,7 +2153,7 @@ pl:
   system_step2: "2. Jakie regionalne produkty mogę kupić online?"
   system_step2_text: "W sklepie online znajdziesz szeroki wybór produktów regionalnych i sezonowych: od owoców i warzyw, przez jaja, mleko i sery, po wędliny, mięso, pieczywo, słodycze i dania gotowe. Skorzystaj z wyszukiwarki i filtrów, np. bio, bez opakowań czy fair trade."
   system_step3: "3. Jak regionalna żywność trafia do mnie?"
-  system_step3_text: "Każdy sklep sam ustala opcje dostawy. Wiele oferuje dostawę, często możliwy jest też odbiór osobisty lub w punkcie odbioru. Wybierz preferowaną opcję przy składaniu zamówienia. W Open Food Network liczą się relacje – można też bezpiecznie ustalić miejsce pozostawienia zamówienia."
+  system_step3_text: "Każdy sklep sam ustala opcje dostawy. Wiele oferuje dostawę, często możliwy jest też odbiór osobisty lub w punkcie odbioru. Wybierz preferowaną opcję przy składaniu zamówienia. W Smaki Wsi liczą się relacje – można też bezpiecznie ustalić miejsce pozostawienia zamówienia."
   cta_headline: "Zrób świat odrobinę lepszym dzięki swoim zakupom."
   cta_label: "Kupuj lokalnie teraz"
   stats_headline: "Tworzymy nowy system żywności."
@@ -2222,11 +2222,11 @@ pl:
   email_confirmation_greeting: "Cześć %{contact}!"
   email_confirmation_click_link: "Kliknij poniższy link, aby potwierdzić adres e-mail i kontynuować tworzenie profilu."
   email_confirmation_link_label: "Potwierdź adres e-mail"
-  email_confirmation_notice_unexpected: "Otrzymałeś tę wiadomość, ponieważ zarejestrowałeś się w Open Food Network lub zostałeś zaproszony. Jeśli nie wiesz dlaczego, napisz do %{contact}."
+  email_confirmation_notice_unexpected: "Otrzymałeś tę wiadomość, ponieważ zarejestrowałeś się w Smaki Wsi lub zostałeś zaproszony. Jeśli nie wiesz dlaczego, napisz do %{contact}."
   email_social: "Połącz się z nami:"
   email_contact: "Napisz do nas:"
   email_signoff: "Pozdrawiamy,"
-  email_signature: "zespół Open Food Network"
+  email_signature: "zespół Smaki Wsi"
   email_confirm_customer_greeting: "Cześć %{name},"
   email_confirm_customer_intro_html: "dziękujemy za zakupy u <strong>%{distributor}</strong>!"
   email_confirm_customer_number_html: "<strong>Potwierdzenie zamówienia #%{number}</strong>"
@@ -2273,7 +2273,7 @@ pl:
   email_shipping_collection_instructions: "Instrukcje odbioru:"
   email_special_instructions: "Twoje notatki:"
   email_signup_greeting: Cześć!
-  email_signup_welcome: "Witamy w Open Food Network!"
+  email_signup_welcome: "Witamy w Smaki Wsi!"
   email_signup_confirmed_email: "Dziękujemy za potwierdzenie adresu e-mail."
   email_signup_shop_html: "Możesz teraz zalogować się pod %{link}."
   email_signup_text: "Dziękujemy za dołączenie do sieci. Jeśli jesteś klientem, z przyjemnością przedstawimy Ci wspaniałych rolników, świetne sklepy i pyszne jedzenie! Jeśli jesteś producentem lub prowadzisz biznes żywnościowy, cieszymy się, że jesteś częścią sieci."
@@ -2361,7 +2361,7 @@ pl:
   products_no_results_html: "Niestety nie znaleziono wyników dla %{query}"
   products_clear_search: "Wyczyść wyszukiwanie"
   search_no_results_html: "Nie znaleziono wyników dla %{query}."
-  components_profiles_popover: "Profile nie mają własnego sklepu w Open Food Network, ale mogą sprzedawać produkty online lub offline przez inne sklepy."
+  components_profiles_popover: "Profile nie mają własnego sklepu w Smaki Wsi, ale mogą sprzedawać produkty online lub offline przez inne sklepy."
   components_profiles_show: "Pokaż profile"
   components_filters_nofilters: "Brak filtrów"
   components_filters_clearfilters: "Wyczyść filtry"
@@ -2388,14 +2388,14 @@ pl:
   groups_signup_motivation3: Wiemy, że masz wielkie pomysły i chcemy pomóc. Dzielimy się wiedzą, sieciami i zasobami. Izolacja nie zmienia świata, dlatego współpracujemy.
   groups_signup_motivation4: Spotykamy Cię tam, gdzie jesteś.
   groups_signup_motivation5: Możesz być siecią sklepów, producentów lub dystrybutorów, organizacją branżową albo lokalnym urzędem.
-  groups_signup_motivation6: Niezależnie od Twojej roli w lokalnym ruchu żywnościowym, jesteśmy gotowi pomóc. Jeśli zastanawiasz się, jak Open Food Network wyglądałoby w Twojej części świata, porozmawiajmy.
+  groups_signup_motivation6: Niezależnie od Twojej roli w lokalnym ruchu żywnościowym, jesteśmy gotowi pomóc. Jeśli zastanawiasz się, jak Smaki Wsi wyglądałoby w Twojej części świata, porozmawiajmy.
   groups_signup_motivation7: Wspieramy inicjatywy wzmacniające trend lokalności i zrównoważenia.
   groups_signup_motivation8: Aktywuj swoje sieci - my dajemy platformę do rozmowy i działania. Potrzebujesz zaangażowania, my pomagamy dotrzeć do wszystkich interesariuszy.
   groups_signup_motivation9: Potrzebujesz zasobów. Wnosimy całe nasze doświadczenie. Potrzebujesz współpracy. Łączymy Cię z globalną siecią partnerów.
   groups_signup_pricing: Konto grupy
   groups_signup_studies: Przykłady
   groups_signup_contact: Chcesz zarejestrować własną grupę?
-  groups_signup_contact_text: "Skontaktuj się z nami, aby dowiedzieć się, co Open Food Network może zrobić dla Ciebie:"
+  groups_signup_contact_text: "Skontaktuj się z nami, aby dowiedzieć się, co Smaki Wsi może zrobić dla Ciebie:"
   groups_signup_detail: "Więcej szczegółów wkrótce."
   login_invalid: "Nieprawidłowy adres e-mail lub hasło"
   producers_about: O nas
@@ -2429,18 +2429,18 @@ pl:
   name_or_sku: "NAZWA LUB SKU"
   register_title: Rejestracja
   sell_title: "Rejestracja"
-  sell_headline: "Dołącz do Open Food Network!"
+  sell_headline: "Dołącz do Smaki Wsi!"
   sell_motivation: "Zaprezentuj swoje świetne produkty."
   sell_producers: "Producenci"
   sell_hubs: "Sklepy"
   sell_groups: "Grupy"
-  sell_producers_detail: "W kilka minut utwórz profil podmiotu w Open Food Network. W każdej chwili możesz rozbudować profil do sklepu i sprzedawać produkty bezpośrednio klientom."
-  sell_hubs_detail: "Utwórz profil dla swojego podmiotu lub organizacji w Open Food Network. Możesz go rozbudować i sprzedawać produkty innych producentów i sklepów bezpośrednio klientom."
+  sell_producers_detail: "W kilka minut utwórz profil podmiotu w Smaki Wsi. W każdej chwili możesz rozbudować profil do sklepu i sprzedawać produkty bezpośrednio klientom."
+  sell_hubs_detail: "Utwórz profil dla swojego podmiotu lub organizacji w Smaki Wsi. Możesz go rozbudować i sprzedawać produkty innych producentów i sklepów bezpośrednio klientom."
   sell_groups_detail: "Utwórz grupę podmiotów, aby ułatwić klientom dostęp do sklepów Twojej grupy. Połącz producentów i podmioty z Twojego regionu, targu lub organizacji."
   sell_user_guide: "Dowiedz się więcej w podręczniku użytkownika."
-  sell_listing_price: "Dodanie do Open Food Network jest bezpłatne. Otwarcie i prowadzenie sklepu online jest darmowe dla podmiotów z miesięcznym obrotem poniżej 500 €. Powyżej tej kwoty po 3-miesięcznym okresie próbnym pobieramy 3% opłaty, aby pokryć koszty."
+  sell_listing_price: "Dodanie do Smaki Wsi jest bezpłatne. Otwarcie i prowadzenie sklepu online jest darmowe dla podmiotów z miesięcznym obrotem poniżej 500 €. Powyżej tej kwoty po 3-miesięcznym okresie próbnym pobieramy 3% opłaty, aby pokryć koszty."
   sell_embed: "Oferujemy także inne usługi dla Twojego podmiotu."
-  sell_ask_services: "Zapytaj nas o usługi związane z Open Food Network."
+  sell_ask_services: "Zapytaj nas o usługi związane z Smaki Wsi."
   shops_title: Zakupy lokalne
   shops_headline: Wybierz sklep z listy.
   shops_text: Rośliny rosną w cyklach, rolnicy zbierają plony w cyklach, a u nas zamawiasz w cyklach. Jeśli cykl zamówień jest zamknięty, wybierz inny sklep lub wróć później.
@@ -2564,7 +2564,7 @@ pl:
         registration_promo_image: "Obraz tła profilu (zalecane)"
         registration_about_us: "\"O nas\" (zalecane)"
         registration_outcome_headline: "Co otrzymam?"
-        registration_outcome1_html: "Profil pomaga Cię w Open Food Network <strong>znaleźć</strong> i <strong>skontaktować się</strong>."
+        registration_outcome1_html: "Profil pomaga Cię w Smaki Wsi <strong>znaleźć</strong> i <strong>skontaktować się</strong>."
         registration_outcome2: "Użyj profilu, aby opowiedzieć historię podmiotu i podlinkować social media oraz stronę."
         registration_outcome3: "Profil to pierwszy krok do sprzedaży produktów lub otwarcia sklepu online w OFN."
         registration_action: "Zaczynamy!"
@@ -2621,7 +2621,7 @@ pl:
         title: "O nas"
         headline: "O nas"
         message: "Opisz teraz "
-        success: "Świetnie! %{enterprise} został dodany do Open Food Network."
+        success: "Świetnie! %{enterprise} został dodany do Smaki Wsi."
         registration_exit_message: "Jeśli przerwiesz ten kreator, możesz kontynuować po zalogowaniu i przejściu do menu \"Administracja\"."
         enterprise_description: "Krótki opis (zalecane)"
         enterprise_description_placeholder: "Jedno zdanie opisujące podmiot."
@@ -2829,7 +2829,7 @@ pl:
   spree_distributors_error: "Co najmniej jeden sklep musi być wybrany."
   spree_user_enterprise_limit_error: "^ %{email} nie może posiadać więcej podmiotów (limit %{enterprise_limit})."
   spree_variant_product_error: musi mieć co najmniej jeden wariant produktu
-  your_profil_live: "Twój publiczny profil w Open Food Network"
+  your_profil_live: "Twój publiczny profil w Smaki Wsi"
   see: " "
   live: "zobacz"
   manage: "Zarządzaj"
@@ -3138,7 +3138,7 @@ pl:
   enterprise_register_success_notice: "Gratulacje! Rejestracja %{enterprise} została zakończona!"
   enterprise_bulk_update_success_notice: "Podmioty zostały zaktualizowane."
   enterprise_bulk_update_error: 'Nie udało się zapisać zmian.'
-  enterprise_shop_show_error: "Wybrany sklep nie istnieje lub jest nieaktywny w Open Food Network. Sprawdź inne sklepy!"
+  enterprise_shop_show_error: "Wybrany sklep nie istnieje lub jest nieaktywny w Smaki Wsi. Sprawdź inne sklepy!"
   order_cycles_bulk_update_notice: 'Cykle zamówień zostały zaktualizowane.'
   order_cycles_no_permission_to_coordinate_error: "Żaden z Twoich podmiotów nie ma uprawnień do koordynacji cyklu zamówień."
   order_cycles_no_permission_to_create_error: "Nie masz uprawnień do utworzenia cyklu zamówień koordynowanego przez ten podmiot."
@@ -3227,7 +3227,7 @@ pl:
           hub_profile: Profil
           hub_profile_cost: "ZAWSZE DARMOWE"
           hub_profile_text1: >
-              Przedstaw się w Open Food Network i nawiąż kontakty z
+              Przedstaw się w Smaki Wsi i nawiąż kontakty z
               innymi producentami i sklepami. Będziesz widoczny w OFN,
               na mapie oraz w wynikach wyszukiwania.
           hub_profile_text2: >
@@ -3280,7 +3280,7 @@ pl:
               Sklepy mogą mieć różne formy: targ, spółdzielnia,
               grupa zakupowa, abonament skrzynek lub lokalny sklep.
           producer_hub_text3: >
-              Open Food Network chce wspierać jak najwięcej kanałów sprzedaży poprzez huby.
+              Smaki Wsi chce wspierać jak najwięcej kanałów sprzedaży poprzez huby.
               Staramy się dostarczyć narzędzia, których potrzebujesz, niezależnie od sytuacji.
           get_listing: Przedstaw siebie i swoje produkty
           always_free: ZAWSZE DARMOWE
@@ -3295,7 +3295,7 @@ pl:
               lub w inny sposób wytwarzasz żywność.
           producer_text2: >
               Producenci mogą także łączyć produkty innych podmiotów i
-              sprzedawać je przez sklep w Open Food Network.
+              sprzedawać je przez sklep w Smaki Wsi.
           non_producer: Sprzedawca
           non_producer_text1: >
               Sprzedawcy nie produkują żywności, więc nie mogą oferować
@@ -3483,7 +3483,7 @@ pl:
       users:
         order: "Zamówienie"
     registration:
-      welcome_to_ofn: "Witamy w Open Food Network!"
+      welcome_to_ofn: "Witamy w Smaki Wsi!"
       signup_or_login: "Zarejestruj się lub zaloguj"
       have_an_account: "Masz już konto?"
       action_login: "Zaloguj się teraz."
@@ -4067,13 +4067,13 @@ pl:
           order_has_changed: "Zamówienie zmieniło się od czasu wystawienia ostatniej faktury. Ta faktura może być nieaktualna."
       overview:
         enterprises_header:
-          ofn_with_tip: Podmioty to producenci i/lub sklepy i są podstawową jednostką organizacyjną w Open Food Network.
+          ofn_with_tip: Podmioty to producenci i/lub sklepy i są podstawową jednostką organizacyjną w Smaki Wsi.
         enterprise_row:
           has_no_enterprise_fees: "nie nalicza opłat podmiotu"
           has_no_payment_methods: "nie ma metod płatności"
           has_no_shipping_methods: "nie ma opcji dostawy"
         products:
-          products_tip: "Produkty, które sprzedajesz przez Open Food Network."
+          products_tip: "Produkty, które sprzedajesz przez Smaki Wsi."
           active_products:
             zero: "Nie masz aktywnych produktów."
             one: "Masz 1 aktywny produkt."
@@ -4404,10 +4404,10 @@ pl:
             Jeśli to nie zadziała, skopiuj link i wklej go w pasek adresu przeglądarki.
         subject: "Instrukcje resetowania hasła"
       confirmation_instructions:
-        subject: "Potwierdź rejestrację w Open Food Network"
+        subject: "Potwierdź rejestrację w Smaki Wsi"
     payment_mailer:
       authorize_payment:
-        subject: "Prosimy o autoryzację płatności na %{distributor} w Open Food Network"
+        subject: "Prosimy o autoryzację płatności na %{distributor} w Smaki Wsi"
         instructions: "Twoja płatność w wysokości %{amount} na rzecz %{distributor} wymaga dodatkowej autoryzacji. Kliknij poniższy link, aby potwierdzić płatność:"
       authorization_required:
         subject: "Płatność musi zostać autoryzowana przez klienta"
