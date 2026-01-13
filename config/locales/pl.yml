@@ -2564,9 +2564,9 @@ pl:
         registration_promo_image: "Obraz tła profilu (zalecane)"
         registration_about_us: "\"O nas\" (zalecane)"
         registration_outcome_headline: "Co otrzymam?"
-        registration_outcome1_html: "Profil pomaga Cię w Smaki Wsi <strong>znaleźć</strong> i <strong>skontaktować się</strong>."
+        registration_outcome1_html: "Profil pomaga Cię <strong>znaleźć</strong> w Smaki Wsi i <strong>skontaktować się z Tobą</strong>. Możesz także otworzyć <strong>swój własny sklep</strong> online"
         registration_outcome2: "Użyj profilu, aby opowiedzieć historię podmiotu i podlinkować social media oraz stronę."
-        registration_outcome3: "Profil to pierwszy krok do sprzedaży produktów lub otwarcia sklepu online w OFN."
+        registration_outcome3: "Profil to pierwszy krok do sprzedaży produktów lub otwarcia sklepu online w Smaki Wsi."
         registration_action: "Zaczynamy!"
       details:
         title: "Twój podmiot"
