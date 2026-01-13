@@ -356,7 +356,7 @@ pl:
         explainer: Automatyczne przetwarzanie nie powiodło się z nieznanego powodu. To nie powinno się zdarzyć — skontaktuj się z nami, jeśli to widzisz.
   home: "OFN"
   title: "Smaki Wsi"
-  welcome_to: "Regionalne jedzenie online w"
+  welcome_to: "Regionalne produkty online w"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
   producers_join: "Zapraszamy producentów do dołączenia do Smaki Wsi."
@@ -2138,7 +2138,7 @@ pl:
       cookies_policy_link_desc: "Jeśli chcesz dowiedzieć się więcej, przeczytaj nasze"
       cookies_policy_link: "Informacje o cookies"
       cookies_accept_button: "Akceptuję cookies"
-  home_shop: Kupuj lokalnie teraz
+  home_shop: Kupuj lokalnie
   brandstory_headline: "Kupuj regionalną żywność online"
   brandstory_intro: "Znajdź produkty od lokalnych producentów, zamów online i odbierz lub skorzystaj z dostawy.\nDołącz do ruchu, który z każdym zakupem wspiera jakość regionalnych produktów, uczciwe ceny, zrównoważony rozwój i przejrzystość. Pomóż nam w ..."
   brandstory_part1: "... nowym początku. Nie godź się na anonimowość i wyzysk ludzi, zwierząt i środowiska w branży żywnościowej. Poznaj historie rolników, ogrodników i hodowców stojących za produktami. Zobacz, jakie marże stosują pośrednicy, by uzyskać uczciwe ceny. Poznaj ludzi, którzy swoją codzienną pracą tworzą regionalną i sezonową żywność."
@@ -2155,7 +2155,7 @@ pl:
   system_step3: "3. Jak regionalna żywność trafia do mnie?"
   system_step3_text: "Każdy sklep sam ustala opcje dostawy. Wiele oferuje dostawę, często możliwy jest też odbiór osobisty lub w punkcie odbioru. Wybierz preferowaną opcję przy składaniu zamówienia. W Smaki Wsi liczą się relacje – można też bezpiecznie ustalić miejsce pozostawienia zamówienia."
   cta_headline: "Zrób świat odrobinę lepszym dzięki swoim zakupom."
-  cta_label: "Kupuj lokalnie teraz"
+  cta_label: "Kupuj lokalnie"
   stats_headline: "Tworzymy nowy system żywności."
   stats_producers: "Producenci żywności"
   stats_shops: "Sklepy z żywnością"
