@@ -788,7 +788,7 @@ pl:
       sort:
         pagination:
           products_total_html:
-            one: "<strong>%{total} produkt</strong> znaleziony dla Twoich kryteriów wyszukiwania."
+            one: "<strong>%{count} produkt</strong> znaleziony dla Twoich kryteriów wyszukiwania."
             other: "<strong>%{count} produktów</strong> znaleziono dla Twoich kryteriów wyszukiwania. Wyświetlanie %{from}–%{to}."
           per_page:
             show: Pokaż
