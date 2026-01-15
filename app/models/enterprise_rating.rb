@@ -22,8 +22,8 @@ class EnterpriseRating < ApplicationRecord
 
   def enterprise_in_order
     return if order.nil? || enterprise.nil?
-    return if order.line_items.joins(variant: :supplier)
-      .where(spree_variants: { supplier_id: enterprise.id }).exists?
+    return if enterprise_is_supplier_in_order?
+    return if order.distributor_id == enterprise.id
 
     errors.add(:enterprise, I18n.t("ratings.errors.enterprise_not_in_order"))
   end
@@ -33,5 +33,10 @@ class EnterpriseRating < ApplicationRecord
     return if order.user_id == user.id
 
     errors.add(:user, I18n.t("ratings.errors.user_not_order_owner"))
+  end
+
+  def enterprise_is_supplier_in_order?
+    order.line_items.joins(variant: :supplier)
+      .where(spree_variants: { supplier_id: enterprise.id }).exists?
   end
 end

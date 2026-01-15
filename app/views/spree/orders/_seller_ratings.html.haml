@@ -1,21 +1,24 @@
 - suppliers = order.line_items.includes(variant: :supplier).map(&:supplier).uniq
+- rateable_enterprises = suppliers
+- if order.distributor.present? && !rateable_enterprises.include?(order.distributor)
+  - rateable_enterprises << order.distributor
 - ratings_by_enterprise = order.enterprise_ratings.where(user: spree_current_user).index_by(&:enterprise_id)
 
 .order-seller-ratings
   %h3= t("ratings.section_title")
 
-  - if suppliers.empty?
+  - if rateable_enterprises.empty?
     %p= t("ratings.no_suppliers")
   - else
-    - suppliers.each do |supplier|
-      - rating = ratings_by_enterprise[supplier.id] || order.enterprise_ratings.build(enterprise: supplier, user: spree_current_user)
+    - rateable_enterprises.each do |enterprise|
+      - rating = ratings_by_enterprise[enterprise.id] || order.enterprise_ratings.build(enterprise: enterprise, user: spree_current_user)
       .order-seller-rating
-        %h4= supplier.name
+        %h4= enterprise.name
         = form_with model: rating,
                     url: rating.persisted? ? main_app.order_enterprise_rating_path(order, rating) : main_app.order_enterprise_ratings_path(order),
                     method: rating.persisted? ? :patch : :post,
                     local: true do |form|
-          = form.hidden_field :enterprise_id, value: supplier.id
+          = form.hidden_field :enterprise_id, value: enterprise.id
           .row
             .columns.large-4
               = form.label :rating, t("ratings.rating_label")

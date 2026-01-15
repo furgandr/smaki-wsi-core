@@ -29,6 +29,12 @@ RSpec.describe EnterpriseRating, type: :model do
     expect(rating).not_to be_valid
   end
 
+  it "allows rating the distributor for the order" do
+    distributor = order.distributor
+    rating = described_class.new(order:, enterprise: distributor, user:, rating: 5)
+    expect(rating).to be_valid
+  end
+
   it "rejects users that do not own the order" do
     other_user = create(:user)
     rating = described_class.new(order:, enterprise: supplier, user: other_user, rating: 3)
