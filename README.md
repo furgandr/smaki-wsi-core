@@ -30,6 +30,8 @@ If you're interested in provisioning a server, see [ofn-install][ofn-install] fo
 
 We also have a [Super Admin Guide][super-admin-guide] to help with configuration of new servers.
 
+For Smaki Wsi, see the Przelewy24 setup guide: `doc/Setting-up-Przelewy24-on-a-Smaki-Wsi-instance.md`.
+
 ## Testing
 
 If you'd like to help out with testing, please introduce yourself on the #testing channel on [Slack][slack-invite]. Also, do have a look in our [Welcome New QAs board][welcome-qa] for some good first issues, both on manual and automated testing (RSpec/Capybara).
