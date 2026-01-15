@@ -77,6 +77,7 @@ class Enterprise < ApplicationRecord
   has_many :connected_apps, dependent: :destroy
   has_many :dfc_permissions, dependent: :destroy
   has_one :custom_tab, dependent: :destroy
+  has_many :enterprise_ratings, dependent: :destroy
 
   delegate :latitude, :longitude, :city, :state_name, to: :address
 
@@ -483,6 +484,14 @@ class Enterprise < ApplicationRecord
 
   def public?
     visible == "public"
+  end
+
+  def rating_average
+    enterprise_ratings.average(:rating)&.to_f
+  end
+
+  def rating_count
+    enterprise_ratings.count
   end
 
   protected

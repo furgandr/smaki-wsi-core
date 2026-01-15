@@ -1,0 +1,31 @@
+- suppliers = order.line_items.includes(variant: :supplier).map(&:supplier).uniq
+- ratings_by_enterprise = order.enterprise_ratings.where(user: spree_current_user).index_by(&:enterprise_id)
+
+.order-seller-ratings
+  %h3= t("ratings.section_title")
+
+  - if suppliers.empty?
+    %p= t("ratings.no_suppliers")
+  - else
+    - suppliers.each do |supplier|
+      - rating = ratings_by_enterprise[supplier.id] || order.enterprise_ratings.build(enterprise: supplier, user: spree_current_user)
+      .order-seller-rating
+        %h4= supplier.name
+        = form_with model: rating,
+                    url: rating.persisted? ? main_app.order_enterprise_rating_path(order, rating) : main_app.order_enterprise_ratings_path(order),
+                    method: rating.persisted? ? :patch : :post,
+                    local: true do |form|
+          = form.hidden_field :enterprise_id, value: supplier.id
+          .row
+            .columns.large-4
+              = form.label :rating, t("ratings.rating_label")
+              = form.select :rating,
+                            options_for_select((1..5).to_a, rating.rating),
+                            { include_blank: true },
+                            class: "select"
+            .columns.large-8
+              = form.label :comment, t("ratings.comment_label")
+              = form.text_area :comment, rows: 3
+          .row
+            .columns.large-12
+              = form.submit rating.persisted? ? t("ratings.update") : t("ratings.submit"), class: "button primary"

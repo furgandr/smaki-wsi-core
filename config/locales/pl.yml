@@ -141,6 +141,23 @@ pl:
       duplicate_transaction: "Transakcja z identyczną kwotą i danymi karty została niedawno przesłana."
       fraudulent: "Płatność została odrzucona jako potencjalnie oszukańcza."
       generic_decline: "Karta została odrzucona z nieznanego powodu."
+  ratings:
+    section_title: "Oceń sprzedawców"
+    rating_label: "Ocena (1-5)"
+    comment_label: "Komentarz (opcjonalnie)"
+    submit: "Zapisz ocenę"
+    update: "Aktualizuj ocenę"
+    no_suppliers: "Brak sprzedawców do oceny w tym zamówieniu."
+    average_label: "Ocena"
+    none_label: "Brak ocen"
+    flash:
+      saved: "Dziękujemy za ocenę."
+      updated: "Ocena zaktualizowana."
+    errors:
+      order_not_complete: "Zamówienie nie jest zakończone."
+      enterprise_not_in_order: "Ten sprzedawca nie jest częścią Twojego zamówienia."
+      user_not_order_owner: "Możesz oceniać tylko własne zamówienia."
+      login_required: "Zaloguj się, aby ocenić sprzedawców."
       incorrect_pin: "Wprowadzony PIN jest nieprawidłowy. Ten kod dotyczy tylko płatności z czytnika."
       insufficient_funds: "Na karcie brakuje środków do zakończenia transakcji."
       invalid_account: "Karta lub konto są nieprawidłowe."

@@ -52,3 +52,6 @@
       -else
         = render 'spree/orders/summary', order: order
       = render 'spree/orders/form/update_buttons', order: order
+
+  - if order.complete? && spree_current_user
+    = render 'spree/orders/seller_ratings', order: order

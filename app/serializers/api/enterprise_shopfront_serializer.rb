@@ -10,7 +10,8 @@ module Api
                :phone, :whatsapp_phone, :whatsapp_url, :visible, :email_address, :hash, :logo,
                :promo_image, :path, :category, :active, :producers, :orders_close_at, :hubs,
                :taxons, :supplied_taxons, :pickup, :delivery, :preferred_product_low_stock_display,
-               :hide_ofn_navigation, :white_label_logo, :white_label_logo_link
+               :hide_ofn_navigation, :white_label_logo, :white_label_logo_link, :rating_average,
+               :rating_count
 
     has_one :address, serializer: Api::AddressSerializer
     has_many :supplied_properties, serializer: Api::PropertySerializer
@@ -51,6 +52,14 @@ module Api
 
     def white_label_logo
       enterprise.white_label_logo_url
+    end
+
+    def rating_average
+      enterprise.rating_average
+    end
+
+    def rating_count
+      enterprise.rating_count
     end
 
     def path

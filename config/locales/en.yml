@@ -217,6 +217,23 @@ en:
       duplicate_transaction: "A transaction with identical amount and credit card information was submitted very recently."
       fraudulent: "The payment has been declined as Stripe suspects it is fraudulent."
       generic_decline: "The card has been declined for an unknown reason."
+  ratings:
+    section_title: "Rate sellers"
+    rating_label: "Rating (1-5)"
+    comment_label: "Comment (optional)"
+    submit: "Save rating"
+    update: "Update rating"
+    no_suppliers: "No sellers found to rate for this order."
+    average_label: "Rating"
+    none_label: "No ratings yet"
+    flash:
+      saved: "Thanks for your rating."
+      updated: "Rating updated."
+    errors:
+      order_not_complete: "Order is not complete."
+      enterprise_not_in_order: "This seller is not part of your order."
+      user_not_order_owner: "You can only rate your own orders."
+      login_required: "Please sign in to rate sellers."
       incorrect_pin: "The PIN entered is incorrect. This decline code only applies to payments made with a card reader."
       insufficient_funds: "The card has insufficient funds to complete the purchase."
       invalid_account: "The card, or account the card is connected to, is invalid."

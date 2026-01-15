@@ -4,7 +4,7 @@ module Api
   class UncachedEnterpriseSerializer < ActiveModel::Serializer
     include SerializerHelper
 
-    attributes :orders_close_at, :active
+    attributes :orders_close_at, :active, :rating_average, :rating_count
 
     def orders_close_at
       options[:data].earliest_closing_times[object.id]&.to_time
@@ -12,6 +12,14 @@ module Api
 
     def active
       options[:data].active_distributor_ids&.include? object.id
+    end
+
+    def rating_average
+      object.rating_average
+    end
+
+    def rating_count
+      object.rating_count
     end
   end
 end

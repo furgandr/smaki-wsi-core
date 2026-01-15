@@ -10,4 +10,12 @@
         %span{"ng-bind" => "::enterprise.name"}
     .small-12.medium-5.large-4.columns.text-right.small-only-text-left
       %p{"ng-bind" => "::[enterprise.address.city, enterprise.address.state_name] | printArray"}
+      %p{"ng-if" => "::enterprise.rating_count > 0"}
+        %span{"ng-bind" => "::('ratings.average_label' | t) + ':'"}
+        %strong
+          {{ ::enterprise.rating_average | number: 1 }}/5
+        %span
+          ({{ ::enterprise.rating_count }})
+      %p{"ng-if" => "::enterprise.rating_count == 0"}
+        %span{"ng-bind" => "::('ratings.none_label' | t)"}
   %img.hero-img{"ng-src" => "{{::enterprise.promo_image}}"}

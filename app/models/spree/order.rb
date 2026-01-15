@@ -52,6 +52,7 @@ module Spree
              inverse_of: :adjustable,
              as: :adjustable,
              dependent: :destroy
+    has_many :enterprise_ratings, dependent: :destroy
 
     has_many :shipments, dependent: :destroy do
       def states
