@@ -109,6 +109,18 @@ button.success, .button.success {
   }
 }
 
+.rating-stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 6px;
+  font-size: 0.9em;
+  color: #c7c7c7;
+}
+
+.rating-stars .star.filled {
+  color: $orange-450;
+}
+
 // Transparent button
 .button.transparent {
   @include headingFont;

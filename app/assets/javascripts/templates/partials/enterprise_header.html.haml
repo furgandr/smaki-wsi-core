@@ -14,6 +14,8 @@
         %span{"ng-bind" => "::('ratings.average_label' | t) + ':'"}
         %strong
           {{ ::enterprise.rating_average | number: 1 }}/5
+        %span.rating-stars{"aria-hidden" => "true"}
+          %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= Math.round(enterprise.rating_average || 0)}"} &#9733;
         %span
           ({{ ::enterprise.rating_count }})
       %p{"ng-if" => "::enterprise.rating_count == 0"}
