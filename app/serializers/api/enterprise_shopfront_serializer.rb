@@ -69,9 +69,9 @@ module Api
         .order(created_at: :desc)
         .limit(5)
 
-      ActiveModel::ArraySerializer.new(
-        ratings, each_serializer: Api::EnterpriseRatingSerializer
-      )
+      ratings.map do |rating|
+        Api::EnterpriseRatingSerializer.new(rating).serializable_hash
+      end
     end
 
     def path

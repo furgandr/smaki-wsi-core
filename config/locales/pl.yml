@@ -4459,7 +4459,7 @@ pl:
         thanks: "Dziękujemy za zakupy!"
         track_information: "Informacje o przesyłce: %{tracking}"
         track_link: "Link do przesyłki: %{url}"
-        picked_up_instructions: "Twoje zamówienie u %{distributor} zostało odebrane."
+        picked_up_instructions: "Twoje zamówienie u %{distributor} zostało wysłane."
         picked_up_subject: "Powiadomienie o odbiorze"
     test_mailer:
       test_email:
