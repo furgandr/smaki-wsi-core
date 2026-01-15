@@ -2043,7 +2043,7 @@ pl:
   menu_4_title: "Grupy"
   menu_4_url: "/groups"
   menu_5_title: "Sprzedawaj"
-  menu_5_url: "https://smaki-wsi.pl/sell"
+  menu_5_url: "https://192.168.56.4.nip.io/sell"
   menu_6_title: "O OFN"
   menu_6_url: "https://wp.openfoodnetwork.de/"
   menu_7_title: "Pomoc"
