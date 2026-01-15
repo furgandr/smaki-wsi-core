@@ -1,4 +1,4 @@
-# Setting up Przelewy24 on an OFN instance
+# Setting up Przelewy24 on a Smaki Wsi instance
 
 ## Table of contents
 
@@ -8,7 +8,7 @@
   - [Step 1. Create a Przelewy24 account](#step-1-create-a-przelewy24-account)
   - [Step 2. Collect API credentials](#step-2-collect-api-credentials)
   - [Step 3. Configure callbacks](#step-3-configure-callbacks)
-  - [Step 4. Configure your OFN instance](#step-4-configure-your-ofn-instance)
+  - [Step 4. Configure your Smaki Wsi instance](#step-4-configure-your-smaki-wsi-instance)
   - [Step 5. Provision and restart](#step-5-provision-and-restart)
   - [Step 6. Verify payment methods in admin](#step-6-verify-payment-methods-in-admin)
   - [Step 7. Assign methods to an enterprise](#step-7-assign-methods-to-an-enterprise)
@@ -16,18 +16,18 @@
   - [Step 9. Place a test order](#step-9-place-a-test-order)
 
 ## Before you begin
-This is a walkthrough for setting up Przelewy24 on an OFN instance. You will need access to
+This is a walkthrough for setting up Przelewy24 on a Smaki Wsi instance. You will need access to
 the P24 merchant panel, and SSH access to the server (or Vagrant + Ansible for local setup).
 
 ## Intro to Przelewy24
 The integration uses the Przelewy24 REST API with a redirect flow:
 
-- The OFN registers a transaction (`/api/v1/transaction/register`).
+- Smaki Wsi registers a transaction (`/api/v1/transaction/register`).
 - The customer is redirected to the P24 payment page.
 - P24 sends a server-to-server notification to `urlStatus`.
-- The OFN verifies the transaction using `/api/v1/transaction/verify`.
+- Smaki Wsi verifies the transaction using `/api/v1/transaction/verify`.
 
-This matches the existing OFN external gateway flow (similar to Stripe redirect).
+This matches the existing Smaki Wsi external gateway flow (similar to Stripe redirect).
 
 ## Instructions
 
@@ -54,10 +54,10 @@ The integration uses:
 - `urlStatus` (server notification):  
   `https://YOUR_DOMAIN/payment_gateways/przelewy24/status`
 
-You do not enter these manually in the OFN code. They are sent during registration.
+You do not enter these manually in the Smaki Wsi code. They are sent during registration.
 Ensure `SITE_URL` (host) is correct on your server so the generated URLs are valid and public.
 
-### Step 4. Configure your OFN instance
+### Step 4. Configure your Smaki Wsi instance
 All secrets must be stored in `secrets.yml` and excluded from git.
 
 For Vagrant:
