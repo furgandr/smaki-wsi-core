@@ -463,7 +463,6 @@ pl:
   payment_could_not_process: "Płatność nie mogła zostać przetworzona"
   payment_pending_przelewy24: "Płatność oczekuje na potwierdzenie z Przelewy24."
   payment_redirect_przelewy24: "Zostaniesz przekierowany do Przelewy24 w celu dokończenia płatności."
-  payment_redirect_przelewy24_blik: "Zostaniesz przekierowany do Przelewy24 w celu dokończenia płatności BLIK."
   payment_could_not_complete: "Płatność nie mogła zostać zakończona"
   actions:
     create_and_add_another: "Utwórz i dodaj kolejny"
@@ -4192,7 +4191,6 @@ pl:
           stripeconnect: "Stripe"
           stripesca: "Stripe SCA"
           przelewy24: "Przelewy24"
-          przelewy24blik: "Przelewy24 BLIK"
       payments:
         source_forms:
           stripe:

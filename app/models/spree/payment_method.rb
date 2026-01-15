@@ -136,7 +136,7 @@ module Spree
     end
 
     def przelewy24?
-      type.ends_with?("Przelewy24") || type.ends_with?("Przelewy24Blik")
+      type.ends_with?("Przelewy24")
     end
 
     def stripe_configured?

@@ -132,7 +132,6 @@ module Openfoodnetwork
         app.config.spree.payment_methods << Spree::Gateway::StripeSCA
         app.config.spree.payment_methods << Spree::Gateway::PayPalExpress
         app.config.spree.payment_methods << Spree::Gateway::Przelewy24
-        app.config.spree.payment_methods << Spree::Gateway::Przelewy24Blik
       end
     end
 

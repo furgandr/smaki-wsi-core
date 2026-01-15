@@ -48,26 +48,13 @@ namespace :ofn do
       standard.save!
       standard.distributors = distributors if assign_all
 
-      blik = Spree::Gateway::Przelewy24Blik.find_or_initialize_by(
-        name: "Przelewy24 BLIK",
-        environment: env
-      )
-      blik.active = true
-      blik.display_on = "both"
-      blik.preferred_merchant_id = merchant_id
-      blik.preferred_pos_id = pos_id
-      blik.preferred_api_key = api_key
-      blik.preferred_crc_key = crc_key
-      blik.preferred_language = language
-      blik.preferred_test_mode = test_mode
-      blik.preferred_wait_for_result = wait_for_result
-      blik.preferred_time_limit = time_limit if time_limit
-      blik.preferred_channel = ENV["P24_BLIK_CHANNEL"].presence&.to_i || 8192
-      blik.preferred_method_id = ENV["P24_BLIK_METHOD_ID"].presence&.to_i if ENV["P24_BLIK_METHOD_ID"].present?
-      blik.save!
-      blik.distributors = distributors if assign_all
+      puts "P24 payment method configured."
+    end
 
-      puts "P24 payment methods configured."
+    desc "Remove deprecated Przelewy24 BLIK payment methods"
+    task przelewy24_cleanup: :environment do
+      removed = Spree::PaymentMethod.where(type: "Spree::Gateway::Przelewy24Blik").delete_all
+      puts "Removed #{removed} Przelewy24 BLIK payment method(s)."
     end
   end
 end

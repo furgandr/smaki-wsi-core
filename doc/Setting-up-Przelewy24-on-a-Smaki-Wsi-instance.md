@@ -97,16 +97,15 @@ This creates or updates `Przelewy24` and `Przelewy24 BLIK` payment methods.
 Go to `Configuration -> Payment Methods`. You should see:
 
 - Przelewy24
-- Przelewy24 BLIK
 
-### Step 7. Assign methods to an enterprise
-Go to `Enterprises -> Edit -> Payment Methods` and assign the new methods to your distributor.
+### Step 7. Assign method to an enterprise
+Go to `Enterprises -> Edit -> Payment Methods` and assign Przelewy24 to your distributor.
 
 ### Step 8. Enable in order cycle
-Go to `Order Cycles -> Checkout options` and enable Przelewy24 / BLIK for the relevant cycle.
+Go to `Order Cycles -> Checkout options` and enable Przelewy24 for the relevant cycle.
 
 ### Step 9. Place a test order
-Open the shopfront, choose Przelewy24 or BLIK, and place a test order. If using sandbox, use the
+Open the shopfront, choose Przelewy24, and place a test order. If using sandbox, use the
 P24 test flow and verify that:
 
 - the customer is redirected to P24,
