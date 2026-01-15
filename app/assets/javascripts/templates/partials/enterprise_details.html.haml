@@ -16,6 +16,14 @@
       .about-container.pad-top
         %img.enterprise-logo{"ng-src" => "{{::enterprise.logo}}", "ng-if" => "::enterprise.logo"}
         %div{"ng-bind-html" => "::enterprise.long_description"}
+      .ratings-container.pad-top{"ng-if" => "enterprise.recent_ratings.length > 0"}
+        %p.modal-header {{'ratings.comments_title' | t}}
+        %ul.ratings-list
+          %li{"ng-repeat" => "rating in enterprise.recent_ratings"}
+            %strong {{ rating.author_name }}
+            %span
+              {{ rating.rating }}/5
+            %p{"ng-bind" => "rating.comment"}
   .small-12.large-4.columns
     %ng-include{src: "'partials/contact.html'"}
     %ng-include{src: "'partials/follow.html'"}

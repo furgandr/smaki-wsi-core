@@ -226,11 +226,13 @@ en:
     no_suppliers: "No sellers found to rate for this order."
     average_label: "Rating"
     none_label: "No ratings yet"
+    comments_title: "Buyer comments"
+    waiting_for_shipment: "You can rate sellers after the order is marked as shipped."
     flash:
       saved: "Thanks for your rating."
       updated: "Rating updated."
     errors:
-      order_not_complete: "Order is not complete."
+      order_not_shipped: "Order has not been shipped yet."
       enterprise_not_in_order: "This seller is not part of your order."
       user_not_order_owner: "You can only rate your own orders."
       login_required: "Please sign in to rate sellers."

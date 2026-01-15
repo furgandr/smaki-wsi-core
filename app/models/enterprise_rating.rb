@@ -8,16 +8,16 @@ class EnterpriseRating < ApplicationRecord
   validates :rating, presence: true, inclusion: { in: 1..5 }
   validates :order_id, uniqueness: { scope: [:enterprise_id, :user_id] }
 
-  validate :order_is_complete
+  validate :order_is_shipped
   validate :enterprise_in_order
   validate :user_matches_order
 
   private
 
-  def order_is_complete
-    return if order&.complete?
+  def order_is_shipped
+    return if order&.shipped?
 
-    errors.add(:order, I18n.t("ratings.errors.order_not_complete"))
+    errors.add(:order, I18n.t("ratings.errors.order_not_shipped"))
   end
 
   def enterprise_in_order

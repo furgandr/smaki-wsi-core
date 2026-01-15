@@ -5,7 +5,7 @@ module Spree
     before_action :load_order
     before_action :require_user
     before_action :ensure_order_access
-    before_action :ensure_order_complete
+    before_action :ensure_order_shipped
     before_action :load_enterprise_rating, only: :update
 
     def create
@@ -53,10 +53,10 @@ module Spree
       render status: :forbidden, plain: I18n.t("errors.unauthorized.message")
     end
 
-    def ensure_order_complete
-      return if @order.complete?
+    def ensure_order_shipped
+      return if @order.shipped?
 
-      flash[:error] = I18n.t("ratings.errors.order_not_complete")
+      flash[:error] = I18n.t("ratings.errors.order_not_shipped")
       redirect_to main_app.order_path(@order)
     end
 
