@@ -582,6 +582,9 @@ en:
   width: "Width"
   depth: "Depth"
   payment_could_not_process: "The payment could not be processed"
+  payment_pending_przelewy24: "Payment pending confirmation from Przelewy24."
+  payment_redirect_przelewy24: "You will be redirected to Przelewy24 to complete the payment."
+  payment_redirect_przelewy24_blik: "You will be redirected to Przelewy24 to complete the BLIK payment."
   payment_could_not_complete: "The payment could not be completed"
   vine_voucher_validator_service:
     errors:
