@@ -625,9 +625,6 @@ pl:
       edit:
         title: "Stripe Connect"
         settings: "Ustawienia"
-        stripe_connect_enabled: Zezwolić sklepom na płatności przez Stripe Connect?
-        no_api_key_msg: Dla tego podmiotu nie istnieje konto Stripe.
-        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>dokumentacji</a>.
         status: Status
         ok: OK
         instance_secret_key: Sekretny klucz instancji
@@ -637,6 +634,23 @@ pl:
         charges_enabled_warning: "Uwaga: płatności nie są aktywne na Twoim koncie."
         auth_fail_error: Podany klucz API jest nieprawidłowy.
         empty_api_key_error_html: Nie podano klucza API Stripe. Aby go ustawić, skorzystaj z <a href="https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance" target="_blank">instrukcji</a>.
+        no_api_key_msg: Dla tego podmiotu nie istnieje konto Stripe.
+        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>dokumentacji</a>.
+      stripe_connect_enabled: Zezwolić sklepom na płatności przez Stripe Connect?
+    przelewy24_settings:
+      edit:
+        title: "Przelewy24"
+        settings: "Ustawienia"
+        status: "Status"
+        ok: "OK"
+        not_set: "Nie ustawiono"
+        missing_credentials: "Brak danych Przelewy24. Sprawdź secrets.yml."
+        configuration_explanation_html: "Skonfiguruj dane Przelewy24 w secrets.yml i włącz integrację."
+        przelewy24_enabled: "Zezwolić sklepom na płatności przez Przelewy24?"
+        merchant_id: "Merchant ID"
+        pos_id: "POS ID"
+        api_key: "API key"
+        crc_key: "CRC key"
     matomo_settings:
       edit:
         title: "Ustawienia Matomo"
@@ -1785,6 +1799,8 @@ pl:
         remove_white_label_logo_success: "Logo zostało usunięte."
       stripe_connect_settings:
         resource: Konfiguracja Stripe Connect
+      przelewy24_settings:
+        resource: Konfiguracja Przelewy24
     resend_confirmation_emails_feedback:
       one: "Wysłano e-mail potwierdzający dla 1 zamówienia."
       other: "Wysłano e-maile potwierdzające dla %{count} zamówień."
@@ -4175,6 +4191,8 @@ pl:
           paypalexpress: "PayPal Express"
           stripeconnect: "Stripe"
           stripesca: "Stripe SCA"
+          przelewy24: "Przelewy24"
+          przelewy24blik: "Przelewy24 BLIK"
       payments:
         source_forms:
           stripe:

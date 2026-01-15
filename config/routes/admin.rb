@@ -105,6 +105,7 @@ Openfoodnetwork::Application.routes.draw do
     resource :invoice_settings, only: [:edit, :update]
 
     resource :stripe_connect_settings, only: [:edit, :update]
+    resource :przelewy24_settings, only: [:edit, :update]
 
     resource :terms_of_service_files
 

@@ -14,6 +14,7 @@
   - [Step 7. Assign methods to an enterprise](#step-7-assign-methods-to-an-enterprise)
   - [Step 8. Enable in order cycle](#step-8-enable-in-order-cycle)
   - [Step 9. Place a test order](#step-9-place-a-test-order)
+- [Testing on Vagrant (local only)](#testing-on-vagrant-local-only)
 
 ## Before you begin
 This is a walkthrough for setting up Przelewy24 on a Smaki Wsi instance. You will need access to
@@ -113,3 +114,29 @@ P24 test flow and verify that:
 - the order completes after verification.
 
 If `urlStatus` is not reachable, the payment will stay pending and will not be settled.
+
+## Testing on Vagrant (local only)
+Przelewy24 sends `urlStatus` from their servers, so your instance must be publicly reachable.
+In local Vagrant without a public URL, the payment will remain pending.
+
+### Option A: use a public tunnel (recommended)
+Use a tunnel (ngrok or Cloudflare Tunnel) to expose your local VM:
+
+1) Start the tunnel pointing to your local web port (example for port 8080):
+```
+ngrok http 8080
+```
+or
+```
+cloudflared tunnel --url http://localhost:8080
+```
+2) Set your `SITE_URL` to the public tunnel URL (without trailing slash).
+3) Re-run provision/deploy so `.env` is updated.
+4) Retry the payment. Now `urlStatus` can reach your instance.
+
+### Option B: redirect-only test (no status)
+You can still verify:
+- payment method appears in checkout,
+- redirect to P24 works.
+
+But the order will not complete because no `urlStatus` is delivered.

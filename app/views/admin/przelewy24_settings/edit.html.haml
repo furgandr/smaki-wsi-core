@@ -1,0 +1,43 @@
+= render :partial => 'spree/admin/shared/configuration_menu'
+
+- content_for :page_title do
+  = t('.title')
+
+%fieldset.no-border-bottom
+  %legend
+    = t('.settings')
+  = form_for @settings, as: :settings, url: main_app.admin_przelewy24_settings_path, :method => :put do |f|
+    .row
+      .twelve.columns.alpha.omega
+        .field
+          - disabled = @credentials[:status] != :ok
+          = f.label :przelewy24_enabled, t('.przelewy24_enabled')
+          = f.check_box :przelewy24_enabled, disabled: disabled
+    .row
+      .twelve.columns.alpha.omega.form-buttons
+        = button t(:update), 'icon-refresh', value: "update"
+
+%fieldset.no-border-bottom
+  %legend= t('.status')
+  %strong= t('.configuration_explanation_html')
+  - if @credentials[:status] == :ok
+    .alert-box.ok
+      .status
+        %strong= t('.status') + ":"
+        = t('.ok')
+        %i.icon-ok
+      .merchant_id
+        %strong= t('.merchant_id') + ":"
+        = @credentials[:merchant_id]
+      .pos_id
+        %strong= t('.pos_id') + ":"
+        = @credentials[:pos_id].presence || t('.not_set')
+      .api_key
+        %strong= t('.api_key') + ":"
+        = @credentials[:api_key]
+      .crc_key
+        %strong= t('.crc_key') + ":"
+        = @credentials[:crc_key]
+  - else
+    .alert-box.error
+      = t('.missing_credentials')

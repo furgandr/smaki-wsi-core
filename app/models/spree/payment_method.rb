@@ -57,7 +57,10 @@ module Spree
     end
 
     def configured?
-      !stripe? || stripe_configured?
+      return stripe_configured? if stripe?
+      return przelewy24_configured? if przelewy24?
+
+      true
     end
 
     def provider_class
@@ -132,12 +135,23 @@ module Spree
       type.ends_with?("StripeSCA")
     end
 
+    def przelewy24?
+      type.ends_with?("Przelewy24") || type.ends_with?("Przelewy24Blik")
+    end
+
     def stripe_configured?
       Spree::Config.stripe_connect_enabled &&
         Stripe.publishable_key &&
         preferred_enterprise_id.present? &&
         preferred_enterprise_id > 0 &&
         stripe_account_id.present?
+    end
+
+    def przelewy24_configured?
+      Spree::Config[:przelewy24_enabled] &&
+        preferred_merchant_id.present? &&
+        preferred_api_key.present? &&
+        preferred_crc_key.present?
     end
   end
 end
