@@ -7,6 +7,10 @@ RSpec.describe EnterpriseRating, type: :model do
   let(:supplier) { order.line_items.first.supplier }
   let(:user) { order.user }
 
+  before do
+    order.shipments.update_all(shipped_at: Time.zone.now)
+  end
+
   it "is valid with a completed order and supplier from the order" do
     rating = described_class.new(order:, enterprise: supplier, user:, rating: 4)
     expect(rating).to be_valid

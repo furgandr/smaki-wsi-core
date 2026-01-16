@@ -121,6 +121,20 @@ button.success, .button.success {
   color: $orange-450;
 }
 
+.ratings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ratings-list li {
+  padding: 10px 12px;
+  margin: 0 0 8px 0;
+  background: #f7f7f7;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+}
+
 // Transparent button
 .button.transparent {
   @include headingFont;

@@ -17,4 +17,7 @@
               %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= rating.rating}"} &#9733;
             %span
               {{ rating.rating }}/5
+            %em{"ng-if" => "rating.excluded_from_stats"}
+              {{ 'ratings.excluded_note' | t }}
+              %span{"ng-if" => "rating.excluded_reason"} ({{ ('rating_exclusions.' + rating.excluded_reason) | t }})
             %p{"ng-bind" => "rating.comment"}

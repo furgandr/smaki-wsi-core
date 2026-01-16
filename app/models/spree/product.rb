@@ -49,6 +49,7 @@ module Spree
     has_many :stock_items, through: :variants
     has_many :variant_images, -> { order(:position) }, source: :images,
                                                        through: :variants
+    has_many :product_reviews, class_name: "::ProductReview", dependent: :destroy
 
     validates_lengths_from_database
     validates :name, presence: true
@@ -227,6 +228,14 @@ module Spree
       ps.
         sort_by(&:position).
         map { |pp| { id: pp.property.id, name: pp.property.presentation, value: pp.value } }
+    end
+
+    def rating_average
+      product_reviews.average(:rating)&.to_f
+    end
+
+    def rating_count
+      product_reviews.count
     end
 
     def in_distributor?(distributor)

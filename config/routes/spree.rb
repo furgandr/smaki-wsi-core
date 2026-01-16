@@ -3,6 +3,7 @@ Openfoodnetwork::Application.routes.draw do
     resources :orders do
       put :cancel, on: :member
       resources :enterprise_ratings, only: [:create, :update]
+      resources :product_reviews, only: [:create, :update]
     end
   end
 end

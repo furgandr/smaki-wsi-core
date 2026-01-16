@@ -487,11 +487,51 @@ class Enterprise < ApplicationRecord
   end
 
   def rating_average
-    enterprise_ratings.average(:rating)&.to_f
+    stats = ratings_for_stats_last_12_months
+    return nil if stats.empty?
+
+    stats.sum(&:rating).to_f / stats.size
   end
 
   def rating_count
-    enterprise_ratings.count
+    ratings_for_stats_last_12_months.size
+  end
+
+  def recommendation_percent
+    stats = ratings_for_stats_last_12_months
+    return nil if stats.empty?
+
+    recommend_count = stats.count(&:recommend?)
+    percent = (recommend_count.to_f / stats.size) * 100
+    percent.round(1)
+  end
+
+  def ratings_for_stats_last_12_months
+    cutoff = 12.months.ago
+    scope = enterprise_ratings
+      .where(removed_at: nil, excluded_from_stats: false)
+      .where("updated_at >= ?", cutoff)
+      .order(:user_id, :updated_at)
+
+    unique_ratings_with_min_gap(scope, 3.days)
+  end
+
+  private
+
+  def unique_ratings_with_min_gap(scope, min_gap)
+    grouped = scope.group_by(&:user_id)
+    grouped.values.flat_map do |ratings|
+      last_kept_at = nil
+      ratings.select do |rating|
+        timestamp = rating.stats_timestamp
+        if last_kept_at.nil? || (timestamp - last_kept_at) >= min_gap
+          last_kept_at = timestamp
+          true
+        else
+          false
+        end
+      end
+    end
   end
 
   protected

@@ -11,7 +11,7 @@ module Api
                :promo_image, :path, :category, :active, :producers, :orders_close_at, :hubs,
                :taxons, :supplied_taxons, :pickup, :delivery, :preferred_product_low_stock_display,
                :hide_ofn_navigation, :white_label_logo, :white_label_logo_link, :rating_average,
-               :rating_count, :recent_ratings
+               :rating_count, :recommendation_percent, :recent_ratings
 
     has_one :address, serializer: Api::AddressSerializer
     has_many :supplied_properties, serializer: Api::PropertySerializer
@@ -62,12 +62,16 @@ module Api
       enterprise.rating_count
     end
 
+    def recommendation_percent
+      enterprise.recommendation_percent
+    end
+
     def recent_ratings
       ratings = enterprise.enterprise_ratings
         .includes(order: :bill_address)
         .where.not(comment: [nil, ""])
+        .where(removed_at: nil)
         .order(created_at: :desc)
-        .limit(5)
 
       ratings.map do |rating|
         Api::EnterpriseRatingSerializer.new(rating).serializable_hash

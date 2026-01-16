@@ -228,14 +228,69 @@ en:
     none_label: "No ratings yet"
     comments_title: "Buyer comments"
     waiting_for_shipment: "You can rate sellers after the order is marked as shipped."
+    review_window_closed: "The review window for this order has ended."
+    excluded_note: "This rating does not count toward the average."
+    recommendation_percent_label: "Recommend"
     flash:
       saved: "Thanks for your rating."
       updated: "Rating updated."
     errors:
       order_not_shipped: "Order has not been shipped yet."
+      order_canceled: "Canceled orders cannot be rated."
+      review_window_closed: "The review window for this order has ended."
       enterprise_not_in_order: "This seller is not part of your order."
       user_not_order_owner: "You can only rate your own orders."
       login_required: "Please sign in to rate sellers."
+  product_reviews:
+    section_title: "Review products"
+    rating_label: "Rating (1-5)"
+    comment_label: "Comment (optional)"
+    submit: "Save review"
+    update: "Update review"
+    no_products: "No products found to review for this order."
+    comments_title: "Product reviews"
+    flash:
+      saved: "Thanks for your review."
+      updated: "Review updated."
+    errors:
+      product_not_in_order: "This product is not part of your order."
+    email:
+      greeting: "Hi %{name},"
+      request_intro: "Your order from %{distributor} has been shipped."
+      request_body: "You can now rate the seller and review products. You have %{days} days to leave feedback."
+      reminder_intro: "Reminder: your order from %{distributor} was shipped."
+      reminder_body: "You still have time to rate the seller and review products. You have %{days} days from shipment."
+      leave_review_link: "Leave your review"
+  admin:
+    enterprise_ratings:
+      index:
+        title: "Seller reviews"
+        enterprise: "Seller"
+        order: "Order"
+        buyer: "Buyer"
+        rating: "Rating"
+        comment: "Comment"
+        created_at: "Created at"
+        status: "Status"
+        active: "Active"
+        excluded: "Excluded"
+        removed: "Removed"
+        removal_requested: "Removal requested"
+        remove: "Remove"
+        restore: "Restore"
+        exclude: "Exclude"
+        include: "Include"
+        request_removal: "Request removal"
+        default_removal_reason: "Removed by admin"
+      flash:
+        removed: "Rating removed."
+        restored: "Rating restored."
+        excluded: "Rating excluded from stats."
+        included: "Rating included in stats."
+        removal_requested: "Removal request sent."
+        removal_request_denied: "Removal request not allowed."
+  rating_exclusions:
+    duplicate_recent: "Multiple ratings within a short period are not counted."
       incorrect_pin: "The PIN entered is incorrect. This decline code only applies to payments made with a card reader."
       insufficient_funds: "The card has insufficient funds to complete the purchase."
       invalid_account: "The card, or account the card is connected to, is invalid."
@@ -4892,6 +4947,10 @@ en:
       invoice_email:
         hi: "Hi %{name}"
         invoice_attached_text: Please find attached an invoice for your recent order from
+      review_request_email:
+        subject: "Leave a review"
+      review_reminder_email:
+        subject: "Reminder: leave a review"
     user_mailer:
       reset_password_instructions:
         dear_customer: "Dear customer,"

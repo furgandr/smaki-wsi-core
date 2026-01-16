@@ -35,6 +35,8 @@ module Spree
     has_many :customers, dependent: :destroy
     has_many :credit_cards, dependent: :destroy
     has_many :report_rendering_options, class_name: "::ReportRenderingOptions", dependent: :destroy
+    has_many :product_reviews, class_name: "::ProductReview", dependent: :destroy
+    has_many :enterprise_ratings, class_name: "::EnterpriseRating", dependent: :destroy
     has_many :webhook_endpoints, dependent: :destroy
     has_many :column_preferences, dependent: :destroy
     has_one :oidc_account, dependent: :destroy

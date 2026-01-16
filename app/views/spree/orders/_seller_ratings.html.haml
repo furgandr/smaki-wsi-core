@@ -7,9 +7,12 @@
 .order-seller-ratings
   %h3= t("ratings.section_title")
 
+  - unless order.review_window_open?
+    %p= t("ratings.review_window_closed")
+
   - if rateable_enterprises.empty?
     %p= t("ratings.no_suppliers")
-  - else
+  - elsif order.review_window_open?
     - rateable_enterprises.each do |enterprise|
       - rating = ratings_by_enterprise[enterprise.id] || order.enterprise_ratings.build(enterprise: enterprise, user: spree_current_user)
       .order-seller-rating

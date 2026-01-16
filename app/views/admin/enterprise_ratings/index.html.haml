@@ -1,0 +1,58 @@
+- if spree_current_user.admin?
+  = render 'spree/admin/shared/configuration_menu'
+
+= content_for :page_title do
+  = t(".title")
+
+%table.index#listing_enterprise_ratings
+  %thead
+    %tr
+      %th= t(".enterprise")
+      %th= t(".order")
+      %th= t(".buyer")
+      %th= t(".rating")
+      %th= t(".comment")
+      %th= t(".created_at")
+      %th= t(".status")
+      %th.actions
+  %tbody
+    - @ratings.each do |rating|
+      %tr
+        %td= rating.enterprise.name
+        %td= link_to rating.order.number, spree.admin_order_path(rating.order)
+        %td= rating.order.bill_address&.full_name || rating.order.email
+        %td= rating.rating
+        %td= rating.comment
+        %td= l(rating.created_at, format: :short)
+        %td
+          - if rating.removed_at.present?
+            %span= t(".removed")
+            - if rating.removal_reason.present?
+              %div= rating.removal_reason
+          - elsif rating.excluded_from_stats?
+            %span= t(".excluded")
+            - if rating.excluded_reason.present?
+              %div= t("rating_exclusions.#{rating.excluded_reason}", default: rating.excluded_reason)
+          - elsif rating.removal_requested_at.present?
+            %span= t(".removal_requested")
+          - else
+            %span= t(".active")
+        %td.actions
+          - if spree_current_user.admin?
+            - if rating.removed_at.present?
+              = button_to t(".restore"), main_app.restore_admin_enterprise_rating_path(rating),
+                          method: :patch, class: "button secondary"
+            - else
+              = button_to t(".remove"), main_app.remove_admin_enterprise_rating_path(rating),
+                          method: :patch, class: "button secondary",
+                          params: { removal_reason: t(".default_removal_reason") }
+            - if rating.excluded_from_stats?
+              = button_to t(".include"), main_app.include_admin_enterprise_rating_path(rating),
+                          method: :patch, class: "button secondary"
+            - else
+              = button_to t(".exclude"), main_app.exclude_admin_enterprise_rating_path(rating),
+                          method: :patch, class: "button secondary",
+                          params: { excluded_reason: "duplicate_recent" }
+          - elsif rating.removal_requestable?(spree_current_user)
+            = button_to t(".request_removal"), main_app.request_removal_admin_enterprise_rating_path(rating),
+                        method: :patch, class: "button secondary"

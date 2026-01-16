@@ -48,6 +48,7 @@ module Spree
                           }, class_name: "Spree::LineItem", inverse_of: :order, dependent: :destroy
     has_many :payments, dependent: :destroy
     has_many :return_authorizations, dependent: :destroy, inverse_of: :order
+    has_many :product_reviews, dependent: :destroy
     has_many :adjustments, -> { order "#{Spree::Adjustment.table_name}.created_at ASC" },
              inverse_of: :adjustable,
              as: :adjustable,
@@ -481,6 +482,48 @@ module Spree
 
     def shipped?
       %w(partial shipped).include?(shipment_state)
+    end
+
+    def last_shipped_at
+      shipments.maximum(:shipped_at)
+    end
+
+    def review_window_end_at
+      last_shipped_at&.+(30.days)
+    end
+
+    def review_window_open?
+      last_shipped_at.present? && Time.zone.now <= review_window_end_at
+    end
+
+    def review_request_window_end_at
+      completed_at&.+(90.days)
+    end
+
+    def review_request_window_open?
+      completed_at.present? && Time.zone.now <= review_request_window_end_at
+    end
+
+    def reviewable_enterprises
+      suppliers = line_items.includes(variant: :supplier).map(&:supplier).uniq
+      enterprises = suppliers
+      enterprises << distributor if distributor.present? && !enterprises.include?(distributor)
+      enterprises
+    end
+
+    def reviewable_products
+      line_items.includes(:product).map(&:product).uniq
+    end
+
+    def reviews_pending_for_user?(user)
+      return false if user.nil?
+
+      pending_enterprises = reviewable_enterprises.map(&:id) -
+        enterprise_ratings.where(user:).pluck(:enterprise_id)
+      pending_products = reviewable_products.map(&:id) -
+        product_reviews.where(user:).pluck(:product_id)
+
+      pending_enterprises.any? || pending_products.any?
     end
 
     # Does this order have shipments that can be shipped?

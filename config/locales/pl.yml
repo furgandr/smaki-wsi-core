@@ -152,11 +152,16 @@ pl:
     none_label: "Brak ocen"
     comments_title: "Komentarze kupujących"
     waiting_for_shipment: "Oceny można dodać po oznaczeniu wysyłki zamówienia."
+    review_window_closed: "Okno na dodanie opinii do tego zamówienia już minęło."
+    excluded_note: "Ta ocena nie wlicza się do średniej."
+    recommendation_percent_label: "Polecam"
     flash:
       saved: "Dziękujemy za ocenę."
       updated: "Ocena zaktualizowana."
     errors:
       order_not_shipped: "Zamówienie nie zostało jeszcze wysłane."
+      order_canceled: "Nie można ocenić anulowanego zamówienia."
+      review_window_closed: "Okno na dodanie opinii do tego zamówienia już minęło."
       enterprise_not_in_order: "Ten sprzedawca nie jest częścią Twojego zamówienia."
       user_not_order_owner: "Możesz oceniać tylko własne zamówienia."
       login_required: "Zaloguj się, aby ocenić sprzedawców."
@@ -187,6 +192,56 @@ pl:
       transaction_not_allowed: "Karta została odrzucona z nieznanego powodu."
       try_again_later: "Karta została odrzucona z nieznanego powodu."
       withdrawal_count_limit_exceeded: "Klient przekroczył dostępne środki lub limit kredytowy."
+  product_reviews:
+    section_title: "Recenzje produktów"
+    rating_label: "Ocena (1-5)"
+    comment_label: "Komentarz (opcjonalnie)"
+    submit: "Zapisz recenzję"
+    update: "Aktualizuj recenzję"
+    no_products: "Brak produktów do recenzji w tym zamówieniu."
+    comments_title: "Recenzje produktów"
+    flash:
+      saved: "Dziękujemy za recenzję."
+      updated: "Recenzja zaktualizowana."
+    errors:
+      product_not_in_order: "Ten produkt nie jest częścią Twojego zamówienia."
+    email:
+      greeting: "Cześć %{name},"
+      request_intro: "Twoje zamówienie z %{distributor} zostało wysłane."
+      request_body: "Możesz teraz ocenić sprzedawcę i dodać recenzje produktów. Masz na to %{days} dni od wysyłki."
+      reminder_intro: "Przypomnienie: Twoje zamówienie z %{distributor} zostało wysłane."
+      reminder_body: "Wciąż możesz ocenić sprzedawcę i dodać recenzje produktów. Masz %{days} dni od wysyłki."
+      leave_review_link: "Dodaj opinię"
+  admin:
+    enterprise_ratings:
+      index:
+        title: "Opinie o sprzedawcach"
+        enterprise: "Sprzedawca"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        removal_requested: "Prośba o usunięcie"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        request_removal: "Poproś o usunięcie"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Ocena została usunięta."
+        restored: "Ocena została przywrócona."
+        excluded: "Ocena wykluczona ze statystyk."
+        included: "Ocena uwzględniona w statystykach."
+        removal_requested: "Prośba o usunięcie została wysłana."
+        removal_request_denied: "Nie można wysłać prośby o usunięcie."
+  rating_exclusions:
+    duplicate_recent: "Wiele ocen w krótkim czasie nie liczy się do średniej."
   activemodel:
     errors:
       messages:
@@ -4431,6 +4486,10 @@ pl:
       invoice_email:
         hi: "Cześć %{name}"
         invoice_attached_text: "W załączeniu znajduje się faktura za ostatnie zamówienie z"
+      review_request_email:
+        subject: "Dodaj opinię"
+      review_reminder_email:
+        subject: "Przypomnienie: dodaj opinię"
     user_mailer:
       reset_password_instructions:
         request_sent_text: |
