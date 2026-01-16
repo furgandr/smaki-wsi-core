@@ -4098,6 +4098,9 @@ pl:
         add_product:
           cannot_add_item_to_canceled_order: "Do anulowanego zamówienia nie można dodać produktów."
           include_out_of_stock_variants: "Uwzględnij warianty bez stanu magazynowego"
+        shipment:
+          mark_as_shipped_message_html: "To oznaczy zamówienie jako wysłane.<br />Czy na pewno chcesz kontynuować?"
+          mark_as_shipped_label_message: "Wyślij do klienta e-mail z powiadomieniem o wysyłce/odbiorze."
         index:
           listing_orders: "Zarządzaj zamówieniami"
           new_order: "Nowe zamówienie"
