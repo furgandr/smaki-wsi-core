@@ -31,8 +31,6 @@
               %div= rating.removal_reason
           - elsif rating.excluded_from_stats?
             %span= t("admin.enterprise_ratings.index.excluded", default: "Wykluczona")
-            - if rating.excluded_reason.present?
-              %div= t("rating_exclusions.#{rating.excluded_reason}", default: rating.excluded_reason)
           - elsif rating.removal_requested_at.present?
             %span= t("admin.enterprise_ratings.index.removal_requested", default: "Prosba o usuniecie")
           - else
