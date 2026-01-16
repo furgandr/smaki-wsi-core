@@ -39,18 +39,18 @@
           - if spree_current_user.admin?
             - if rating.removed_at.present?
               = button_to t("admin.enterprise_ratings.index.restore", default: "Przywroc"), main_app.restore_admin_enterprise_rating_path(rating),
-                          method: :patch, class: "button secondary"
+                          method: :patch, class: "button secondary admin-action-button"
             - else
               = button_to t("admin.enterprise_ratings.index.remove", default: "Usun"), main_app.remove_admin_enterprise_rating_path(rating),
-                          method: :patch, class: "button secondary",
+                          method: :patch, class: "button secondary admin-action-button",
                           params: { removal_reason: t("admin.enterprise_ratings.index.default_removal_reason", default: "Usunieta przez admina") }
             - if rating.excluded_from_stats?
               = button_to t("admin.enterprise_ratings.index.include", default: "Uwzglednij"), main_app.include_admin_enterprise_rating_path(rating),
-                          method: :patch, class: "button secondary"
+                          method: :patch, class: "button secondary admin-action-button"
             - else
               = button_to t("admin.enterprise_ratings.index.exclude", default: "Wyklucz"), main_app.exclude_admin_enterprise_rating_path(rating),
-                          method: :patch, class: "button secondary",
+                          method: :patch, class: "button secondary admin-action-button",
                           params: { excluded_reason: "duplicate_recent" }
           - elsif rating.removal_requestable?(spree_current_user)
             = button_to t("admin.enterprise_ratings.index.request_removal", default: "Popros o usuniecie"), main_app.request_removal_admin_enterprise_rating_path(rating),
-                        method: :patch, class: "button secondary"
+                        method: :patch, class: "button secondary admin-action-button"
