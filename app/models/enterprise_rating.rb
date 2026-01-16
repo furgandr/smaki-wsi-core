@@ -19,6 +19,29 @@ class EnterpriseRating < ApplicationRecord
   validate :within_review_window
   before_validation :apply_duplicate_exclusion
 
+  def recommend?
+    rating.to_i >= 4
+  end
+
+  def stats_timestamp
+    updated_at || created_at
+  end
+
+  def removal_requestable?(requester)
+    return false if requester.nil? || removal_requested_at.present?
+    return false if recommend?
+    return false unless order&.review_request_window_open?
+    return false unless enterprise&.users&.include?(requester)
+
+    true
+  end
+
+  def request_removal!(requester)
+    return false unless removal_requestable?(requester)
+
+    update(removal_requested_at: Time.zone.now, removal_requested_by: requester)
+  end
+
   private
 
   def order_is_shipped
@@ -59,31 +82,6 @@ class EnterpriseRating < ApplicationRecord
     order.line_items.joins(variant: :supplier)
       .where(spree_variants: { supplier_id: enterprise.id }).exists?
   end
-
-  def recommend?
-    rating.to_i >= 4
-  end
-
-  def stats_timestamp
-    updated_at || created_at
-  end
-
-  def removal_requestable?(requester)
-    return false if requester.nil? || removal_requested_at.present?
-    return false if recommend?
-    return false unless order&.review_request_window_open?
-    return false unless enterprise&.users&.include?(requester)
-
-    true
-  end
-
-  def request_removal!(requester)
-    return false unless removal_requestable?(requester)
-
-    update(removal_requested_at: Time.zone.now, removal_requested_by: requester)
-  end
-
-  private
 
   def apply_duplicate_exclusion
     return if excluded_from_stats? && excluded_reason.present?
