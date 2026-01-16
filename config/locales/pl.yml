@@ -435,6 +435,15 @@ pl:
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
   search_radius: Promien wyszukiwania
   search_radius_option: "%{km} km"
+  enterprise_rating_mailer:
+    seller_rating_received:
+      subject: "Nowa opinia o sprzedawcy %{enterprise} (zamowienie %{order})"
+      greeting: "Nowa opinia o sprzedawcy %{enterprise}."
+      intro: "Zamowienie: %{order}"
+      buyer_label: "Kupujacy:"
+      rating_label: "Ocena:"
+      comment_label: "Komentarz:"
+      comment_empty: "Brak komentarza."
   producers_join: "Zapraszamy producentów do dołączenia do Smaki Wsi."
   charges_sales_tax: Naliczać podatki?
   business_address: "Dane firmy"

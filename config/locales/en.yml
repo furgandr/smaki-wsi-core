@@ -554,6 +554,15 @@ en:
   search_by_name: Search by name or suburb...
   search_radius: Search radius
   search_radius_option: "%{km} km"
+  enterprise_rating_mailer:
+    seller_rating_received:
+      subject: "New seller rating for %{enterprise} (order %{order})"
+      greeting: "New seller rating for %{enterprise}."
+      intro: "Order: %{order}"
+      buyer_label: "Buyer:"
+      rating_label: "Rating:"
+      comment_label: "Comment:"
+      comment_empty: "No comment provided."
   producers: 'Australian Producers'
   producers_join: Australian producers are now welcome to join the Open Food Network. #FIXME
   charges_sales_tax: Charges GST?

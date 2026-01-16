@@ -12,6 +12,7 @@ module Spree
       rating = EnterpriseRating.new(rating_params.merge(order: @order, user: spree_current_user))
 
       if rating.save
+        EnterpriseRatingMailer.seller_rating_received(rating.id).deliver_later
         flash[:success] = I18n.t("ratings.flash.saved")
       else
         flash[:error] = rating.errors.full_messages.to_sentence
