@@ -35,7 +35,11 @@ module Admin
     end
 
     def include
-      @rating.update(excluded_from_stats: false, excluded_reason: nil)
+      @rating.update_columns(
+        excluded_from_stats: false,
+        excluded_reason: nil,
+        updated_at: Time.zone.now
+      )
       flash[:success] = t("admin.enterprise_ratings.flash.included")
       redirect_back fallback_location: main_app.admin_enterprise_ratings_path
     end
