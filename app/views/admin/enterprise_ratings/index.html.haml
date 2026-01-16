@@ -19,7 +19,7 @@
     - @ratings.each do |rating|
       %tr
         %td= rating.enterprise.name
-        %td= link_to rating.order.number, spree.admin_order_path(rating.order)
+        %td= link_to rating.order.number, spree.edit_admin_order_path(rating.order)
         %td= rating.order.bill_address&.full_name || rating.order.email
         %td= rating.rating
         %td= rating.comment

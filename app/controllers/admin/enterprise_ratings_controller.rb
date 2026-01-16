@@ -13,7 +13,6 @@ module Admin
     def remove
       @rating.update(
         removed_at: Time.zone.now,
-        removed_by: spree_current_user,
         removal_reason: params[:removal_reason].to_s.strip.presence
       )
       flash[:success] = t("admin.enterprise_ratings.flash.removed")
@@ -21,7 +20,7 @@ module Admin
     end
 
     def restore
-      @rating.update(removed_at: nil, removed_by: nil, removal_reason: nil)
+      @rating.update(removed_at: nil, removal_reason: nil)
       flash[:success] = t("admin.enterprise_ratings.flash.restored")
       redirect_back fallback_location: main_app.admin_enterprise_ratings_path
     end
