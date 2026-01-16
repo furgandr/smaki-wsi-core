@@ -11,9 +11,14 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
   $scope.distanceMatchesShown = false
   $scope.closed_shops_loading = false
   $scope.closed_shops_loaded = false
+  $scope.distanceRange = 50
 
   $scope.$watch "query", (query)->
     $scope.resetSearch(query)
+
+  $scope.$watch "distanceRange", ->
+    $scope.filterEnterprises()
+    $scope.updateVisibleMatches()
 
   $scope.resetSearch = (query) ->
     Enterprises.flagMatching query
@@ -57,7 +62,7 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
     es = Enterprises.hubs
     $scope.nameMatches = enterpriseMatchesQueryFilter(es, true)
     noNameMatches = enterpriseMatchesQueryFilter(es, false)
-    $scope.distanceMatches = distanceWithinKmFilter(noNameMatches, 50)
+    $scope.distanceMatches = distanceWithinKmFilter(noNameMatches, $scope.distanceRange)
 
 
   $scope.updateVisibleMatches = ->
