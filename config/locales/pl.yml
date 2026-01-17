@@ -2018,6 +2018,7 @@ pl:
       show_closed_shops: "Pokaż zamknięte sklepy"
       hide_closed_shops: "Ukryj zamknięte sklepy"
       show_on_map: "Pokaż wszystkie na mapie"
+    products_no_results: "Brak produktów w wybranym obszarze."
   shared:
     mailers:
       powered_by:

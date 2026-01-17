@@ -1,4 +1,4 @@
-angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $timeout, $location, Enterprises, Search, $document, HashNavigation, FilterSelectorsService, EnterpriseModal, enterpriseMatchesQueryFilter, distanceWithinKmFilter) ->
+angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $timeout, $location, Enterprises, Search, $document, HashNavigation, FilterSelectorsService, EnterpriseModal, OrderCycleResource, enterpriseMatchesQueryFilter, distanceWithinKmFilter) ->
   $scope.Enterprises = Enterprises
   $scope.producers_to_filter = Enterprises.producers
   $scope.filterSelectors = FilterSelectorsService.createSelectors()
@@ -12,6 +12,10 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
   $scope.closed_shops_loading = false
   $scope.closed_shops_loaded = false
   $scope.distanceRange = 50
+  $scope.productsLoading = false
+  $scope.visibleProducts = []
+  $scope.enterpriseProducts = {}
+  $scope.productsLimit = 6
 
   $scope.$watch "query", (query)->
     $scope.resetSearch(query)
@@ -70,6 +74,44 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
       $scope.nameMatches.concat $scope.distanceMatches
     else
       $scope.nameMatches
+    $scope.loadProductsForVisibleMatches()
+
+  $scope.loadProductsForVisibleMatches = ->
+    $scope.visibleProducts = []
+    pending = 0
+    for enterprise in $scope.visibleMatches when enterprise.current_order_cycle_id?
+      if $scope.enterpriseProducts[enterprise.id]?
+        $scope.addProducts(enterprise, $scope.enterpriseProducts[enterprise.id])
+        continue
+
+      pending += 1
+      params =
+        id: enterprise.current_order_cycle_id
+        distributor: enterprise.id
+        per_page: $scope.productsLimit
+
+      OrderCycleResource.products params, (data) =>
+        products = ( $scope.prepareProduct(product, enterprise) for product in data )
+        $scope.enterpriseProducts[enterprise.id] = products
+        $scope.addProducts(enterprise, products)
+        pending -= 1
+        $scope.productsLoading = pending > 0
+
+    $scope.productsLoading = pending > 0
+
+  $scope.prepareProduct = (product, enterprise) ->
+    if product.variants?.length > 0
+      prices = (variant.price for variant in product.variants)
+      product.price = Math.min.apply(null, prices)
+    product.primaryImage = product.image?.small_url if product.image
+    product.primaryImageOrMissing = product.primaryImage || "/noimage/small.png"
+    product.enterprise_name = enterprise.name
+    product.enterprise_path = enterprise.path
+    product.enterprise_id = enterprise.id
+    product
+
+  $scope.addProducts = (enterprise, products) ->
+    $scope.visibleProducts = $scope.visibleProducts.concat(products)
 
 
   $scope.showDistanceMatches = ->

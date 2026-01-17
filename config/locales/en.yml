@@ -2302,6 +2302,7 @@ en:
       show_closed_shops: "Show closed shops"
       hide_closed_shops: "Hide closed shops"
       show_on_map: "Show all on the map"
+    products_no_results: "No products found in the selected area."
   shared:
     mailers:
       powered_by:

@@ -1,0 +1,16 @@
+.products-grid{"ng-cloak" => true}
+  .products-loading{"ng-show" => "productsLoading"}
+    = t :products_loading
+  .products-empty{"ng-show" => "!productsLoading && visibleProducts.length == 0"}
+    = t "shops.products_no_results"
+  .product-card{"ng-repeat" => "product in visibleProducts track by (product.enterprise_id + '-' + product.id)"}
+    %a.product-card__image{"ng-href" => "{{ product.enterprise_path }}", title: "{{ product.name }}"}
+      %img{"ng-src" => "{{ product.primaryImageOrMissing }}", alt: "{{ product.name }}"}
+    .product-card__body
+      %div.product-card__name{"ng-bind" => "product.name"}
+      .product-card__meta
+        %span.product-card__price{"ng-if" => "product.price != null"}
+          {{ product.price | localizeCurrency }}
+        %span.product-card__from
+          = t :products_from
+          {{ product.enterprise_name }}

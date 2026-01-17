@@ -10,18 +10,13 @@
   = cache_with_locale do
     .row
       .small-12.columns
-        .name-matches{"ng-show" => "nameMatchesFiltered.length > 0"}
-          %h2
-            = t :hubs_matches
-          = render "hubs_table", enterprises: "nameMatches"
-
-        .distance-matches{"ng-if" => "nameMatchesFiltered.length == 0 || distanceMatchesShown"}
+        .products-results{"ng-show" => "nameMatchesFiltered.length > 0 || distanceMatches.length > 0 || query.length > 0"}
           %h2{"ng-show" => "nameMatchesFiltered.length > 0 || query.length > 0"}
             = t :hubs_matches
             %span{"ng-show" => "nameMatchesFiltered.length > 0"} {{ nameMatchesFiltered[0].name }}...
             %span{"ng-hide" => "nameMatchesFiltered.length > 0"} {{ query }}...
 
-          = render "hubs_table", enterprises: "distanceMatches"
+          = render "products_grid"
 
         .show-distance-matches{"ng-show" => "nameMatchesFiltered.length > 0 && !distanceMatchesShown"}
           %a{href: "", "ng-click" => "showDistanceMatches()"}
