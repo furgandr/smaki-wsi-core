@@ -28,16 +28,21 @@
       padding: 0.5em 0.625em;
       color: $base-clr;
       font-size: 0.75em;
-      background: white;
+      background: #f8fbff;
       margin: 0;
+      cursor: pointer;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 
       i {
         padding-left: 0.25rem;
       }
 
       &:hover, &:focus {
+        background: white;
         border-color: $hover-clr;
         color: $hover-clr;
+        transform: translateY(-1px);
       }
 
       &.disabled {
@@ -77,4 +82,3 @@
     margin: 0;
   }
 }
-
