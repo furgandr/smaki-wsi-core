@@ -103,3 +103,15 @@
     margin: 0;
   }
 }
+
+.shipping-type-selector {
+  @include filter-selector($clr-blue, $clr-blue-light, $clr-blue-bright);
+
+  li a {
+    padding-left: 2rem;
+  }
+
+  i {
+    margin-right: 0.4rem;
+  }
+}
