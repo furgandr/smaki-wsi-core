@@ -433,6 +433,7 @@ pl:
   welcome_to: "Regionalne produkty online w"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
+  search_by_product: Szukaj produktów...
   search_radius: Promien wyszukiwania
   search_radius_option: "%{km} km"
   enterprise_rating_mailer:

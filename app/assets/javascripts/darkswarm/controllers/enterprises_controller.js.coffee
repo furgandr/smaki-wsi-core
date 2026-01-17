@@ -3,6 +3,7 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
   $scope.producers_to_filter = Enterprises.producers
   $scope.filterSelectors = FilterSelectorsService.createSelectors()
   $scope.query = Search.search()
+  $scope.productQuery = ""
   $scope.openModal = EnterpriseModal.open
   $scope.activeTaxons = []
   $scope.show_profiles = false
@@ -23,6 +24,9 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
   $scope.$watch "query", (query)->
     $scope.resetSearch(query)
 
+  $scope.$watch "productQuery", (productQuery) ->
+    $scope.resetProductSearch(productQuery)
+
   $scope.$watch "distanceRange", ->
     $scope.filterEnterprises()
     $scope.updateVisibleMatches()
@@ -32,11 +36,18 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
     Search.search query
     $rootScope.$broadcast 'enterprisesChanged'
     $scope.distanceMatchesShown = false
+    $scope.enterpriseProducts = {}
+    $scope.visibleProducts = []
 
     $timeout ->
       Enterprises.calculateDistance query, $scope.firstNameMatch()
       $rootScope.$broadcast 'enterprisesChanged'
       $scope.closed_shops_loading = false
+
+  $scope.resetProductSearch = (productQuery) ->
+    $scope.enterpriseProducts = {}
+    $scope.visibleProducts = []
+    $scope.loadProductsForVisibleMatches()
 
   $timeout ->
     if $location.search()['show_closed']?
@@ -89,24 +100,40 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
     $scope.visibleProducts = []
     pending = 0
     for enterprise in $scope.visibleMatchesFiltered when enterprise.current_order_cycle_id?
-      if $scope.enterpriseProducts[enterprise.id]?
-        $scope.addProducts(enterprise, $scope.enterpriseProducts[enterprise.id])
+      cache_key = $scope.productsCacheKey(enterprise)
+      if $scope.enterpriseProducts[cache_key]?
+        $scope.addProducts(enterprise, $scope.enterpriseProducts[cache_key])
         continue
 
       pending += 1
-      params =
-        id: enterprise.current_order_cycle_id
-        distributor: enterprise.id
-        per_page: $scope.productsLimit
+      params = $scope.productsQueryParams(enterprise)
 
       OrderCycleResource.products params, (data) =>
         products = ( $scope.prepareProduct(product, enterprise) for product in data )
-        $scope.enterpriseProducts[enterprise.id] = products
+        $scope.enterpriseProducts[cache_key] = products
         $scope.addProducts(enterprise, products)
         pending -= 1
         $scope.productsLoading = pending > 0
 
     $scope.productsLoading = pending > 0
+
+  $scope.productsQueryParams = (enterprise) ->
+    params =
+      id: enterprise.current_order_cycle_id
+      distributor: enterprise.id
+      per_page: $scope.productsLimit
+
+    query = $scope.productsSearchQuery()
+    if query.length > 0
+      params['q[name_or_meta_keywords_or_variants_display_as_or_variants_display_name_or_variants_supplier_name_cont]'] = query
+
+    params
+
+  $scope.productsSearchQuery = ->
+    ($scope.productQuery || "").trim()
+
+  $scope.productsCacheKey = (enterprise) ->
+    "#{enterprise.id}:#{$scope.productsSearchQuery().toLowerCase()}"
 
   $scope.prepareProduct = (product, enterprise) ->
     supplier_id = product.variants?[0]?.supplier?.id

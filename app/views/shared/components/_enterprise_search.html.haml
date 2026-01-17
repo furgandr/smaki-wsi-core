@@ -6,6 +6,12 @@
     inputmode: "search",
     "ng-debounce" => "500",
     "ofn-disable-enter" => true}
+    %input.margin-top{type: "search",
+    "ng-model" => "productQuery",
+    placeholder: t('search_by_product'),
+    inputmode: "search",
+    "ng-debounce" => "500",
+    "ofn-disable-enter" => true}
     .margin-top
       %label{for: "distance-range"}= t("search_radius")
       %select#distance-range{"ng-model" => "distanceRange"}
