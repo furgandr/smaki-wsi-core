@@ -22,5 +22,5 @@
             %span
               {{ Cart.total_item_count() }}
 
-      %a{href: main_app.shop_path}
-        {{ CurrentHub.hub.name }}
+      %a{href: main_app.shops_path}
+        = t 'label_choose_shop'
