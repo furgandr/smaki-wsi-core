@@ -25,8 +25,7 @@ module OrderCycles
     end
 
     def variants_relation
-      order_cycle.
-        variants_distributed_by(distributor).
+      base_variants_relation.
         merge(variants).
         select("DISTINCT spree_variants.*")
     end
@@ -111,8 +110,7 @@ module OrderCycles
     end
 
     def stocked_products
-      order_cycle.
-        variants_distributed_by(distributor).
+      base_variants_relation.
         merge(variants).
         select("DISTINCT spree_variants.product_id")
     end
@@ -123,6 +121,33 @@ module OrderCycles
       return stocked_variants_and_overrides if options[:inventory_enabled]
 
       stocked_variants
+    end
+
+    def base_variants_relation
+      if producer_shop?
+        Spree::Variant.where(id: own_variant_ids)
+      elsif producer_hub?
+        Spree::Variant.where(id: distributed_variant_ids)
+          .or(Spree::Variant.where(id: own_variant_ids))
+      else
+        Spree::Variant.where(id: distributed_variant_ids)
+      end
+    end
+
+    def distributed_variant_ids
+      order_cycle.variants_distributed_by(distributor).select(:id)
+    end
+
+    def own_variant_ids
+      distributor.supplied_variants.select(:id)
+    end
+
+    def producer_shop?
+      distributor.category == :producer_shop
+    end
+
+    def producer_hub?
+      distributor.category == :producer_hub
     end
 
     def stocked_variants
