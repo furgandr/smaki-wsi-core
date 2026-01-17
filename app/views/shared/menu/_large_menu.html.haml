@@ -35,9 +35,12 @@
         = render 'shared/menu/signed_in'
 
       = cache_with_locale "cart" do
-        %li.current_hub{"ng-controller" => "CurrentHubCtrl", "ng-show" => "CurrentHub.hub.id", "ng-cloak" => true}
+        %li.current_hub{"ng-controller" => "CurrentHubCtrl", "ng-cloak" => true}
           %a{href: main_app.shops_path}
-            %span{ class: "top-bar--current-hub-prefix" }
+            %span{ class: "top-bar--current-hub-prefix", "ng-show" => "!CurrentHub.hub.id" }
               = t 'label_choose_shop'
+            %span{ class: "top-bar--current-hub-prefix", "ng-show" => "CurrentHub.hub.id" }
+              = t 'label_shop_at'
+            %span{ class: "top-bar--current-hub-name", "ng-show" => "CurrentHub.hub.id" } {{ CurrentHub.hub.name | truncate:25 }}
         %li.cart{"ng-cloak" => true}
           = render partial: "shared/menu/cart"

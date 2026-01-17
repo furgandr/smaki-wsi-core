@@ -2175,6 +2175,7 @@ pl:
   label_support: "Pomoc"
   label_shopping: "Zakupy"
   label_choose_shop: "Wybierz sklep"
+  label_shop_at: "Sklep u"
   label_login: "Zaloguj się"
   label_logout: "Wyloguj się"
   label_signup: "Zarejestruj się"

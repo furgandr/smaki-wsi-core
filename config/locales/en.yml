@@ -2468,6 +2468,7 @@ en:
   label_support: "Support"
   label_shopping: "Shopping"
   label_choose_shop: "Choose a shop"
+  label_shop_at: "Shop at"
   label_login: "Login"
   label_logout: "Logout"
   label_signup: "Sign up"

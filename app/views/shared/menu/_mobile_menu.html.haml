@@ -23,4 +23,7 @@
               {{ Cart.total_item_count() }}
 
       %a{href: main_app.shops_path}
-        = t 'label_choose_shop'
+        %span{"ng-show" => "!CurrentHub.hub.id"}= t 'label_choose_shop'
+        %span{"ng-show" => "CurrentHub.hub.id"}
+          = t 'label_shop_at'
+          {{ CurrentHub.hub.name }}
