@@ -117,8 +117,12 @@ button.success, .button.success {
   color: #c7c7c7;
 }
 
+.rating-stars .star {
+  color: inherit;
+}
+
 .rating-stars .star.filled {
-  color: $orange-450;
+  color: $orange-450 !important;
 }
 
 .ratings-list {
