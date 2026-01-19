@@ -26,6 +26,6 @@
           %span {{'ratings.average_label' | t}}:
           %strong {{ product.rating_average | number: 1 }}/5
           %span.rating-stars{"aria-hidden" => "true"}
-            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= Math.round(product.rating_average || 0)}"} &#9733;
+            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= Math.round(parseFloat((product.rating_average || 0).toString().replace(',', '.')) || 0)}"} &#9733;
           %span
             ({{ product.rating_count }})
