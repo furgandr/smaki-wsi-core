@@ -121,6 +121,10 @@ button.success, .button.success {
   color: inherit;
 }
 
+.rating-stars .star.filled {
+  color: $orange-450 !important;
+}
+
 .rating-stars[data-rating="1"] .star:nth-child(-n+1),
 .rating-stars[data-rating="2"] .star:nth-child(-n+2),
 .rating-stars[data-rating="3"] .star:nth-child(-n+3),
