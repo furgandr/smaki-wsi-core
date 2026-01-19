@@ -15,7 +15,7 @@
         %strong
           {{ ::enterprise.rating_average | number: 1 }}/5
         %span.rating-stars{"aria-hidden" => "true"}
-          %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-style" => "{color: (n <= Math.round(parseFloat(enterprise.rating_average) || 0)) ? '#f5a623' : '#c7c7c7'}"} &#9733;
+          %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-attr-style" => "color: {{ (n <= Math.round(parseFloat(enterprise.rating_average) || 0)) ? '#f5a623' : '#c7c7c7' }} !important;"} &#9733;
         %span
           ({{ ::enterprise.rating_count }})
         %span{"ng-if" => "enterprise.recommendation_percent != null"}
