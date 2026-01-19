@@ -13,8 +13,8 @@
         %ul.ratings-list
           %li{"ng-repeat" => "rating in shopfront.recent_ratings"}
             %strong {{ rating.author_name }}
-            %span.rating-stars{"aria-hidden" => "true"}
-              %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= rating.rating}"} &#9733;
+          %span.rating-stars{"aria-hidden" => "true"}
+            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= Math.round(parseFloat(rating.rating) || 0)}"} &#9733;
             %span
               {{ rating.rating }}/5
             %p{"ng-bind" => "rating.comment"}
