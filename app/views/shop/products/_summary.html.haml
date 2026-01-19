@@ -21,7 +21,7 @@
 
       .product-properties.filter-shopfront.property-selectors
         %filter-selector{ 'selector-set' => "productPropertySelectors", objects: "[product] | propertiesWithValuesOf" }
-      .product-reviews{"ng-if" => "product.recent_reviews.length > 0"}
+      .product-reviews{"ng-if" => "product.rating_count > 0"}
         %p
           %span {{'ratings.average_label' | t}}:
           %strong {{ product.rating_average | number: 1 }}/5
