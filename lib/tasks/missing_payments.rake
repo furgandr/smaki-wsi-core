@@ -41,10 +41,40 @@ namespace :ofn do
   end
 
   def add_row(entry, out)
-    details = Psych.load(entry.details)
-    out << row(details, details.params)
+    details = safe_load_details(entry.details)
+    out << row(details, extract_params(details))
   rescue StandardError
     Logger.new($stderr).warn(entry)
+  end
+
+  def safe_load_details(details)
+    return {} if details.blank?
+
+    permitted = [
+      Date, DateTime, Time, ActiveSupport::TimeWithZone
+    ]
+    active_merchant_classes = [
+      "ActiveMerchant::Billing::Response",
+      "ActiveMerchant::Billing::AVSResult",
+      "ActiveMerchant::Billing::CvvResult",
+      "ActiveMerchant::Billing::MultiResponse"
+    ]
+    active_merchant_classes.each do |class_name|
+      klass = class_name.safe_constantize
+      permitted << klass if klass
+    end
+
+    Psych.safe_load(details, permitted_classes: permitted, permitted_symbols: [], aliases: false)
+  rescue Psych::Exception => e
+    Logger.new($stderr).warn("Skipped log details: #{e.class} #{e.message}")
+    {}
+  end
+
+  def extract_params(details)
+    return details.params if details.respond_to?(:params)
+    return details["params"] if details.is_a?(Hash)
+
+    {}
   end
 
   def headers
@@ -58,11 +88,25 @@ namespace :ofn do
     [
       Time.zone.at(params["created"] || 0).to_datetime,
       params["description"],
-      details.success?,
-      details.message,
+      extract_success(details),
+      extract_message(details),
       params["id"],
       params["object"],
       params["amount"], params["currency"], params["receipt_url"]
     ]
+  end
+
+  def extract_success(details)
+    return details.success? if details.respond_to?(:success?)
+    return details["success"] if details.is_a?(Hash)
+
+    nil
+  end
+
+  def extract_message(details)
+    return details.message if details.respond_to?(:message)
+    return details["message"] if details.is_a?(Hash)
+
+    nil
   end
 end

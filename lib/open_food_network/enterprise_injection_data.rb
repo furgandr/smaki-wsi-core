@@ -21,6 +21,20 @@ module OpenFoodNetwork
       @earliest_closing_times ||= OrderCycle.earliest_closing_times(@enterprise_ids)
     end
 
+    def current_order_cycle_ids
+      @current_order_cycle_ids ||=
+        begin
+          cycles = OrderCycle
+            .active
+            .joins(:exchanges)
+            .merge(Exchange.outgoing)
+            .select('DISTINCT ON (exchanges.receiver_id) exchanges.receiver_id AS receiver_id, order_cycles.id')
+            .order('exchanges.receiver_id, order_cycles.orders_close_at ASC')
+          cycles = cycles.where(exchanges: { receiver_id: @enterprise_ids }) if @enterprise_ids.present?
+          cycles.map { |row| [row.receiver_id, row.id] }.to_h
+        end
+    end
+
     def shipping_method_services
       @shipping_method_services ||= CacheService.cached_data_by_class(
         "shipping_method_services_#{@enterprise_ids.hash}",

@@ -244,9 +244,83 @@ en:
       transaction_not_allowed: "The card has been declined for an unknown reason."
       try_again_later: "The card has been declined for an unknown reason."
       withdrawal_count_limit_exceeded: "The customer has exceeded the balance or credit limit available on their card."
-      disconnect_failure: "Failed to disconnect Stripe."
+    disconnect_failure: "Failed to disconnect Stripe."
     success_code:
       disconnected: "Stripe account disconnected."
+  ratings:
+    section_title: "Rate sellers"
+    rating_label: "Rating (1-5)"
+    comment_label: "Comment (optional)"
+    submit: "Save rating"
+    update: "Update rating"
+    no_suppliers: "No sellers found to rate for this order."
+    average_label: "Rating"
+    none_label: "No ratings yet"
+    comments_title: "Buyer comments"
+    waiting_for_shipment: "You can rate sellers after the order is marked as shipped."
+    review_window_closed: "The review window for this order has ended."
+    excluded_note: "This rating does not count toward the average."
+    recommendation_percent_label: "Recommend"
+    flash:
+      saved: "Thanks for your rating."
+      updated: "Rating updated."
+    errors:
+      order_not_shipped: "Order has not been shipped yet."
+      order_canceled: "Canceled orders cannot be rated."
+      review_window_closed: "The review window for this order has ended."
+      enterprise_not_in_order: "This seller is not part of your order."
+      user_not_order_owner: "You can only rate your own orders."
+      login_required: "Please sign in to rate sellers."
+  product_reviews:
+    section_title: "Review products"
+    rating_label: "Rating (1-5)"
+    comment_label: "Comment (optional)"
+    submit: "Save review"
+    update: "Update review"
+    no_products: "No products found to review for this order."
+    comments_title: "Product reviews"
+    flash:
+      saved: "Thanks for your review."
+      updated: "Review updated."
+    errors:
+      product_not_in_order: "This product is not part of your order."
+    email:
+      greeting: "Hi %{name},"
+      request_intro: "Your order from %{distributor} has been shipped."
+      request_body: "You can now rate the seller and review products. You have %{days} days to leave feedback."
+      reminder_intro: "Reminder: your order from %{distributor} was shipped."
+      reminder_body: "You still have time to rate the seller and review products. You have %{days} days from shipment."
+      leave_review_link: "Leave your review"
+  admin:
+    enterprise_ratings:
+      index:
+        title: "Seller reviews"
+        enterprise: "Seller"
+        order: "Order"
+        buyer: "Buyer"
+        rating: "Rating"
+        comment: "Comment"
+        created_at: "Created at"
+        status: "Status"
+        active: "Active"
+        excluded: "Excluded"
+        removed: "Removed"
+        removal_requested: "Removal requested"
+        remove: "Remove"
+        restore: "Restore"
+        exclude: "Exclude"
+        include: "Include"
+        request_removal: "Request removal"
+        default_removal_reason: "Removed by admin"
+      flash:
+        removed: "Rating removed."
+        restored: "Rating restored."
+        excluded: "Rating excluded from stats."
+        included: "Rating included in stats."
+        removal_requested: "Removal request sent."
+        removal_request_denied: "Removal request not allowed."
+  rating_exclusions:
+    duplicate_recent: "Multiple ratings within a short period are not counted."
 
   activemodel:
     errors:
@@ -478,6 +552,18 @@ en:
   welcome_to: "Welcome to"
   site_meta_description: "We begin from the ground up. With farmers and growers ready to tell their stories proudly and truly. With distributors ready to connect people with products fairly and honestly. With buyers who believe that better weekly shopping decisions can…"
   search_by_name: Search by name or suburb...
+  search_by_product: Search products...
+  search_radius: Search radius
+  search_radius_option: "%{km} km"
+  enterprise_rating_mailer:
+    seller_rating_received:
+      subject: "New seller rating for %{enterprise} (order %{order})"
+      greeting: "New seller rating for %{enterprise}."
+      intro: "Order: %{order}"
+      buyer_label: "Buyer:"
+      rating_label: "Rating:"
+      comment_label: "Comment:"
+      comment_empty: "No comment provided."
   producers: 'Australian Producers'
   producers_join: Australian producers are now welcome to join the Open Food Network. #FIXME
   charges_sales_tax: Charges GST?
@@ -582,6 +668,8 @@ en:
   width: "Width"
   depth: "Depth"
   payment_could_not_process: "The payment could not be processed"
+  payment_pending_przelewy24: "Payment pending confirmation from Przelewy24."
+  payment_redirect_przelewy24: "You will be redirected to Przelewy24 to complete the payment."
   payment_could_not_complete: "The payment could not be completed"
   vine_voucher_validator_service:
     errors:
@@ -772,9 +860,6 @@ en:
       edit:
         title: "Stripe Connect"
         settings: "Settings"
-        stripe_connect_enabled: Enable shops to accept payments using Stripe Connect?
-        no_api_key_msg: No Stripe account exists for this enterprise.
-        configuration_explanation_html: For detailed instructions on configuring the Stripe Connect integration, please <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>consult this guide</a>.
         status: Status
         ok: Ok
         instance_secret_key: Instance Secret Key
@@ -785,6 +870,23 @@ en:
         charges_enabled_warning: "Warning: Charges are not enabled for your account"
         auth_fail_error: The API key you provided is invalid
         empty_api_key_error_html: No Stripe API key has been provided. To set your API key, please follow <a href="https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance" target="_blank">these instructions</a>
+        no_api_key_msg: No Stripe account exists for this enterprise.
+        configuration_explanation_html: For detailed instructions on configuring the Stripe Connect integration, please <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>consult this guide</a>.
+      stripe_connect_enabled: Enable shops to accept payments using Stripe Connect?
+    przelewy24_settings:
+      edit:
+        title: "Przelewy24"
+        settings: "Settings"
+        status: "Status"
+        ok: "OK"
+        not_set: "Not set"
+        missing_credentials: "Missing Przelewy24 credentials. Check your secrets.yml."
+        configuration_explanation_html: "Configure Przelewy24 credentials in secrets.yml and enable the integration."
+        przelewy24_enabled: "Enable shops to accept payments using Przelewy24?"
+        merchant_id: "Merchant ID"
+        pos_id: "POS ID"
+        api_key: "API key"
+        crc_key: "CRC key"
 
     matomo_settings:
       edit:
@@ -2048,6 +2150,8 @@ en:
         remove_white_label_logo_success: "Logo removed successfully"
       stripe_connect_settings:
         resource: Stripe Connect configuration
+      przelewy24_settings:
+        resource: Przelewy24 configuration
 
     resend_confirmation_emails_feedback:
       one: "Confirmation email sent for 1 order."
@@ -2199,6 +2303,7 @@ en:
       show_closed_shops: "Show closed shops"
       hide_closed_shops: "Hide closed shops"
       show_on_map: "Show all on the map"
+    products_no_results: "No products found in the selected area."
   shared:
     mailers:
       powered_by:
@@ -2363,6 +2468,8 @@ en:
   label_blog: "Blog"
   label_support: "Support"
   label_shopping: "Shopping"
+  label_choose_shop: "Choose a shop"
+  label_shop_at: "Shop at"
   label_login: "Login"
   label_logout: "Logout"
   label_signup: "Sign up"
@@ -4621,6 +4728,7 @@ en:
           paypalexpress: "PayPal Express"
           stripeconnect: "Stripe"
           stripesca: "Stripe SCA"
+          przelewy24: "Przelewy24"
       payments:
         source_forms:
           stripe:
@@ -4854,6 +4962,10 @@ en:
       invoice_email:
         hi: "Hi %{name}"
         invoice_attached_text: Please find attached an invoice for your recent order from
+      review_request_email:
+        subject: "Leave a review"
+      review_reminder_email:
+        subject: "Reminder: leave a review"
     user_mailer:
       reset_password_instructions:
         dear_customer: "Dear customer,"

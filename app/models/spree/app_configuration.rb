@@ -126,6 +126,9 @@ module Spree
     # Stripe payments
     preference :stripe_connect_enabled, :boolean, default: false
 
+    # Przelewy24 payments
+    preference :przelewy24_enabled, :boolean, default: false
+
     # Number localization
     preference :enable_localized_number?, :boolean, default: false
 

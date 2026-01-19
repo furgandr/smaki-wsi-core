@@ -1,0 +1,17 @@
+%table.social.white-bg{:width => "100%"}
+  %tr
+    %td
+      %table.column{:align => "left"}
+        %tr
+          %td
+            %h3= t("product_reviews.email.greeting", name: @order.bill_address.firstname)
+            %h4= t("product_reviews.email.request_intro", distributor: @order.distributor.name)
+      %span.clear
+
+%p &nbsp;
+%p= t("product_reviews.email.request_body", days: 30)
+%p
+  = link_to t("product_reviews.email.leave_review_link"), main_app.order_url(@order)
+
+= render 'signoff'
+= render 'shared/mailers/powered_by'

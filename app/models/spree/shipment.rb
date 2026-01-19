@@ -351,6 +351,7 @@ module Spree
       send_shipped_email if order.send_shipment_email
       touch :shipped_at
       update_order_shipment_state
+      Reviews::OrderReviewRequestService.new(order).schedule
     end
 
     def update_order_shipment_state

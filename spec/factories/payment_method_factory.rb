@@ -25,6 +25,17 @@ FactoryBot.define do
     preferred_enterprise_id { distributors.first.id }
   end
 
+  factory :przelewy24_payment_method, class: Spree::Gateway::Przelewy24 do
+    name { 'Przelewy24' }
+    environment { 'test' }
+    distributors { [Enterprise.is_distributor.first || FactoryBot.create(:distributor_enterprise)] }
+    preferred_merchant_id { 123 }
+    preferred_pos_id { 123 }
+    preferred_api_key { 'p24_api_key' }
+    preferred_crc_key { 'p24_crc_key' }
+    preferred_test_mode { true }
+  end
+
   factory :distributor_payment_method, class: DistributorPaymentMethod do
     distributor { FactoryBot.create(:distributor_enterprise) }
     payment_method { FactoryBot.create(:payment_method) }

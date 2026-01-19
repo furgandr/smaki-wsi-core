@@ -7,3 +7,14 @@
         %p{"ng-bind-html" => "::shopfront.long_description"}
       .small-12.large-4.columns
         &nbsp;
+    .row{"ng-if" => "shopfront.recent_ratings.length > 0"}
+      .small-12.columns
+        %p.modal-header {{'ratings.comments_title' | t}}
+        %ul.ratings-list
+          %li{"ng-repeat" => "rating in shopfront.recent_ratings"}
+            %strong {{ rating.author_name }}
+            %span.rating-stars{"aria-hidden" => "true", "ng-attr-data-rating" => "{{ Math.round(parseFloat(rating.rating) || 0) }}"}
+              %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= Math.round(parseFloat(rating.rating) || 0)}"} &#9733;
+            %span
+              {{ rating.rating }}/5
+            %p{"ng-bind" => "rating.comment"}

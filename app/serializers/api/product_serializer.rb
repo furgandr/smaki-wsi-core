@@ -3,7 +3,7 @@
 require "open_food_network/scope_variant_to_hub"
 
 class Api::ProductSerializer < ActiveModel::Serializer
-  attributes :id, :name, :meta_keywords
+  attributes :id, :name, :meta_keywords, :rating_average, :rating_count, :recent_reviews
   attributes :group_buy, :notes, :description, :description_html
   attributes :properties_with_values
 
@@ -27,6 +27,25 @@ class Api::ProductSerializer < ActiveModel::Serializer
 
   def variants
     options[:variants][object.id] || []
+  end
+
+  def rating_average
+    object.rating_average
+  end
+
+  def rating_count
+    object.rating_count
+  end
+
+  def recent_reviews
+    reviews = object.product_reviews
+      .includes(order: :bill_address)
+      .where.not(comment: [nil, ""])
+      .order(created_at: :desc)
+
+    reviews.map do |review|
+      Api::ProductReviewSerializer.new(review).serializable_hash
+    end
   end
 
   private

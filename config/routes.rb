@@ -82,6 +82,9 @@ Openfoodnetwork::Application.routes.draw do
 
     get "/stripe/confirm", to: "stripe#confirm", as: :confirm_stripe
     get "/stripe/authorize/:order_number", to: "stripe#authorize", as: :authorize_stripe
+
+    get "/przelewy24/return/:order_number", to: "przelewy24#return", as: :przelewy24_return
+    post "/przelewy24/status", to: "przelewy24#status", as: :przelewy24_status
   end
 
   get '/checkout', to: 'checkout#edit'

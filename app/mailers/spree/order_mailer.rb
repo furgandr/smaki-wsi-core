@@ -72,6 +72,26 @@ module Spree
       end
     end
 
+    def review_request_email(order_or_order_id)
+      @order = find_order(order_or_order_id)
+      I18n.with_locale valid_locale(@order.user) do
+        subject = mail_subject(t("spree.order_mailer.review_request_email.subject"), false)
+        mail(to: @order.email,
+             subject:,
+             reply_to: @order.distributor.contact.email)
+      end
+    end
+
+    def review_reminder_email(order_or_order_id)
+      @order = find_order(order_or_order_id)
+      I18n.with_locale valid_locale(@order.user) do
+        subject = mail_subject(t("spree.order_mailer.review_reminder_email.subject"), false)
+        mail(to: @order.email,
+             subject:,
+             reply_to: @order.distributor.contact.email)
+      end
+    end
+
     private
 
     # Finds an order instance from an order or from an order id

@@ -1,8 +1,9 @@
-angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $timeout, $location, Enterprises, Search, $document, HashNavigation, FilterSelectorsService, EnterpriseModal, enterpriseMatchesQueryFilter, distanceWithinKmFilter) ->
+angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $timeout, $location, $filter, Enterprises, Search, $document, HashNavigation, FilterSelectorsService, EnterpriseModal, OrderCycleResource, enterpriseMatchesQueryFilter, distanceWithinKmFilter) ->
   $scope.Enterprises = Enterprises
   $scope.producers_to_filter = Enterprises.producers
   $scope.filterSelectors = FilterSelectorsService.createSelectors()
   $scope.query = Search.search()
+  $scope.productQuery = ""
   $scope.openModal = EnterpriseModal.open
   $scope.activeTaxons = []
   $scope.show_profiles = false
@@ -11,20 +12,42 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
   $scope.distanceMatchesShown = false
   $scope.closed_shops_loading = false
   $scope.closed_shops_loaded = false
+  $scope.distanceRange = 50
+  $scope.productsLoading = false
+  $scope.visibleProducts = []
+  $scope.enterpriseProducts = {}
+  $scope.productsLimit = 6
+  $scope.nameMatchesFiltered = []
+  $scope.distanceMatchesFiltered = []
+  $scope.visibleMatchesFiltered = []
 
   $scope.$watch "query", (query)->
     $scope.resetSearch(query)
+
+  $scope.$watch "productQuery", (productQuery) ->
+    $scope.resetProductSearch(productQuery)
+
+  $scope.$watch "distanceRange", ->
+    $scope.filterEnterprises()
+    $scope.updateVisibleMatches()
 
   $scope.resetSearch = (query) ->
     Enterprises.flagMatching query
     Search.search query
     $rootScope.$broadcast 'enterprisesChanged'
     $scope.distanceMatchesShown = false
+    $scope.enterpriseProducts = {}
+    $scope.visibleProducts = []
 
     $timeout ->
       Enterprises.calculateDistance query, $scope.firstNameMatch()
       $rootScope.$broadcast 'enterprisesChanged'
       $scope.closed_shops_loading = false
+
+  $scope.resetProductSearch = (productQuery) ->
+    $scope.enterpriseProducts = {}
+    $scope.visibleProducts = []
+    $scope.loadProductsForVisibleMatches()
 
   $timeout ->
     if $location.search()['show_closed']?
@@ -57,7 +80,7 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
     es = Enterprises.hubs
     $scope.nameMatches = enterpriseMatchesQueryFilter(es, true)
     noNameMatches = enterpriseMatchesQueryFilter(es, false)
-    $scope.distanceMatches = distanceWithinKmFilter(noNameMatches, 50)
+    $scope.distanceMatches = distanceWithinKmFilter(noNameMatches, $scope.distanceRange)
 
 
   $scope.updateVisibleMatches = ->
@@ -65,6 +88,76 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
       $scope.nameMatches.concat $scope.distanceMatches
     else
       $scope.nameMatches
+    $scope.nameMatchesFiltered = $scope.applyEnterpriseFilters($scope.nameMatches)
+    $scope.distanceMatchesFiltered = $scope.applyEnterpriseFilters($scope.distanceMatches)
+    $scope.visibleMatchesFiltered = if $scope.nameMatchesFiltered.length == 0 || $scope.distanceMatchesShown
+      $scope.nameMatchesFiltered.concat $scope.distanceMatchesFiltered
+    else
+      $scope.nameMatchesFiltered
+    $scope.loadProductsForVisibleMatches()
+
+  $scope.loadProductsForVisibleMatches = ->
+    $scope.visibleProducts = []
+    pending = 0
+    for enterprise in $scope.visibleMatchesFiltered when enterprise.current_order_cycle_id?
+      cache_key = $scope.productsCacheKey(enterprise)
+      if $scope.enterpriseProducts[cache_key]?
+        $scope.addProducts(enterprise, $scope.enterpriseProducts[cache_key])
+        continue
+
+      pending += 1
+      params = $scope.productsQueryParams(enterprise)
+
+      OrderCycleResource.products params, (data) =>
+        products = ( $scope.prepareProduct(product, enterprise) for product in data )
+        $scope.enterpriseProducts[cache_key] = products
+        $scope.addProducts(enterprise, products)
+        pending -= 1
+        $scope.productsLoading = pending > 0
+
+    $scope.productsLoading = pending > 0
+
+  $scope.productsQueryParams = (enterprise) ->
+    params =
+      id: enterprise.current_order_cycle_id
+      distributor: enterprise.id
+      per_page: $scope.productsLimit
+
+    query = $scope.productsSearchQuery()
+    if query.length > 0
+      params['q[name_or_meta_keywords_or_variants_display_as_or_variants_display_name_or_variants_supplier_name_cont]'] = query
+
+    params
+
+  $scope.productsSearchQuery = ->
+    ($scope.productQuery || "").trim()
+
+  $scope.productsCacheKey = (enterprise) ->
+    "#{enterprise.id}:#{$scope.productsSearchQuery().toLowerCase()}"
+
+  $scope.prepareProduct = (product, enterprise) ->
+    supplier_id = product.variants?[0]?.supplier?.id
+    producer = if supplier_id? then Enterprises.enterprises_by_id[supplier_id] else null
+    target = producer || enterprise
+    if product.variants?.length > 0
+      prices = (variant.price for variant in product.variants)
+      product.price = Math.min.apply(null, prices)
+    product.primaryImage = product.image?.small_url if product.image
+    product.primaryImageOrMissing = product.primaryImage || "/noimage/small.png"
+    product.enterprise_name = target?.name || enterprise.name
+    product.enterprise_path = target?.path || enterprise.path
+    product.enterprise_id = target?.id || enterprise.id
+    product
+
+  $scope.addProducts = (enterprise, products) ->
+    $scope.visibleProducts = $scope.visibleProducts.concat(products)
+
+  $scope.applyEnterpriseFilters = (enterprises) ->
+    filtered = $filter('closedShops')(enterprises, $scope.show_closed)
+    filtered = $filter('taxons')(filtered, $scope.activeTaxons)
+    filtered = $filter('properties')(filtered, $scope.activeProperties, 'distributed_properties')
+    filtered = $filter('shipping')(filtered, $scope.shippingTypes)
+    $filter('orderBy')(filtered, ['-active', '+distance', '+orders_close_at'])
 
 
   $scope.showDistanceMatches = ->
@@ -73,7 +166,7 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
 
 
   $scope.firstNameMatch = ->
-    if $scope.nameMatchesFiltered?
+    if $scope.nameMatchesFiltered? and $scope.nameMatchesFiltered.length > 0
       $scope.nameMatchesFiltered[0]
     else
       undefined

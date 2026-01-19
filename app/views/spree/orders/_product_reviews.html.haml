@@ -1,0 +1,32 @@
+- products = order.line_items.includes(:product).map(&:product).uniq
+- reviews_by_product = order.product_reviews.where(user: spree_current_user).index_by(&:product_id)
+
+.order-product-reviews
+  %h3= t("product_reviews.section_title")
+
+  - unless order.review_window_open?
+    %p= t("ratings.review_window_closed")
+  - if products.empty?
+    %p= t("product_reviews.no_products")
+  - elsif order.review_window_open?
+    - products.each do |product|
+      - review = reviews_by_product[product.id] || order.product_reviews.build(product:, user: spree_current_user)
+      .order-product-review
+        %h4= product.name
+        = form_with model: review,
+                    url: review.persisted? ? main_app.order_product_review_path(order, review) : main_app.order_product_reviews_path(order, product_id: product.id),
+                    method: review.persisted? ? :patch : :post,
+                    local: true do |form|
+          .row
+            .columns.large-4
+              = form.label :rating, t("product_reviews.rating_label")
+              = form.select :rating,
+                            options_for_select((1..5).to_a, review.rating),
+                            { include_blank: true },
+                            class: "select"
+            .columns.large-8
+              = form.label :comment, t("product_reviews.comment_label")
+              = form.text_area :comment, rows: 3
+          .row
+            .columns.large-12
+              = form.submit review.persisted? ? t("product_reviews.update") : t("product_reviews.submit"), class: "button primary"

@@ -141,6 +141,30 @@ pl:
       duplicate_transaction: "Transakcja z identyczną kwotą i danymi karty została niedawno przesłana."
       fraudulent: "Płatność została odrzucona jako potencjalnie oszukańcza."
       generic_decline: "Karta została odrzucona z nieznanego powodu."
+  ratings:
+    section_title: "Oceń sprzedawców"
+    rating_label: "Ocena (1-5)"
+    comment_label: "Komentarz (opcjonalnie)"
+    submit: "Zapisz ocenę"
+    update: "Aktualizuj ocenę"
+    no_suppliers: "Brak sprzedawców do oceny w tym zamówieniu."
+    average_label: "Ocena"
+    none_label: "Brak ocen"
+    comments_title: "Komentarze kupujących"
+    waiting_for_shipment: "Oceny można dodać po oznaczeniu wysyłki zamówienia."
+    review_window_closed: "Okno na dodanie opinii do tego zamówienia już minęło."
+    excluded_note: "Ta ocena nie wlicza się do średniej."
+    recommendation_percent_label: "Polecam"
+    flash:
+      saved: "Dziękujemy za ocenę."
+      updated: "Ocena zaktualizowana."
+    errors:
+      order_not_shipped: "Zamówienie nie zostało jeszcze wysłane."
+      order_canceled: "Nie można ocenić anulowanego zamówienia."
+      review_window_closed: "Okno na dodanie opinii do tego zamówienia już minęło."
+      enterprise_not_in_order: "Ten sprzedawca nie jest częścią Twojego zamówienia."
+      user_not_order_owner: "Możesz oceniać tylko własne zamówienia."
+      login_required: "Zaloguj się, aby ocenić sprzedawców."
       incorrect_pin: "Wprowadzony PIN jest nieprawidłowy. Ten kod dotyczy tylko płatności z czytnika."
       insufficient_funds: "Na karcie brakuje środków do zakończenia transakcji."
       invalid_account: "Karta lub konto są nieprawidłowe."
@@ -168,6 +192,56 @@ pl:
       transaction_not_allowed: "Karta została odrzucona z nieznanego powodu."
       try_again_later: "Karta została odrzucona z nieznanego powodu."
       withdrawal_count_limit_exceeded: "Klient przekroczył dostępne środki lub limit kredytowy."
+  product_reviews:
+    section_title: "Recenzje produktów"
+    rating_label: "Ocena (1-5)"
+    comment_label: "Komentarz (opcjonalnie)"
+    submit: "Zapisz recenzję"
+    update: "Aktualizuj recenzję"
+    no_products: "Brak produktów do recenzji w tym zamówieniu."
+    comments_title: "Recenzje produktów"
+    flash:
+      saved: "Dziękujemy za recenzję."
+      updated: "Recenzja zaktualizowana."
+    errors:
+      product_not_in_order: "Ten produkt nie jest częścią Twojego zamówienia."
+    email:
+      greeting: "Cześć %{name},"
+      request_intro: "Twoje zamówienie z %{distributor} zostało wysłane."
+      request_body: "Możesz teraz ocenić sprzedawcę i dodać recenzje produktów. Masz na to %{days} dni od wysyłki."
+      reminder_intro: "Przypomnienie: Twoje zamówienie z %{distributor} zostało wysłane."
+      reminder_body: "Wciąż możesz ocenić sprzedawcę i dodać recenzje produktów. Masz %{days} dni od wysyłki."
+      leave_review_link: "Dodaj opinię"
+  admin:
+    enterprise_ratings:
+      index:
+        title: "Opinie o sprzedawcach"
+        enterprise: "Sprzedawca"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        removal_requested: "Prośba o usunięcie"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        request_removal: "Poproś o usunięcie"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Ocena została usunięta."
+        restored: "Ocena została przywrócona."
+        excluded: "Ocena wykluczona ze statystyk."
+        included: "Ocena uwzględniona w statystykach."
+        removal_requested: "Prośba o usunięcie została wysłana."
+        removal_request_denied: "Nie można wysłać prośby o usunięcie."
+  rating_exclusions:
+    duplicate_recent: "Wiele ocen w krótkim czasie nie liczy się do średniej."
   activemodel:
     errors:
       messages:
@@ -359,6 +433,18 @@ pl:
   welcome_to: "Regionalne produkty online w"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
+  search_by_product: Szukaj produktów...
+  search_radius: Promien wyszukiwania
+  search_radius_option: "%{km} km"
+  enterprise_rating_mailer:
+    seller_rating_received:
+      subject: "Nowa opinia o sprzedawcy %{enterprise} (zamowienie %{order})"
+      greeting: "Nowa opinia o sprzedawcy %{enterprise}."
+      intro: "Zamowienie: %{order}"
+      buyer_label: "Kupujacy:"
+      rating_label: "Ocena:"
+      comment_label: "Komentarz:"
+      comment_empty: "Brak komentarza."
   producers_join: "Zapraszamy producentów do dołączenia do Smaki Wsi."
   charges_sales_tax: Naliczać podatki?
   business_address: "Dane firmy"
@@ -461,6 +547,8 @@ pl:
   width: "Szerokość"
   depth: "Głębokość"
   payment_could_not_process: "Płatność nie mogła zostać przetworzona"
+  payment_pending_przelewy24: "Płatność oczekuje na potwierdzenie z Przelewy24."
+  payment_redirect_przelewy24: "Zostaniesz przekierowany do Przelewy24 w celu dokończenia płatności."
   payment_could_not_complete: "Płatność nie mogła zostać zakończona"
   actions:
     create_and_add_another: "Utwórz i dodaj kolejny"
@@ -622,9 +710,6 @@ pl:
       edit:
         title: "Stripe Connect"
         settings: "Ustawienia"
-        stripe_connect_enabled: Zezwolić sklepom na płatności przez Stripe Connect?
-        no_api_key_msg: Dla tego podmiotu nie istnieje konto Stripe.
-        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>dokumentacji</a>.
         status: Status
         ok: OK
         instance_secret_key: Sekretny klucz instancji
@@ -634,6 +719,23 @@ pl:
         charges_enabled_warning: "Uwaga: płatności nie są aktywne na Twoim koncie."
         auth_fail_error: Podany klucz API jest nieprawidłowy.
         empty_api_key_error_html: Nie podano klucza API Stripe. Aby go ustawić, skorzystaj z <a href="https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance" target="_blank">instrukcji</a>.
+        no_api_key_msg: Dla tego podmiotu nie istnieje konto Stripe.
+        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>dokumentacji</a>.
+      stripe_connect_enabled: Zezwolić sklepom na płatności przez Stripe Connect?
+    przelewy24_settings:
+      edit:
+        title: "Przelewy24"
+        settings: "Ustawienia"
+        status: "Status"
+        ok: "OK"
+        not_set: "Nie ustawiono"
+        missing_credentials: "Brak danych Przelewy24. Sprawdź secrets.yml."
+        configuration_explanation_html: "Skonfiguruj dane Przelewy24 w secrets.yml i włącz integrację."
+        przelewy24_enabled: "Zezwolić sklepom na płatności przez Przelewy24?"
+        merchant_id: "Merchant ID"
+        pos_id: "POS ID"
+        api_key: "API key"
+        crc_key: "CRC key"
     matomo_settings:
       edit:
         title: "Ustawienia Matomo"
@@ -1782,6 +1884,8 @@ pl:
         remove_white_label_logo_success: "Logo zostało usunięte."
       stripe_connect_settings:
         resource: Konfiguracja Stripe Connect
+      przelewy24_settings:
+        resource: Konfiguracja Przelewy24
     resend_confirmation_emails_feedback:
       one: "Wysłano e-mail potwierdzający dla 1 zamówienia."
       other: "Wysłano e-maile potwierdzające dla %{count} zamówień."
@@ -1915,6 +2019,7 @@ pl:
       show_closed_shops: "Pokaż zamknięte sklepy"
       hide_closed_shops: "Ukryj zamknięte sklepy"
       show_on_map: "Pokaż wszystkie na mapie"
+    products_no_results: "Brak produktów w wybranym obszarze."
   shared:
     mailers:
       powered_by:
@@ -2006,7 +2111,7 @@ pl:
   menu_4_title: "Grupy"
   menu_4_url: "/groups"
   menu_5_title: "Sprzedawaj"
-  menu_5_url: "https://smaki-wsi.pl/sell"
+  menu_5_url: "https://192.168.56.4.nip.io/sell"
   menu_6_title: "O OFN"
   menu_6_url: "https://wp.openfoodnetwork.de/"
   menu_7_title: "Pomoc"
@@ -2070,6 +2175,8 @@ pl:
   label_blog: "Blog"
   label_support: "Pomoc"
   label_shopping: "Zakupy"
+  label_choose_shop: "Wybierz sklep"
+  label_shop_at: "Sklep u"
   label_login: "Zaloguj się"
   label_logout: "Wyloguj się"
   label_signup: "Zarejestruj się"
@@ -4004,6 +4111,9 @@ pl:
         add_product:
           cannot_add_item_to_canceled_order: "Do anulowanego zamówienia nie można dodać produktów."
           include_out_of_stock_variants: "Uwzględnij warianty bez stanu magazynowego"
+        shipment:
+          mark_as_shipped_message_html: "To oznaczy zamówienie jako wysłane.<br />Czy na pewno chcesz kontynuować?"
+          mark_as_shipped_label_message: "Wyślij do klienta e-mail z powiadomieniem o wysyłce/odbiorze."
         index:
           listing_orders: "Zarządzaj zamówieniami"
           new_order: "Nowe zamówienie"
@@ -4172,6 +4282,7 @@ pl:
           paypalexpress: "PayPal Express"
           stripeconnect: "Stripe"
           stripesca: "Stripe SCA"
+          przelewy24: "Przelewy24"
       payments:
         source_forms:
           stripe:
@@ -4393,6 +4504,10 @@ pl:
       invoice_email:
         hi: "Cześć %{name}"
         invoice_attached_text: "W załączeniu znajduje się faktura za ostatnie zamówienie z"
+      review_request_email:
+        subject: "Dodaj opinię"
+      review_reminder_email:
+        subject: "Przypomnienie: dodaj opinię"
     user_mailer:
       reset_password_instructions:
         request_sent_text: |
@@ -4421,7 +4536,7 @@ pl:
         thanks: "Dziękujemy za zakupy!"
         track_information: "Informacje o przesyłce: %{tracking}"
         track_link: "Link do przesyłki: %{url}"
-        picked_up_instructions: "Twoje zamówienie u %{distributor} zostało odebrane."
+        picked_up_instructions: "Twoje zamówienie u %{distributor} zostało wysłane."
         picked_up_subject: "Powiadomienie o odbiorze"
     test_mailer:
       test_email:
