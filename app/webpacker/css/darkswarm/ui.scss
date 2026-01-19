@@ -121,7 +121,11 @@ button.success, .button.success {
   color: inherit;
 }
 
-.rating-stars .star.filled {
+.rating-stars[data-rating="1"] .star:nth-child(-n+1),
+.rating-stars[data-rating="2"] .star:nth-child(-n+2),
+.rating-stars[data-rating="3"] .star:nth-child(-n+3),
+.rating-stars[data-rating="4"] .star:nth-child(-n+4),
+.rating-stars[data-rating="5"] .star:nth-child(-n+5) {
   color: $orange-450 !important;
 }
 
@@ -146,9 +150,6 @@ button.success, .button.success {
   color: $grey-800;
 }
 
-.product-reviews .rating-stars .star.filled {
-  color: $orange-450 !important;
-}
 
 // Transparent button
 .button.transparent {
