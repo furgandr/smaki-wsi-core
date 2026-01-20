@@ -231,11 +231,11 @@ module Spree
     end
 
     def rating_average
-      product_reviews.average(:rating)&.to_f
+      product_reviews.active_for_stats.average(:rating)&.to_f
     end
 
     def rating_count
-      product_reviews.count
+      product_reviews.active_for_stats.count
     end
 
     def in_distributor?(distributor)

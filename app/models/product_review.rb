@@ -6,7 +6,12 @@ class ProductReview < ApplicationRecord
   belongs_to :user, class_name: "Spree::User"
 
   validates :rating, presence: true, inclusion: { in: 1..5 }
-  validates :product_id, uniqueness: { scope: :user_id }
+  validates :product_id, uniqueness: {
+    scope: :user_id,
+    conditions: -> { where(removed_at: nil) }
+  }
+
+  scope :active_for_stats, -> { where(removed_at: nil, excluded_from_stats: false) }
 
   validate :order_is_shipped
   validate :order_not_canceled

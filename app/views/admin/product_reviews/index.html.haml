@@ -1,0 +1,52 @@
+- if spree_current_user.admin?
+  = render 'spree/admin/shared/configuration_menu'
+
+= content_for :page_title do
+  = t("admin.product_reviews.index.title", default: "Opinie o produktach")
+
+%table.index#listing_product_reviews
+  %thead
+    %tr
+      %th= t("admin.product_reviews.index.product", default: "Produkt")
+      %th= t("admin.product_reviews.index.order", default: "Zamowienie")
+      %th= t("admin.product_reviews.index.buyer", default: "Kupujacy")
+      %th= t("admin.product_reviews.index.rating", default: "Ocena")
+      %th= t("admin.product_reviews.index.comment", default: "Komentarz")
+      %th= t("admin.product_reviews.index.created_at", default: "Utworzono")
+      %th= t("admin.product_reviews.index.status", default: "Status")
+      %th.actions
+  %tbody
+    - @reviews.each do |review|
+      %tr
+        %td= review.product&.name
+        %td= link_to review.order.number, spree.edit_admin_order_path(review.order)
+        %td= review.order.bill_address&.full_name || review.order.email
+        %td= review.rating
+        %td= review.comment
+        %td= l(review.created_at, format: :short)
+        %td
+          - if review.removed_at.present?
+            %span= t("admin.product_reviews.index.removed", default: "Usunieta")
+            - if review.removal_reason.present?
+              %div= review.removal_reason
+          - elsif review.excluded_from_stats?
+            %span= t("admin.product_reviews.index.excluded", default: "Wykluczona")
+            - if review.excluded_reason.present?
+              %div= review.excluded_reason
+          - else
+            %span= t("admin.product_reviews.index.active", default: "Aktywna")
+        %td.actions
+          - if review.removed_at.present?
+            = button_to t("admin.product_reviews.index.restore", default: "Przywroc"), main_app.restore_admin_product_review_path(review),
+                        method: :patch, class: "button secondary admin-action-button"
+          - else
+            = button_to t("admin.product_reviews.index.remove", default: "Usun"), main_app.remove_admin_product_review_path(review),
+                        method: :patch, class: "button secondary admin-action-button",
+                        params: { removal_reason: t("admin.product_reviews.index.default_removal_reason", default: "Usunieta przez admina") }
+          - if review.excluded_from_stats?
+            = button_to t("admin.product_reviews.index.include", default: "Uwzglednij"), main_app.include_admin_product_review_path(review),
+                        method: :patch, class: "button secondary admin-action-button"
+          - else
+            = button_to t("admin.product_reviews.index.exclude", default: "Wyklucz"), main_app.exclude_admin_product_review_path(review),
+                        method: :patch, class: "button secondary admin-action-button",
+                        params: { excluded_reason: "duplicate_recent" }

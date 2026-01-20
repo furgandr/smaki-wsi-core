@@ -240,6 +240,29 @@ pl:
         included: "Ocena uwzględniona w statystykach."
         removal_requested: "Prośba o usunięcie została wysłana."
         removal_request_denied: "Nie można wysłać prośby o usunięcie."
+    product_reviews:
+      index:
+        title: "Opinie o produktach"
+        product: "Produkt"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Opinia została usunięta."
+        restored: "Opinia została przywrócona."
+        excluded: "Opinia wykluczona ze statystyk."
+        included: "Opinia uwzględniona w statystykach."
   rating_exclusions:
     duplicate_recent: "Wiele ocen w krótkim czasie nie liczy się do średniej."
   activemodel:
