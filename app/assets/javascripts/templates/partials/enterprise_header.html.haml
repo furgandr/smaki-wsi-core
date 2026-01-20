@@ -10,7 +10,7 @@
         %span{"ng-bind" => "::enterprise.name"}
     .small-12.medium-5.large-4.columns.text-right.small-only-text-left
       %p{"ng-bind" => "::[enterprise.address.city, enterprise.address.state_name] | printArray"}
-      %p{"ng-if" => "::enterprise.rating_count > 0", "ng-init" => "enterpriseRatingRounded = Math.round(parseFloat((enterprise.rating_average || 0).toString().replace(',', '.')) || 0)"}
+      %p{"ng-if" => "::enterprise.rating_count > 0", "ng-init" => "enterpriseRatingRounded = Math.round(parseFloat((enterprise.rating_average || 0).toString().replace(',', '.')) || 0); enterpriseRecommendationRounded = Math.round(parseFloat((enterprise.recommendation_percent || 0).toString().replace(',', '.')) || 0)"}
         %span{"ng-bind" => "::('ratings.average_label' | t) + ':'"}
         %strong
           {{ enterpriseRatingRounded }}/5
@@ -19,7 +19,7 @@
         %span
           ({{ ::enterprise.rating_count }})
         %span{"ng-if" => "enterprise.recommendation_percent != null"}
-          {{ 'ratings.recommendation_percent_label' | t }}: {{ enterprise.recommendation_percent | number: 1 }}%
+          {{ 'ratings.recommendation_percent_label' | t }}: {{ enterpriseRecommendationRounded }}%
       %p{"ng-if" => "::enterprise.rating_count == 0"}
         %span{"ng-bind" => "::('ratings.none_label' | t)"}
   %img.hero-img{"ng-src" => "{{::enterprise.promo_image}}"}
