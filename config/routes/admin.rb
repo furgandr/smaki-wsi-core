@@ -113,15 +113,6 @@ Openfoodnetwork::Application.routes.draw do
 
     resource :connected_app_settings, only: [:edit, :update]
 
-    resources :enterprise_ratings, only: [:index] do
-      member do
-        patch :remove
-        patch :restore
-        patch :exclude
-        patch :include
-        patch :request_removal
-      end
-    end
 
     resources :stripe_accounts, only: [:destroy] do
       get :connect, on: :collection

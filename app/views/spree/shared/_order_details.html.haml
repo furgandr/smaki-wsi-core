@@ -55,7 +55,6 @@
 
   - if spree_current_user
     - if order.shipped?
-      = render 'spree/orders/seller_ratings', order: order
       = render 'spree/orders/product_reviews', order: order
     - elsif order.complete?
       %p= t("ratings.waiting_for_shipment")
