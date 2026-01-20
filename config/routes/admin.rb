@@ -113,15 +113,6 @@ Openfoodnetwork::Application.routes.draw do
 
     resource :connected_app_settings, only: [:edit, :update]
 
-    resources :enterprise_ratings, only: [:index] do
-      member do
-        patch :remove
-        patch :restore
-        patch :exclude
-        patch :include
-        patch :request_removal
-      end
-    end
 
     resources :stripe_accounts, only: [:destroy] do
       get :connect, on: :collection
@@ -145,6 +136,15 @@ Openfoodnetwork::Application.routes.draw do
     resources :proxy_orders, only: [:edit] do
       put :cancel, on: :member, format: :json
       put :resume, on: :member, format: :json
+    end
+
+    resources :product_reviews, only: [:index] do
+      member do
+        patch :remove
+        patch :restore
+        patch :exclude
+        patch :include
+      end
     end
 
     get '/reports', to: 'reports#index', as: :reports

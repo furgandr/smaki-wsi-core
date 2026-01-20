@@ -36,6 +36,17 @@ angular.module('Darkswarm').factory 'Products', (OrderCycleResource, OrderCycle,
         product.primaryImage = product.image?.small_url if product.image
         product.primaryImageOrMissing = product.primaryImage || "/noimage/small.png"
         product.largeImage = product.image?.large_url if product.image
+        product.rating_count_value = product.rating_count || product.recent_reviews?.length || 0
+        product.rating_average_value =
+          if product.rating_average?
+            parseFloat(product.rating_average.toString().replace(',', '.')) || 0
+          else if product.recent_reviews?.length > 0
+            total = 0
+            total += (parseFloat(review.rating) || 0) for review in product.recent_reviews
+            total / product.recent_reviews.length
+          else
+            0
+        product.rating_average_value_rounded = Math.round(product.rating_average_value || 0)
 
     dereference: ->
       for product in @fetched_products

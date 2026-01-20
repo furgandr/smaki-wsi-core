@@ -38,7 +38,7 @@ class Api::ProductSerializer < ActiveModel::Serializer
   end
 
   def recent_reviews
-    reviews = object.product_reviews
+    reviews = object.product_reviews.active_for_stats
       .includes(order: :bill_address)
       .where.not(comment: [nil, ""])
       .order(created_at: :desc)

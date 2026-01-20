@@ -107,10 +107,10 @@ pl:
   errors:
     not_found:
       title: "Nie znaleziono strony (404)."
-      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, czego dotyczy brakująca strona.</p>"
+      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/Smaki Wsi-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, czego dotyczy brakująca strona.</p>"
     internal_server_error:
       title: "Przepraszamy, coś poszło nie tak (500)."
-      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Pracujemy nad tym</b><p> Jeśli widzisz ten problem ponownie, prawdopodobnie już o nim wiemy i pracujemy nad rozwiązaniem. Rejestrujemy wszystkie błędy.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/ofn-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, co robiłeś, gdy pojawił się błąd.</p>"
+      message_html: "<b>Spróbuj ponownie</b><p> To może być chwilowy problem. Kliknij przycisk Wstecz, aby wrócić do poprzedniego ekranu, lub wróć do <a href='/'>strony głównej</a> i spróbuj ponownie.</p> <b>Pracujemy nad tym</b><p> Jeśli widzisz ten problem ponownie, prawdopodobnie już o nim wiemy i pracujemy nad rozwiązaniem. Rejestrujemy wszystkie błędy.</p> <b>Skontaktuj się z pomocą</b><p> Jeśli problem nadal występuje lub jest pilny, daj nam znać. Dane kontaktowe znajdziesz na <a href='https://openfoodnetwork.org/Smaki Wsi-local/' target='blank'>lokalnej stronie globalnego Smaki Wsi</a>.</p><p> Bardzo pomaga, jeśli jak najdokładniej opiszesz, co robiłeś, gdy pojawił się błąd.</p>"
     unprocessable_entity:
       title: "Żądana zmiana została odrzucona (422)."
       message_html: "<p>Żądana zmiana została odrzucona. Być może próbowałeś zmienić coś, do czego nie masz dostępu.<br><h3><a href='/'>Wróć do strony głównej</a></h3></p>"
@@ -240,6 +240,29 @@ pl:
         included: "Ocena uwzględniona w statystykach."
         removal_requested: "Prośba o usunięcie została wysłana."
         removal_request_denied: "Nie można wysłać prośby o usunięcie."
+    product_reviews:
+      index:
+        title: "Opinie o produktach"
+        product: "Produkt"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Opinia została usunięta."
+        restored: "Opinia została przywrócona."
+        excluded: "Opinia wykluczona ze statystyk."
+        included: "Opinia uwzględniona w statystykach."
   rating_exclusions:
     duplicate_recent: "Wiele ocen w krótkim czasie nie liczy się do średniej."
   activemodel:
@@ -428,7 +451,7 @@ pl:
       other:
         title: Inne błędy (%{count} zamówień)
         explainer: Automatyczne przetwarzanie nie powiodło się z nieznanego powodu. To nie powinno się zdarzyć — skontaktuj się z nami, jeśli to widzisz.
-  home: "OFN"
+  home: "Smaki Wsi"
   title: "Smaki Wsi"
   welcome_to: "Regionalne produkty online w"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
@@ -718,9 +741,9 @@ pl:
         charges_enabled: Płatności aktywne
         charges_enabled_warning: "Uwaga: płatności nie są aktywne na Twoim koncie."
         auth_fail_error: Podany klucz API jest nieprawidłowy.
-        empty_api_key_error_html: Nie podano klucza API Stripe. Aby go ustawić, skorzystaj z <a href="https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance" target="_blank">instrukcji</a>.
+        empty_api_key_error_html: Nie podano klucza API Stripe. Aby go ustawić, skorzystaj z <a href="https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-Smaki Wsi-instance" target="_blank">instrukcji</a>.
         no_api_key_msg: Dla tego podmiotu nie istnieje konto Stripe.
-        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-OFN-instance' target='_blank'>dokumentacji</a>.
+        configuration_explanation_html: Szczegółowe instrukcje konfiguracji Stripe Connect znajdziesz w <a href='https://github.com/openfoodfoundation/openfoodnetwork/wiki/Setting-up-Stripe-on-an-Smaki Wsi-instance' target='_blank'>dokumentacji</a>.
       stripe_connect_enabled: Zezwolić sklepom na płatności przez Stripe Connect?
     przelewy24_settings:
       edit:
@@ -743,7 +766,7 @@ pl:
         matomo_site_id: "ID witryny Matomo"
         matomo_tag_manager_url: "URL Matomo Tag Manager"
         info_html: "Matomo to aplikacja analityczna dla WWW i mobile. Możesz hostować Matomo lokalnie lub użyć usługi w chmurze. Więcej informacji: <a href='http://matomo.org' target='_blank'>matomo.org</a>."
-        config_instructions_html: "Tutaj możesz skonfigurować integrację OFN z Matomo. Podany URL Matomo powinien wskazywać instancję, do której będą wysyłane dane śledzenia. Jeśli pole zostanie puste, śledzenie Matomo zostanie wyłączone. Pole ID witryny nie jest obowiązkowe, ale przydatne, gdy śledzisz wiele witryn w jednej instancji Matomo."
+        config_instructions_html: "Tutaj możesz skonfigurować integrację Smaki Wsi z Matomo. Podany URL Matomo powinien wskazywać instancję, do której będą wysyłane dane śledzenia. Jeśli pole zostanie puste, śledzenie Matomo zostanie wyłączone. Pole ID witryny nie jest obowiązkowe, ale przydatne, gdy śledzisz wiele witryn w jednej instancji Matomo."
         config_instructions_tag_manager_html: "Ustawienie URL Matomo Tag Manager włącza Matomo Tag Manager. To narzędzie pozwala tworzyć zdarzenia analityczne. URL należy skopiować z sekcji kodu instalacyjnego Matomo Tag Manager. Upewnij się, że wybierasz właściwy kontener i środowisko."
     connected_app_settings:
       edit:
@@ -1218,7 +1241,7 @@ pl:
           sells: sprzedaje
           sells_tip: "Brak - podmiot nie sprzedaje bezpośrednio klientom. <br /> Własne - podmiot sprzedaje własne produkty klientom. <br /> Wszystkie - podmiot sprzedaje własne i cudze produkty. <br />"
           visible_in_search: widoczne publicznie w wyszukiwarce
-          visible_in_search_tip: "Podmioty mogą<br /> 1. być publicznie widoczne i pojawiać się na mapach i listach OFN.<br /> 2. być ukryte na mapach i listach OFN, ale być powiązane z innymi podmiotami i linkowane w ich profilach.<br /> 3. być całkowicie ukryte."
+          visible_in_search_tip: "Podmioty mogą<br /> 1. być publicznie widoczne i pojawiać się na mapach i listach Smaki Wsi.<br /> 2. być ukryte na mapach i listach Smaki Wsi, ale być powiązane z innymi podmiotami i linkowane w ich profilach.<br /> 3. być całkowicie ukryte."
           visible: widoczne publicznie
           not_visible: ukryte, ale z referencją
           hidden: całkowicie ukryte
@@ -1229,7 +1252,7 @@ pl:
           permalink_tip: "Ten permalink służy do tworzenia URL sklepu: %{link}nazwa-sklepu/shop"
           link_to_front: Link do sklepu
           link_to_front_tip: Bezpośredni link do Twojego sklepu w Smaki Wsi.
-          ofn_uid: OFN UID
+          ofn_uid: Smaki Wsi UID
           ofn_uid_tip: Unikalne ID identyfikujące podmiot w Smaki Wsi.
         shipping_methods:
           legend: "Opcje dostawy"
@@ -1353,8 +1376,8 @@ pl:
           add_new: + Nowy kupon
           no_voucher_yet: Brak kuponów.
         white_label:
-          legend: "Ukryj OFN"
-          hide_ofn_navigation: "Ukryj nawigację OFN"
+          legend: "Ukryj Smaki Wsi"
+          hide_ofn_navigation: "Ukryj nawigację Smaki Wsi"
           white_label_logo_link_label: "Docelowy link logo w sklepie"
           hide_groups_tab: "Ukryj zakładkę \"Grupy\" w sklepie"
           create_custom_tab: "Dodaj własną zakładkę w sklepie"
@@ -1367,7 +1390,7 @@ pl:
           discover_regen:
             loading: "Ładowanie ..."
           vine:
-            enable: "Przez OFN"
+            enable: "Przez Smaki Wsi"
       actions:
         edit_profile: Ustawienia
         properties: Właściwości
@@ -1638,7 +1661,7 @@ pl:
           shop_preferences: "Sklep"
           users: "Użytkownicy"
           vouchers: Kupony
-          white_label: "Ukryj OFN"
+          white_label: "Ukryj Smaki Wsi"
           connected_apps: "Połączone aplikacje"
         enterprise_group:
           primary_details: "Podmiot"
@@ -1844,7 +1867,7 @@ pl:
       orders:
         number: Numer
         confirm_edit: Czy na pewno chcesz edytować to zamówienie? Może to utrudnić automatyczną synchronizację zmian subskrypcji w przyszłości.
-      confirm_cancel_msg: "Czy na pewno chcesz anulować subskrypcję? Tego nie da się cofnąć."
+      confirm_cancel_msg: "Czy na pewno chcesz anulować subskrypcję? Tego nie da się cSmaki Wsiąć."
       cancel_failure_msg: "Anulowanie subskrypcji nie powiodło się."
       confirm_pause_msg: "Czy na pewno chcesz wstrzymać subskrypcję?"
       pause_failure_msg: "Wstrzymanie subskrypcji nie powiodło się."
@@ -2024,7 +2047,7 @@ pl:
     mailers:
       powered_by:
         open_food_network: "e-mail"
-        powered_html: "Wspierane przez Smaki Wsi. Wyślij nam %{open_food_network}."
+        powered_html: "Wspierane przez Smaki Wsi. Masz pytania napisz do nas %{open_food_network}."
     menu:
       cart:
         cart: "Koszyk/Kasa"
@@ -2112,7 +2135,7 @@ pl:
   menu_4_url: "/groups"
   menu_5_title: "Sprzedawaj"
   menu_5_url: "https://192.168.56.4.nip.io/sell"
-  menu_6_title: "O OFN"
+  menu_6_title: "O Smaki Wsi"
   menu_6_url: "https://wp.openfoodnetwork.de/"
   menu_7_title: "Pomoc"
   menu_7_url: "https://smaki-wsi.pl/support/"
@@ -2246,7 +2269,7 @@ pl:
       cookies_policy_link: "Informacje o cookies"
       cookies_accept_button: "Akceptuję cookies"
   home_shop: Kupuj lokalnie
-  brandstory_headline: "Kupuj regionalną żywność online"
+  brandstory_headline: "Kupuj lokalną żywność online"
   brandstory_intro: "Znajdź produkty od lokalnych producentów, zamów online i odbierz lub skorzystaj z dostawy.\nDołącz do ruchu, który z każdym zakupem wspiera jakość regionalnych produktów, uczciwe ceny, zrównoważony rozwój i przejrzystość. Pomóż nam w ..."
   brandstory_part1: "... nowym początku. Nie godź się na anonimowość i wyzysk ludzi, zwierząt i środowiska w branży żywnościowej. Poznaj historie rolników, ogrodników i hodowców stojących za produktami. Zobacz, jakie marże stosują pośrednicy, by uzyskać uczciwe ceny. Poznaj ludzi, którzy swoją codzienną pracą tworzą regionalną i sezonową żywność."
   brandstory_part2: "Kupuj w sklepach gospodarstw, na targach, w food hubach albo dołącz do grup zakupowych, spółdzielni, kooperatyw czy rolnictwa wspieranego społecznie."
@@ -2998,7 +3021,7 @@ pl:
   report_filters: Ustawienia raportu
   report_print: Drukuj raport
   report_render_options: Opcje renderowania
-  report_header_ofn_uid: OFN UID
+  report_header_ofn_uid: Smaki Wsi UID
   report_header_order_cycle: Cykl zamówień
   report_header_user: Użytkownik
   report_header_email: Adres e-mail
@@ -3215,9 +3238,9 @@ pl:
   validation_msg_at_least_one_hub: "^ Musi być wybrany co najmniej jeden sklep."
   validation_msg_tax_category_cant_be_blank: "^ Kategoria podatku nie może być pusta."
   validation_msg_is_associated_with_an_exising_customer: "jest powiązany z istniejącym klientem"
-  content_configuration_pricing_table: "(TODO: tabela cen)"
-  content_configuration_case_studies: "(TODO: przykłady)"
-  content_configuration_detail: "(TODO: szczegóły)"
+  content_configuration_pricing_table: "Tabela cen"
+  content_configuration_case_studies: "Przykłady"
+  content_configuration_detail: "Szczegóły"
   enterprise_name_error: "jest już zajęta. Jeśli to Twój podmiot i chcesz przejąć prawa lub handlować z tym podmiotem, skontaktuj się z menedżerem pod %{email}."
   enterprise_owner_error: "^ %{email} nie może posiadać więcej podmiotów (limit %{enterprise_limit})."
   enterprise_role_uniqueness_error: "^ Ta rola już istnieje."
@@ -3335,14 +3358,14 @@ pl:
           hub_profile_cost: "ZAWSZE DARMOWE"
           hub_profile_text1: >
               Przedstaw się w Smaki Wsi i nawiąż kontakty z
-              innymi producentami i sklepami. Będziesz widoczny w OFN,
+              innymi producentami i sklepami. Będziesz widoczny w Smaki Wsi,
               na mapie oraz w wynikach wyszukiwania.
           hub_profile_text2: >
-              Posiadanie profilu i budowanie lokalnych relacji w OFN
+              Posiadanie profilu i budowanie lokalnych relacji w Smaki Wsi
               zawsze pozostanie bezpłatne.
           hub_shop: "Sklep"
           hub_shop_text1: >
-              Sprzedawaj produkty innych producentów lub sklepów w OFN.
+              Sprzedawaj produkty innych producentów lub sklepów w Smaki Wsi.
               Łączysz produkty i jako sklep jesteś ważnym elementem
               lokalnego systemu żywnościowego.
           hub_shop_text2: >
@@ -3361,28 +3384,28 @@ pl:
           profile_only: Profil
           profile_only_cost: "ZAWSZE DARMOWE"
           profile_only_text1: >
-              Przedstaw siebie i swoje produkty w OFN i nawiąż
+              Przedstaw siebie i swoje produkty w Smaki Wsi i nawiąż
               kontakty z producentami oraz sklepami.
           profile_only_text2: >
               Jeśli wolisz skupić się na produkcji, a sprzedaż pozostawić innym,
-              nie potrzebujesz własnego sklepu w OFN. Dodaj produkty do profilu,
+              nie potrzebujesz własnego sklepu w Smaki Wsi. Dodaj produkty do profilu,
               by inne sklepy mogły je sprzedawać.
           profile_only_text3: >
               Jeśli chcesz sprzedawać produkty samodzielnie, wybierz „Sklep producenta”.
 
-              Posiadanie profilu i budowanie lokalnych relacji w OFN
+              Posiadanie profilu i budowanie lokalnych relacji w Smaki Wsi
               zawsze pozostanie bezpłatne.
           producer_shop: Sklep producenta
           producer_shop_text1: >
               Sprzedawaj własne produkty bezpośrednio klientom
-              poprzez swój sklep producenta w OFN.
+              poprzez swój sklep producenta w Smaki Wsi.
           producer_shop_text2: >
               Sklep producenta jest tylko dla własnych produktów. Jeśli
               chcesz sprzedawać produkty innych, wybierz „Sklep”.
           producer_hub: Sklep
           producer_hub_text1: >
               Sprzedawaj własne produkty i produkty innych producentów lub
-              sklepów w OFN. Twój sklep jest ważnym elementem lokalnego systemu.
+              sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu.
           producer_hub_text2: >
               Sklepy mogą mieć różne formy: targ, spółdzielnia,
               grupa zakupowa, abonament skrzynek lub lokalny sklep.
@@ -3406,7 +3429,7 @@ pl:
           non_producer: Sprzedawca
           non_producer_text1: >
               Sprzedawcy nie produkują żywności, więc nie mogą oferować
-              własnych produktów w OFN.
+              własnych produktów w Smaki Wsi.
           non_producer_text2: >
               Zamiast tego specjalizują się w łączeniu producentów z klientami
               przez kompletowanie, sortowanie, pakowanie, sprzedaż lub dostawę.
@@ -3890,7 +3913,7 @@ pl:
     display_currency: "Wyświetl walutę"
     choose_currency: "Wybierz walutę"
     mail_method_settings: "Ustawienia wysyłki e-mail"
-    mail_settings_notice_html: "<b>Zmiany tutaj są tymczasowe</b> do debugowania i mogą zostać cofnięte.<br> Trwałe zmiany wykonuje się przez aktualizację danych instancji i wdrożenie przez <a href='https://github.com/openfoodfoundation/ofn-install'>ofn-install</a>. Skontaktuj się z globalnym zespołem OFN."
+    mail_settings_notice_html: "<b>Zmiany tutaj są tymczasowe</b> do debugowania i mogą zostać cSmaki Wsiięte.<br> Trwałe zmiany wykonuje się przez aktualizację danych instancji i wdrożenie przez <a href='https://github.com/openfoodfoundation/Smaki Wsi-install'>Smaki Wsi-install</a>. Skontaktuj się z globalnym zespołem Smaki Wsi."
     general: "Ogólne"
     enable_mail_delivery: "Włącz wysyłkę e-mail"
     send_mails_as: "Wysyłaj e-maile jako"
@@ -4257,7 +4280,7 @@ pl:
           request_failed_msg: "Przepraszamy. Wystąpił błąd podczas próby weryfikacji konta Stripe."
           account_missing_msg: "To przedsiębiorstwo nie ma konta Stripe."
           connect_one: "Połącz konto"
-          access_revoked_msg: "Dostęp do konta Stripe został cofnięty. Połącz konto ponownie."
+          access_revoked_msg: "Dostęp do konta Stripe został cSmaki Wsiięty. Połącz konto ponownie."
           status: "Status"
           connected: "Połączono"
           account_id: "ID konta"

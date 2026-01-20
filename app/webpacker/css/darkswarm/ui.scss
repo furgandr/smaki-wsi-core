@@ -125,6 +125,32 @@ button.success, .button.success {
   color: $orange-450 !important;
 }
 
+.rating-stars--fraction {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.rating-stars--fraction .rating-stars__base,
+.rating-stars--fraction .rating-stars__fill {
+  display: block;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+.rating-stars--fraction .rating-stars__base {
+  color: #c7c7c7;
+}
+
+.rating-stars--fraction .rating-stars__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  width: var(--rating-percent, 0%);
+  color: $orange-450;
+}
+
 .rating-stars[data-rating="1"] .star:nth-child(-n+1),
 .rating-stars[data-rating="2"] .star:nth-child(-n+2),
 .rating-stars[data-rating="3"] .star:nth-child(-n+3),
