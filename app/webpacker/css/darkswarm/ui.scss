@@ -125,6 +125,18 @@ button.success, .button.success {
   color: $orange-450 !important;
 }
 
+.product-name-link {
+  cursor: pointer;
+}
+
+.product-rating-line {
+  margin-top: 0.35rem;
+}
+
+.product-rating-line .rating-stars {
+  margin-left: 0.35rem;
+}
+
 .rating-stars--fraction {
   position: relative;
   display: inline-block;

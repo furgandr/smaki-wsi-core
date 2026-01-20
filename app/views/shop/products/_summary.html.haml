@@ -9,7 +9,7 @@
   .summary
     .summary-header
       %h3
-        %a{"ng-click" => "triggerProductModal()", href: 'javascript:void(0)'}
+        %a.product-name-link{"ng-click" => "triggerProductModal()", href: 'javascript:void(0)'}
           %span{"ng-bind" => "::product.name"}
       .product-description{ "data-controller": "add-blank-to-link", "ng-bind-html": "::product.description_html", "ng-click": "triggerProductModal()", "ng-show": "product.description_html.length" }
       %div{ "ng-switch" => "enterprise.visible" }
@@ -21,14 +21,10 @@
 
       .product-properties.filter-shopfront.property-selectors
         %filter-selector{ 'selector-set' => "productPropertySelectors", objects: "[product] | propertiesWithValuesOf" }
-      .product-reviews{"ng-if" => "product.rating_count_value > 0"}
-        %p
-          %span
-            {{'ratings.average_label' | t}}:
-          %strong
-            {{ (product.rating_average_value || 0) | number:1 }}/5
-          %span.rating-stars.rating-stars--fraction{"aria-hidden" => "true", "ng-attr-style" => "--rating-percent: {{ ((product.rating_average_value || 0) / 5) * 100 }}%;"}
-            %span.rating-stars__base &#9733;&#9733;&#9733;&#9733;&#9733;
-            %span.rating-stars__fill &#9733;&#9733;&#9733;&#9733;&#9733;
-          %span
-            ({{ product.rating_count_value }})
+      .product-rating-line{"ng-if" => "product.rating_count_value > 0"}
+        %span.product-rating-label {{'ratings.average_label' | t}}:
+        %strong {{ (product.rating_average_value || 0) | number:1 }}/5
+        %span.rating-stars.rating-stars--fraction{"aria-hidden" => "true", "ng-attr-style" => "--rating-percent: {{ ((product.rating_average_value || 0) / 5) * 100 }}%;"}
+          %span.rating-stars__base &#9733;&#9733;&#9733;&#9733;&#9733;
+          %span.rating-stars__fill &#9733;&#9733;&#9733;&#9733;&#9733;
+        %span.product-rating-count ({{ product.rating_count_value }})
