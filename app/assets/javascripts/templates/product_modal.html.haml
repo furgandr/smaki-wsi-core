@@ -26,11 +26,10 @@
       %ul.ratings-list
         %li{"ng-repeat" => "review in product.recent_reviews"}
           %strong {{ review.author_name }}
-          %span.rating-stars.rating-stars--fraction{"aria-hidden" => "true", "ng-attr-style" => "--rating-percent: {{ ((review.rating || 0) / 5) * 100 }}%;"}
-            %span.rating-stars__base &#9733;&#9733;&#9733;&#9733;&#9733;
-            %span.rating-stars__fill &#9733;&#9733;&#9733;&#9733;&#9733;
+          %span.rating-stars{"aria-hidden" => "true"}
+            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= (Math.round(review.rating || 0))}"} &#9733;
           %span
-            {{ (review.rating || 0) | number:1 }}/5
+            {{ (review.rating || 0) | number:0 }}/5
           %p{"ng-bind" => "review.comment"}
 
   .columns.small-12.medium-6.large-6.product-img

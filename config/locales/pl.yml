@@ -2047,7 +2047,7 @@ pl:
     mailers:
       powered_by:
         open_food_network: "e-mail"
-        powered_html: "Wspierane przez Smaki Wsi. Wyślij nam %{open_food_network}."
+        powered_html: "Wspierane przez Smaki Wsi. Masz pytania napisz do nas %{open_food_network}."
     menu:
       cart:
         cart: "Koszyk/Kasa"
