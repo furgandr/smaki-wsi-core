@@ -38,7 +38,8 @@ angular.module('Darkswarm').factory 'Products', (OrderCycleResource, OrderCycle,
         product.largeImage = product.image?.large_url if product.image
         product.rating_count_value = product.rating_count || product.recent_reviews?.length || 0
         product.rating_average_value =
-          if product.rating_average? then parseFloat(product.rating_average) || 0
+          if product.rating_average?
+            parseFloat(product.rating_average.toString().replace(',', '.')) || 0
           else if product.recent_reviews?.length > 0
             total = 0
             total += (parseFloat(review.rating) || 0) for review in product.recent_reviews
