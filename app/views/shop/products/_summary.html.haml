@@ -21,11 +21,13 @@
 
       .product-properties.filter-shopfront.property-selectors
         %filter-selector{ 'selector-set' => "productPropertySelectors", objects: "[product] | propertiesWithValuesOf" }
-      .product-reviews{"ng-if" => "product.rating_count > 0"}
+      .product-reviews{"ng-if" => "product.rating_count_value > 0"}
         %p
-        %span {{'ratings.average_label' | t}}:
-        %strong {{ product.rating_average | number: 1 }}/5
-        %span.rating-stars{"aria-hidden" => "true"}
-          %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-attr-style" => "color: {{ (n <= Math.round(parseFloat((product.rating_average || 0).toString().replace(',', '.')) || 0)) ? '#f4704c' : '#c7c7c7' }} !important;"} &#9733;
           %span
-            ({{ product.rating_count }})
+            {{'ratings.average_label' | t}}:
+          %strong
+            {{ product.rating_average_value_rounded || 0 }}/5
+          %span.rating-stars{"aria-hidden" => "true"}
+            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= (product.rating_average_value_rounded || 0)}"} &#9733;
+          %span
+            ({{ product.rating_count_value }})
