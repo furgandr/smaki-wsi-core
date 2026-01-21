@@ -208,6 +208,7 @@ pl:
       updated: "Recenzja zaktualizowana."
     errors:
       product_not_in_order: "Ten produkt nie jest częścią Twojego zamówienia."
+      response_window_closed: "Minęło 30 dni od wystawienia opinii. Odpowiedź sprzedawcy jest już niedostępna."
     email:
       greeting: "Cześć %{name},"
       request_intro: "Twoje zamówienie z %{distributor} zostało wysłane."

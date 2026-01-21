@@ -8,11 +8,16 @@ module Api
       before_action :load_review
       before_action :ensure_seller_access
 
-      def response
-        if @review.update(seller_response_params.merge(seller_response_updated_at: Time.current,
+    def response
+      unless @review.response_window_open?
+        return render json: { error: I18n.t("product_reviews.errors.response_window_closed") },
+                      status: :forbidden
+      end
+
+      if @review.update(seller_response_params.merge(seller_response_updated_at: Time.current,
                                                       seller_responder_id: current_api_user.id))
-          render json: Api::ProductReviewSerializer.new(
-            @review,
+        render json: Api::ProductReviewSerializer.new(
+          @review,
             current_user: current_api_user,
             current_user_enterprise_ids: managed_enterprise_ids
           ).serializable_hash

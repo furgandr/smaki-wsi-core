@@ -13,6 +13,8 @@ module Api
       user = options[:current_user]
       return false unless user&.persisted?
 
+      return false unless object.response_window_open?
+
       supplier_id = object.product&.supplier_id
       supplier_id ||= object.product&.variants&.first&.supplier_id
       supplier_id ||= Spree::Variant.where(product_id: object.product_id).limit(1).pick(:supplier_id)

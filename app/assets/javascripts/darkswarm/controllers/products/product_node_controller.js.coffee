@@ -16,13 +16,19 @@ angular.module('Darkswarm').controller "ProductNodeCtrl", ($scope, $modal, $http
   $scope.saveSellerResponse = (review) ->
     return unless review?.seller_can_reply
 
+    csrf = document.querySelector('meta[name=csrf-token]')?.getAttribute('content')
     review._saving_response = true
+    review._save_error = null
     $http.patch(
       "/api/v0/product_reviews/#{review.id}/response",
       product_review:
         seller_response: review.seller_response
+    ,
+      headers:
+        "X-CSRF-Token": csrf
     ).then (response) ->
       review.seller_response = response.data.seller_response
       review._saving_response = false
-    , ->
+    , (response) ->
+      review._save_error = response.data?.error || "Save failed"
       review._saving_response = false

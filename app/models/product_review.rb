@@ -21,6 +21,12 @@ class ProductReview < ApplicationRecord
   validate :user_matches_order
   validate :within_review_window
 
+  def response_window_open?(window_days = 30)
+    return false if created_at.blank?
+
+    created_at >= window_days.days.ago
+  end
+
   private
 
   def order_is_shipped
