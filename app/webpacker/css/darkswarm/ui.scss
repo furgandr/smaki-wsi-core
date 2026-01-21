@@ -240,6 +240,14 @@ a.button.large {
   margin-top: 12px;
 }
 
+.products-results {
+  margin-bottom: 16px;
+}
+
+.more-controls {
+  margin-top: 16px;
+}
+
 .products-loading,
 .products-empty {
   color: $grey-600;
@@ -283,9 +291,7 @@ a.button.large {
 }
 
 .product-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 12px;
+  display: block;
   color: $grey-700;
   font-size: 0.9rem;
 }
@@ -297,6 +303,7 @@ a.button.large {
 
 .product-card__from {
   color: $grey-600;
+  margin-top: 4px;
 }
 
 .product-card__rating {
