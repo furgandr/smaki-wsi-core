@@ -44,7 +44,11 @@ class Api::ProductSerializer < ActiveModel::Serializer
       .order(created_at: :desc)
 
     reviews.map do |review|
-      Api::ProductReviewSerializer.new(review).serializable_hash
+      Api::ProductReviewSerializer.new(
+        review,
+        current_user: instance_options[:current_user],
+        current_user_enterprise_ids: instance_options[:current_user_enterprise_ids]
+      ).serializable_hash
     end
   end
 

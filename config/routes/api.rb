@@ -81,6 +81,10 @@ Openfoodnetwork::Application.routes.draw do
 
       resources :taxons, except: %i[show edit]
 
+      resources :product_reviews, only: [] do
+        patch :response, on: :member
+      end
+
       get '/reports/:report_type(/:report_subtype)', to: 'reports#show',
           constraints: lambda { |_| OpenFoodNetwork::FeatureToggle.enabled?(:api_reports) }
     end

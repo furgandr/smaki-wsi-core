@@ -4,8 +4,10 @@ class ProductReview < ApplicationRecord
   belongs_to :product, class_name: "Spree::Product"
   belongs_to :order, class_name: "Spree::Order"
   belongs_to :user, class_name: "Spree::User"
+  belongs_to :seller_responder, class_name: "Spree::User", optional: true
 
   validates :rating, presence: true, inclusion: { in: 1..5 }
+  validates :seller_response, length: { maximum: 500 }, allow_blank: true
   validates :product_id, uniqueness: {
     scope: :user_id,
     conditions: -> { where(removed_at: nil) }

@@ -2,7 +2,24 @@
 
 module Api
   class ProductReviewSerializer < ActiveModel::Serializer
-    attributes :rating, :comment, :created_at, :author_name
+    attributes :id, :rating, :comment, :created_at, :author_name, :seller_response,
+               :seller_can_reply
+
+    def seller_response
+      object.seller_response
+    end
+
+    def seller_can_reply
+      user = instance_options[:current_user]
+      return false unless user&.persisted?
+
+      supplier_id = object.product&.supplier_id
+      return false if supplier_id.blank?
+
+      enterprise_ids = instance_options[:current_user_enterprise_ids]
+      enterprise_ids ||= Enterprise.managed_by(user).pluck(:id)
+      enterprise_ids.include?(supplier_id)
+    end
 
     def author_name
       order = object.order
