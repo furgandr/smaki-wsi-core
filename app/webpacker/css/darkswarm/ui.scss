@@ -299,6 +299,24 @@ a.button.large {
   color: $grey-600;
 }
 
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  color: $grey-700;
+  font-size: 0.9rem;
+}
+
+.product-card__rating-label {
+  color: $grey-600;
+}
+
+.product-card__rating-count {
+  color: $grey-600;
+}
+
 // Responsive
 @media screen and (min-width: 768px) {
   [role="main"] {
