@@ -9,7 +9,6 @@ module Api
       before_action :ensure_seller_access
 
       def response
-        @review ||= ProductReview.find_by(id: params[:id])
         return render(json: { error: I18n.t("errors.not_found.title") }, status: :not_found) unless @review
 
         unless @review.response_window_open?
@@ -17,15 +16,16 @@ module Api
                         status: :forbidden
         end
 
-        unless current_api_user&.persisted?
-          return render json: { error: I18n.t("errors.unauthorized.message") }, status: :unauthorized
+        user = current_api_user
+        unless user&.persisted?
+          return render json: { error: I18n.t(:unauthorized, scope: "spree.api") }, status: :unauthorized
         end
 
         if @review.update(seller_response_params.merge(seller_response_updated_at: Time.current,
-                                                        seller_responder_id: current_api_user.id))
+                                                        seller_responder_id: user.id))
           render json: Api::ProductReviewSerializer.new(
             @review,
-              current_user: current_api_user,
+              current_user: user,
               current_user_enterprise_ids: managed_enterprise_ids
             ).serializable_hash
           else
@@ -42,7 +42,7 @@ module Api
         def ensure_seller_access
           return if seller_can_reply?
 
-          render json: { error: I18n.t("errors.unauthorized.message") }, status: :forbidden
+          return render json: { error: I18n.t(:unauthorized, scope: "spree.api") }, status: :forbidden
         end
 
         def seller_can_reply?
