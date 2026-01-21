@@ -21,7 +21,7 @@
 
       .product-properties.filter-shopfront.property-selectors
         %filter-selector{ 'selector-set' => "productPropertySelectors", objects: "[product] | propertiesWithValuesOf" }
-      .product-rating-line{"ng-if" => "product.rating_count_value > 0"}
+      .product-rating-line{"ng-if" => "(product.rating_count || product.rating_count_value || 0) > 0"}
         %span.product-rating-label {{'ratings.average_label' | t}}:
         %strong {{ (product.rating_average_value || 0) | number:1 }}/5
         %span.rating-stars.rating-stars--fraction{"aria-hidden" => "true", "ng-attr-style" => "--rating-percent: {{ ((product.rating_average_value || 0) / 5) * 100 }}%;"}

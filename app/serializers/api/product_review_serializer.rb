@@ -14,6 +14,8 @@ module Api
       return false unless user&.persisted?
 
       supplier_id = object.product&.supplier_id
+      supplier_id ||= object.product&.variants&.first&.supplier_id
+      supplier_id ||= Spree::Variant.where(product_id: object.product_id).limit(1).pick(:supplier_id)
       return false if supplier_id.blank?
 
       enterprise_ids = options[:current_user_enterprise_ids]
