@@ -17,6 +17,10 @@ module Api
                         status: :forbidden
         end
 
+        unless current_api_user&.persisted?
+          return render json: { error: I18n.t("errors.unauthorized.message") }, status: :unauthorized
+        end
+
         if @review.update(seller_response_params.merge(seller_response_updated_at: Time.current,
                                                         seller_responder_id: current_api_user.id))
           render json: Api::ProductReviewSerializer.new(
