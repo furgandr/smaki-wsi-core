@@ -9,8 +9,17 @@
     .product-card__body
       %div.product-card__name{"ng-bind" => "product.name"}
       .product-card__meta
-        %span.product-card__price{"ng-if" => "product.price != null"}
+        %div.product-card__price{"ng-if" => "product.price != null"}
           {{ product.price | localizeCurrency }}
-        %span.product-card__from
+        %div.product-card__from
           = t :products_from
           {{ product.enterprise_name }}
+      .product-card__rating{"ng-if" => "(product.rating_count_value || product.rating_count || 0) > 0"}
+        %span.product-card__rating-label {{ 'ratings.average_label' | t }}:
+        %strong
+          {{ (product.rating_average_value || product.rating_average || 0) | number: 1 }}/5
+        %span.rating-stars.rating-stars--fraction{"aria-hidden" => "true", "ng-attr-style" => "--rating-percent: {{ ((product.rating_average_value || product.rating_average || 0) / 5) * 100 }}%;"}
+          %span.rating-stars__base &#9733;&#9733;&#9733;&#9733;&#9733;
+          %span.rating-stars__fill &#9733;&#9733;&#9733;&#9733;&#9733;
+        %span.product-card__rating-count
+          ({{ product.rating_count_value || product.rating_count || 0 }})

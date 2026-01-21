@@ -18,13 +18,18 @@ module Api
       def products
         return render_no_products unless order_cycle.open?
 
+        current_user = @current_api_user&.persisted? ? @current_api_user : nil
+        current_user_enterprise_ids = current_user ? Enterprise.managed_by(current_user).pluck(:id) : []
+
         products = ProductsRenderer.new(
           distributor,
           order_cycle,
           customer,
           search_params,
           inventory_enabled:,
-          variant_tag_enabled:
+          variant_tag_enabled:,
+          current_user: current_user,
+          current_user_enterprise_ids: current_user_enterprise_ids
         ).products_json
 
         render plain: products

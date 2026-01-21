@@ -200,11 +200,15 @@ pl:
     update: "Aktualizuj recenzję"
     no_products: "Brak produktów do recenzji w tym zamówieniu."
     comments_title: "Recenzje produktów"
+    seller_response_label: "Odpowiedź sprzedawcy"
+    seller_response_form_label: "Dodaj odpowiedź"
+    seller_response_submit: "Zapisz odpowiedź"
     flash:
       saved: "Dziękujemy za recenzję."
       updated: "Recenzja zaktualizowana."
     errors:
       product_not_in_order: "Ten produkt nie jest częścią Twojego zamówienia."
+      response_window_closed: "Minęło 30 dni od wystawienia opinii. Odpowiedź sprzedawcy jest już niedostępna."
     email:
       greeting: "Cześć %{name},"
       request_intro: "Twoje zamówienie z %{distributor} zostało wysłane."

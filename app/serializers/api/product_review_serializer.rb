@@ -2,7 +2,28 @@
 
 module Api
   class ProductReviewSerializer < ActiveModel::Serializer
-    attributes :rating, :comment, :created_at, :author_name
+    attributes :id, :rating, :comment, :created_at, :author_name, :seller_response,
+               :seller_can_reply
+
+    def seller_response
+      object.seller_response
+    end
+
+    def seller_can_reply
+      user = options[:current_user]
+      return false unless user&.persisted?
+
+      return false unless object.response_window_open?
+
+      supplier_id = object.product&.supplier_id
+      supplier_id ||= object.product&.variants&.first&.supplier_id
+      supplier_id ||= Spree::Variant.where(product_id: object.product_id).limit(1).pick(:supplier_id)
+      return false if supplier_id.blank?
+
+      enterprise_ids = options[:current_user_enterprise_ids]
+      enterprise_ids ||= Enterprise.managed_by(user).pluck(:id)
+      enterprise_ids.include?(supplier_id)
+    end
 
     def author_name
       order = object.order

@@ -7,7 +7,7 @@
   = render "shared/components/enterprise_search"
   = render "filters"
 
-  = cache_with_locale do
+  = cache_with_locale("products_grid_v2") do
     .row
       .small-12.columns
         .products-results{"ng-show" => "nameMatchesFiltered.length > 0 || distanceMatches.length > 0 || query.length > 0"}

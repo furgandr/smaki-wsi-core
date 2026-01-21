@@ -27,10 +27,18 @@
         %li{"ng-repeat" => "review in product.recent_reviews"}
           %strong {{ review.author_name }}
           %span.rating-stars{"aria-hidden" => "true"}
-            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= (Math.round(review.rating || 0))}"} &#9733;
+            %span.star{"ng-repeat" => "n in [1,2,3,4,5]", "ng-class" => "{filled: n <= reviewRating(review)}"} &#9733;
           %span
             {{ (review.rating || 0) | number:0 }}/5
           %p{"ng-bind" => "review.comment"}
+          .seller-response{"ng-if" => "review.seller_response"}
+            %strong {{ 'product_reviews.seller_response_label' | t }}
+            %p{"ng-bind" => "review.seller_response"}
+          %form.seller-response-form{"ng-if" => "review.seller_can_reply", "ng-submit" => "saveSellerResponse(review)"}
+            %label {{ 'product_reviews.seller_response_form_label' | t }}
+            %textarea{"ng-model" => "review.seller_response", rows: 2}
+            %button.button.primary{"type" => "submit", "ng-disabled" => "review._saving_response"}
+              {{ 'product_reviews.seller_response_submit' | t }}
 
   .columns.small-12.medium-6.large-6.product-img
     %img{"ng-src" => "{{::product.largeImage}}", "ng-if" => "::product.largeImage"}

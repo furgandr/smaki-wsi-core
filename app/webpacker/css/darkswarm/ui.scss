@@ -125,6 +125,18 @@ button.success, .button.success {
   color: $orange-450 !important;
 }
 
+.product-name-link {
+  cursor: pointer;
+}
+
+.product-rating-line {
+  margin-top: 0.35rem;
+}
+
+.product-rating-line .rating-stars {
+  margin-left: 0.35rem;
+}
+
 .rating-stars--fraction {
   position: relative;
   display: inline-block;
@@ -228,6 +240,14 @@ a.button.large {
   margin-top: 12px;
 }
 
+.products-results {
+  margin-bottom: 16px;
+}
+
+.more-controls {
+  margin-top: 16px;
+}
+
 .products-loading,
 .products-empty {
   color: $grey-600;
@@ -271,9 +291,7 @@ a.button.large {
 }
 
 .product-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 12px;
+  display: block;
   color: $grey-700;
   font-size: 0.9rem;
 }
@@ -284,6 +302,25 @@ a.button.large {
 }
 
 .product-card__from {
+  color: $grey-600;
+  margin-top: 4px;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  color: $grey-700;
+  font-size: 0.9rem;
+}
+
+.product-card__rating-label {
+  color: $grey-600;
+}
+
+.product-card__rating-count {
   color: $grey-600;
 }
 

@@ -23,6 +23,8 @@ class ProductsRenderer
                                      each_serializer: Api::ProductSerializer,
                                      current_order_cycle: order_cycle,
                                      current_distributor: distributor,
+                                     current_user: options[:current_user],
+                                     current_user_enterprise_ids: options[:current_user_enterprise_ids],
                                      variants: variants_for_shop_by_id,
                                      enterprise_fee_calculator:).to_json
   end
