@@ -7,6 +7,9 @@ angular.module('Darkswarm').controller "ProductNodeCtrl", ($scope, $modal, $http
       review.rating_value = parseFloat((review.rating || 0).toString().replace(',', '.')) || 0
       review.rating = review.rating_value
 
+  $scope.reviewRating = (review) ->
+    parseFloat((review?.rating || 0).toString().replace(',', '.')) || 0
+
   $scope.triggerProductModal = ->
     $modal.open(templateUrl: "product_modal.html", scope: $scope)
 
