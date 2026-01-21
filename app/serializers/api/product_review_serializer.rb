@@ -10,13 +10,13 @@ module Api
     end
 
     def seller_can_reply
-      user = instance_options[:current_user]
+      user = options[:current_user]
       return false unless user&.persisted?
 
       supplier_id = object.product&.supplier_id
       return false if supplier_id.blank?
 
-      enterprise_ids = instance_options[:current_user_enterprise_ids]
+      enterprise_ids = options[:current_user_enterprise_ids]
       enterprise_ids ||= Enterprise.managed_by(user).pluck(:id)
       enterprise_ids.include?(supplier_id)
     end
