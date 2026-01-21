@@ -11,4 +11,4 @@ angular.module("admin.utils").filter "localizeCurrency", (currencyConfig)->
     amount = parseFloat(amount)
 
     # Build the final price string.
-    I18n.toCurrency(amount, {precision: decimals, unit: currencyConfig.symbol, format: format}) + currency_code
+    I18n.toCurrency(amount, {precision: decimals, unit: currencyConfig.symbol, format: format, strip_insignificant_zeros: false}) + currency_code

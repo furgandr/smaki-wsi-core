@@ -19,6 +19,7 @@ export default function (amount) {
       precision: decimals,
       unit: ofn_currency_config.symbol,
       format: format,
+      strip_insignificant_zeros: false,
     }) + currency_code
   );
 }
