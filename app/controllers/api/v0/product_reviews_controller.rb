@@ -9,6 +9,9 @@ module Api
       before_action :ensure_seller_access
 
       def response
+        @review ||= ProductReview.find_by(id: params[:id])
+        return render(json: { error: I18n.t("errors.not_found.title") }, status: :not_found) unless @review
+
         unless @review.response_window_open?
           return render json: { error: I18n.t("product_reviews.errors.response_window_closed") },
                         status: :forbidden
