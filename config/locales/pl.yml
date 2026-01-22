@@ -8,7 +8,7 @@ pl:
     user_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
     required: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
     checkout_blocked: "Opłata aktywacyjna jest wymagana przed realizacją zamówienia."
-    shop_unavailable: "Ten sklep jest niedostępny do czasu opłacenia aktywacji."
+    shop_unavailable: "Sklep chwilowo niedostępny. Zapraszamy wkrótce."
     order_cycle_blocked: "Nie możesz dodać produktów: brak opłaty aktywacyjnej."
   language_name: "Polski"
   time:
