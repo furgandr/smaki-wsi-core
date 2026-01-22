@@ -62,6 +62,11 @@ angular.module('admin.orderCycles')
         enterprise.supplied_products.push products...
         angular.forEach products, (product) ->
           enterprise.loaded_variants += product.variants.length
+      , (response) ->
+        enterprise.num_of_pages = 0
+        enterprise.supplied_products = []
+        enterprise.loaded_variants = 0
+        StatusMessage.display 'failure', response.data?.error || t('activation_fee.order_cycle_blocked')
 
     $scope.loadMoreExchangeProducts = (exchange) ->
       $scope.loadExchangeProducts(exchange, $scope.enterprises[exchange.enterprise_id].last_page_loaded + 1)

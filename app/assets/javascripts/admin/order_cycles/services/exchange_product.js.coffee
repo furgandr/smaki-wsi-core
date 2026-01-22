@@ -6,11 +6,15 @@ angular.module('admin.orderCycles').factory('ExchangeProduct', ($resource) ->
   {
     ExchangeProductResource: ExchangeProductResource
 
-    index: (params={}, callback=null) ->
+    index: (params={}, callback=null, errorCallback=null) ->
       ExchangeProductResource.index params, (data) =>
         (callback || angular.noop)(data.products, data.pagination?.pages, data.pagination?.results)
+      , (response) =>
+        (errorCallback || angular.noop)(response)
 
-    countVariants: (params={}, callback=null) ->
+    countVariants: (params={}, callback=null, errorCallback=null) ->
       ExchangeProductResource.variant_count params, (data) =>
         (callback || angular.noop)(data.count)
+      , (response) =>
+        (errorCallback || angular.noop)(response)
   })
