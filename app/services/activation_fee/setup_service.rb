@@ -210,7 +210,7 @@ module ActivationFee
     end
 
     def price_amount
-      Spree::Config[:activation_fee_amount_cents].to_i / 100.0
+      Spree::Config.activation_fee_amount_value
     end
 
     def ensure_variant_price(variant)

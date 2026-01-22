@@ -6,7 +6,7 @@ class ActivationFeesController < BaseController
 
   def show
     @activation_fee_amount = Spree::Money.new(
-      Spree::Config[:activation_fee_amount_cents],
+      Spree::Config.activation_fee_amount_value,
       currency: CurrentConfig.get(:currency)
     )
   end

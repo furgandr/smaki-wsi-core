@@ -48,8 +48,8 @@
               = preference_field_tag(:activation_fee_enabled, Spree::Config[:activation_fee_enabled], type: Spree::Config.preference_type(:activation_fee_enabled))
               = label_tag(:activation_fee_enabled, t(".activation_fee_enabled")) + tag(:br)
             .field
-              = label_tag(:activation_fee_amount_cents, t(".activation_fee_amount_cents")) + tag(:br)
-              = preference_field_tag(:activation_fee_amount_cents, Spree::Config[:activation_fee_amount_cents], type: Spree::Config.preference_type(:activation_fee_amount_cents))
+              = label_tag(:activation_fee_amount, t(".activation_fee_amount")) + tag(:br)
+              = preference_field_tag(:activation_fee_amount, Spree::Config[:activation_fee_amount], type: Spree::Config.preference_type(:activation_fee_amount))
             .field
               = label_tag(:activation_fee_free_limit, t(".activation_fee_free_limit")) + tag(:br)
               = preference_field_tag(:activation_fee_free_limit, Spree::Config[:activation_fee_free_limit], type: Spree::Config.preference_type(:activation_fee_free_limit))
