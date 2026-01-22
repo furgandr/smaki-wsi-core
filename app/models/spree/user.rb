@@ -139,6 +139,7 @@ module Spree
 
     def activation_fee_required?
       return false unless Spree::Config[:activation_fee_enabled]
+      return false if owned_enterprises.exists?("sells != 'unspecified'")
       return false if activation_fee_paid? || activation_fee_exempt? || activation_fee_free?
 
       true
