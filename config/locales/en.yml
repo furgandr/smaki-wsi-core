@@ -26,6 +26,9 @@ en:
     pay_now: "Pay now"
     admin_banner: "Activation fee required to activate your enterprise."
     user_banner: "Activation fee required to activate your enterprise."
+    required: "Activation fee required to activate your enterprise."
+    checkout_blocked: "Activation fee required before checkout."
+    shop_unavailable: "This shop is not available until the activation fee is paid."
   # Overridden here due to a bug in spree i18n (Issue #870, and issue #1800)
   language_name: "English" # Localised name of this language
   time:

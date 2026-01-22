@@ -308,6 +308,8 @@ class Enterprise < ApplicationRecord
   end
 
   def activated?
+    return false if owner&.activation_fee_required?
+
     contact.confirmed? && sells != 'unspecified'
   end
 

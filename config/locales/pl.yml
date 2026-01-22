@@ -6,6 +6,9 @@ pl:
     pay_now: "Zapłać teraz"
     admin_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
     user_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
+    required: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
+    checkout_blocked: "Opłata aktywacyjna jest wymagana przed realizacją zamówienia."
+    shop_unavailable: "Ten sklep jest niedostępny do czasu opłacenia aktywacji."
   language_name: "Polski"
   time:
     formats:
