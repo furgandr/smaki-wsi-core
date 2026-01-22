@@ -126,6 +126,11 @@ module Spree
     # Stripe payments
     preference :stripe_connect_enabled, :boolean, default: false
 
+    # Activation fee for first enterprise
+    preference :activation_fee_enabled, :boolean, default: false
+    preference :activation_fee_amount_cents, :integer, default: 1990
+    preference :activation_fee_free_limit, :integer, default: 100
+
     # Przelewy24 payments
     preference :przelewy24_enabled, :boolean, default: false
 

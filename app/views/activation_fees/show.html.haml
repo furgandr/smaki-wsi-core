@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t("activation_fee.page_title")
+
+.activation-fee
+  %h2= t("activation_fee.heading")
+  %p= t("activation_fee.description", amount: @activation_fee_amount)
+
+  = form_with url: activation_fee_path, method: :post do
+    = submit_tag t("activation_fee.pay_now"), class: "button primary"
+
+  %p.activation-fee-note= t("activation_fee.pay_later_note")

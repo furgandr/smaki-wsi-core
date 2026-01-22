@@ -4,6 +4,12 @@ module OrderCompletion
   extend ActiveSupport::Concern
 
   def order_completion_reset(order)
+    if order.activation_fee_order?
+      restore_previous_order || expire_current_order
+      flash[:notice] = t(:order_processed_successfully)
+      return
+    end
+
     distributor = order.distributor
     token = order.token
 
@@ -29,6 +35,16 @@ module OrderCompletion
     new_order.assign_distributor!(distributor)
     new_order.tokenized_permission.token = token
     new_order.tokenized_permission.save!
+  end
+
+  def restore_previous_order
+    previous_order_id = session.delete(:previous_order_id)
+    return false unless previous_order_id
+
+    session[:order_id] = previous_order_id
+    @current_order = nil
+    session[:access_token] = current_order&.token
+    true
   end
 
   def load_checkout_order

@@ -122,6 +122,28 @@ module Spree
       owned_enterprises.reload.size < enterprise_limit
     end
 
+    def activation_fee_paid?
+      activation_fee_paid_at.present?
+    end
+
+    def activation_fee_exempt?
+      activation_fee_exempt
+    end
+
+    def activation_fee_free?
+      free_limit = Spree::Config[:activation_fee_free_limit].to_i
+      return false if free_limit <= 0 || id.nil?
+
+      self.class.order(:created_at, :id).limit(free_limit).where(id: id).exists?
+    end
+
+    def activation_fee_required?
+      return false unless Spree::Config[:activation_fee_enabled]
+      return false if activation_fee_paid? || activation_fee_exempt? || activation_fee_free?
+
+      true
+    end
+
     def default_card
       # Don't re-fetch associated cards from the DB if they're already eager-loaded
       if credit_cards.loaded?

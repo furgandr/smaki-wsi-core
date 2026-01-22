@@ -117,6 +117,7 @@ module Spree
 
     after_create :create_tax_charge!
     after_save :reapply_tax_on_changed_address
+    after_commit :mark_activation_fee_paid, on: :update
 
     after_save_commit DefaultAddressUpdater
 
@@ -778,6 +779,20 @@ module Spree
 
       adjustment.update_adjustment!(force: true)
       update_totals_and_states
+    end
+
+    def activation_fee_order?
+      activation_fee_user_id.present?
+    end
+
+    def mark_activation_fee_paid
+      return unless activation_fee_order?
+      return unless saved_change_to_state? && state == "complete"
+
+      user = Spree::User.find_by(id: activation_fee_user_id)
+      return if user.blank? || user.activation_fee_paid?
+
+      user.update(activation_fee_paid_at: Time.zone.now)
     end
   end
 end

@@ -1,4 +1,11 @@
 pl:
+  activation_fee:
+    page_title: "Opłata aktywacyjna"
+    heading: "Opłata za aktywację konta"
+    description: "Aby aktywować przedsiębiorstwo, należy uiścić jednorazową opłatę %{amount}."
+    pay_now: "Zapłać teraz"
+    pay_later_note: "Możesz zapłacić później, ale aktywacja pozostanie zablokowana do czasu opłaty."
+    admin_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
   language_name: "Polski"
   time:
     formats:
@@ -3799,6 +3806,9 @@ pl:
       error: Nie udało się usunąć endpointu webhooka
   spree:
     order_updated: "Zamówienie zaktualizowane"
+    activation_fee:
+      required: "Wymagana opłata aktywacyjna, aby aktywować to przedsiębiorstwo."
+      marked_as_paid: "Opłata aktywacyjna oznaczona jako opłacona."
     add_country: "Dodaj kraj"
     add_state: "Dodaj województwo"
     adjustment: "Korekta"
@@ -4386,6 +4396,13 @@ pl:
           back_to_users_list: "Wróć do listy użytkowników"
           general_settings: "Ustawienia ogólne"
         form:
+          activation_fee_exempt: "Zwolniony z opłaty aktywacyjnej?"
+          activation_fee_status: "Status opłaty aktywacyjnej:"
+          activation_fee_paid_at: "Opłacone %{time}"
+          activation_fee_exempt_status: "Zwolniony"
+          activation_fee_free_status: "Bezpłatna (wczesny dostęp)"
+          activation_fee_required_status: "Wymagana opłata"
+          mark_activation_fee_paid: "Oznacz opłatę jako opłaconą"
           disabled: "Zablokuj użytkownika"
           email: "Adres e-mail"
           enterprise_limit: "Maksymalna liczba podmiotów"

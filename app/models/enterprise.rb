@@ -129,6 +129,7 @@ class Enterprise < ApplicationRecord
   validate :shopfront_taxons
   validate :shopfront_producers
   validate :enforce_ownership_limit, if: lambda { owner_id_changed? && !owner_id.nil? }
+  validate :activation_fee_allows_activation
   validates :instagram,
             format: {
               with: VALID_INSTAGRAM_REGEX,
@@ -251,6 +252,17 @@ class Enterprise < ApplicationRecord
                                         :zipcode).values.all?(&:blank?)
     attributes.merge!(_destroy: 1) if attributes_exists && attributes_empty
     !attributes_exists && attributes_empty
+  end
+
+  def activation_fee_allows_activation
+    return unless will_save_change_to_sells?
+
+    from, to = sells_change_to_be_saved
+    return unless from == 'unspecified' && to != 'unspecified'
+    return if owner.nil?
+    return unless owner.activation_fee_required?
+
+    errors.add(:base, Spree.t('activation_fee.required'))
   end
 
   # Force a distinct count to work around relation count issue https://github.com/rails/rails/issues/5554

@@ -26,6 +26,11 @@
 #package_selection{ hidden: true }
   = render partial: "/admin/enterprises/change_type_form"
 
+- if spree_current_user.activation_fee_required?
+  .alert-box
+    %strong= t("activation_fee.admin_banner")
+    %a.button.small{ href: main_app.activation_fee_path }= t("activation_fee.pay_now")
+
 - unless @enterprise.public?
   .alert-box
     %strong

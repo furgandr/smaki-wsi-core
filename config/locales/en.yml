@@ -19,6 +19,13 @@
 #   https://github.com/openfoodfoundation/openfoodnetwork/wiki/Internationalisation-%28i18n%29#development
 #
 en:
+  activation_fee:
+    page_title: "Activation fee"
+    heading: "Account activation fee"
+    description: "To activate your enterprise you need to pay a one-time activation fee of %{amount}."
+    pay_now: "Pay now"
+    pay_later_note: "You can pay later, but activation will remain blocked until payment."
+    admin_banner: "Activation fee required to activate your enterprise."
   # Overridden here due to a bug in spree i18n (Issue #870, and issue #1800)
   language_name: "English" # Localised name of this language
   time:
@@ -4198,6 +4205,9 @@ en:
   spree:
     order_updated: "Order Updated"
     cannot_perform_operation: "Can not perform this operation"
+    activation_fee:
+      required: "Activation fee is required to activate this enterprise."
+      marked_as_paid: "Activation fee marked as paid."
     add_country: "Add country"
     add_state: "Add state"
     adjustment: "Adjustment"
@@ -4808,6 +4818,13 @@ en:
           back_to_users_list: "Back To Users List"
           general_settings: "General Settings"
         form:
+          activation_fee_exempt: "Activation fee exempt?"
+          activation_fee_status: "Activation fee status:"
+          activation_fee_paid_at: "Paid at %{time}"
+          activation_fee_exempt_status: "Exempt"
+          activation_fee_free_status: "Free (early access)"
+          activation_fee_required_status: "Payment required"
+          mark_activation_fee_paid: "Mark activation fee as paid"
           disabled: "Disabled?"
           email: "Email"
           admin: "Super admin?"
