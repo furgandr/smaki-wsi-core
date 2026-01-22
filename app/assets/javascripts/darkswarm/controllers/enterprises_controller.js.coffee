@@ -114,6 +114,9 @@ angular.module('Darkswarm').controller "EnterprisesCtrl", ($scope, $rootScope, $
         $scope.addProducts(enterprise, products)
         pending -= 1
         $scope.productsLoading = pending > 0
+      , ->
+        pending -= 1
+        $scope.productsLoading = pending > 0
 
     $scope.productsLoading = pending > 0
 

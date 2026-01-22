@@ -229,26 +229,35 @@ module Admin
           .visible_enterprises
 
         if enterprises.present?
-          enterprises.includes(supplied_products: [:variants, :image])
+          hide_activation_fee_platform(enterprises)
+            .includes(supplied_products: [:variants, :image])
         end
       when :index
         if spree_current_user.admin?
-          OpenFoodNetwork::Permissions.new(spree_current_user).
-            editable_enterprises.
-            order('is_primary_producer ASC, name')
+          hide_activation_fee_platform(
+            OpenFoodNetwork::Permissions.new(spree_current_user)
+              .editable_enterprises
+              .order('is_primary_producer ASC, name')
+          )
         elsif json_request?
-          OpenFoodNetwork::Permissions.new(spree_current_user)
-            .editable_enterprises.ransack(params[:q]).result
+          hide_activation_fee_platform(
+            OpenFoodNetwork::Permissions.new(spree_current_user)
+              .editable_enterprises.ransack(params[:q]).result
+          )
         else
           Enterprise.where("1=0")
         end
       when :visible
-        OpenFoodNetwork::Permissions.new(spree_current_user).visible_enterprises
-          .includes(:shipping_methods, :payment_methods).ransack(params[:q]).result
+        hide_activation_fee_platform(
+          OpenFoodNetwork::Permissions.new(spree_current_user).visible_enterprises
+            .includes(:shipping_methods, :payment_methods).ransack(params[:q]).result
+        )
       else
-        OpenFoodNetwork::Permissions.new(spree_current_user).
-          editable_enterprises.
-          order('is_primary_producer ASC, name')
+        hide_activation_fee_platform(
+          OpenFoodNetwork::Permissions.new(spree_current_user)
+            .editable_enterprises
+            .order('is_primary_producer ASC, name')
+        )
       end
     end
 
@@ -258,6 +267,10 @@ module Admin
 
     def require_enterprise
       raise ActiveRecord::RecordNotFound if @enterprise.blank?
+    end
+
+    def hide_activation_fee_platform(scope)
+      scope.where.not(permalink: "activation-fee-platform")
     end
 
     def load_methods_and_fees
