@@ -39,6 +39,10 @@
     .off-canvas-wrap{ offcanvas: true }
       .fixed.off-canvas-fixed
         = render "shared/menu/menu" unless @hide_menu
+        - if spree_current_user&.activation_fee_required?
+          .alert-box.warning
+            %strong= t("activation_fee.user_banner")
+            %a.button.small{ href: main_app.activation_fee_path }= t("activation_fee.pay_now")
         = yield :page_alert
 
       .inner-wrap

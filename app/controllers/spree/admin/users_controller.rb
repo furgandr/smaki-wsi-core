@@ -19,6 +19,10 @@ module Spree
         end
       end
 
+      def show
+        redirect_to edit_admin_user_path(@user)
+      end
+
       def create
         @user = Spree::User.new(user_params)
         if @user.save

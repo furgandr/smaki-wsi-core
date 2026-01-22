@@ -4,8 +4,8 @@ pl:
     heading: "Opłata za aktywację konta"
     description: "Aby aktywować przedsiębiorstwo, należy uiścić jednorazową opłatę %{amount}."
     pay_now: "Zapłać teraz"
-    pay_later_note: "Możesz zapłacić później, ale aktywacja pozostanie zablokowana do czasu opłaty."
     admin_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
+    user_banner: "Wymagana opłata aktywacyjna do aktywacji przedsiębiorstwa."
   language_name: "Polski"
   time:
     formats:

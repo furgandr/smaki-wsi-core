@@ -24,8 +24,8 @@ en:
     heading: "Account activation fee"
     description: "To activate your enterprise you need to pay a one-time activation fee of %{amount}."
     pay_now: "Pay now"
-    pay_later_note: "You can pay later, but activation will remain blocked until payment."
     admin_banner: "Activation fee required to activate your enterprise."
+    user_banner: "Activation fee required to activate your enterprise."
   # Overridden here due to a bug in spree i18n (Issue #870, and issue #1800)
   language_name: "English" # Localised name of this language
   time:
