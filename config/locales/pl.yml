@@ -1423,21 +1423,21 @@ pl:
       change_type_form:
         producer_profile: Profil
         connect_ofn: Przedstaw siebie i swoje produkty
-        always_free: ZAWSZE DARMOWE
-        producer_description_text: "Przedstaw siebie i swoje produkty w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. \nDodaj produkty do profilu, aby inne sklepy mogły je sprzedawać. Jeśli chcesz sprzedawać własne produkty, wybierz \"Sklep producenta\"."
+        always_free: PROFIL (DARMOWY)
+        producer_description_text: "Przedstaw siebie i swoje produkty w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. \nDodaj produkty do profilu, aby inne sklepy mogły je sprzedawać. Jeśli chcesz sprzedawać własne produkty, wybierz \"Sklep producenta\". Sprzedaż wymaga opłaty aktywacyjnej."
         producer_shop: Sklep producenta
         sell_your_produce: Sprzedawaj własne produkty
-        producer_shop_description_text: Sprzedawaj własne produkty bezpośrednio klientom przez swój sklep producenta w Smaki Wsi.
+        producer_shop_description_text: Sprzedawaj własne produkty bezpośrednio klientom przez swój sklep producenta w Smaki Wsi. Aktywacja wymaga opłaty aktywacyjnej.
         producer_shop_description_text2: Sklep producenta jest tylko dla Twoich własnych produktów. Jeśli chcesz sprzedawać także produkty innych, wybierz "Sklep".
         producer_hub: Sklep
         producer_hub_text: Sprzedawaj własne produkty i produkty innych
-        producer_hub_description_text: Sprzedawaj własne produkty i produkty innych producentów lub sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu żywnościowego.
+        producer_hub_description_text: Sprzedawaj własne produkty i produkty innych producentów lub sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu żywnościowego. Aktywacja wymaga opłaty aktywacyjnej.
         profile: Profil
         get_listing: Utwórz profil
-        profile_description_text: Przedstaw się w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. Możesz być znajdowany i kontaktowany przez innych. Twój podmiot będzie widoczny na mapie i w wynikach wyszukiwania.
+        profile_description_text: Przedstaw się w Smaki Wsi i nawiąż kontakty z innymi producentami i sklepami. Możesz być znajdowany i kontaktowany przez innych. Twój podmiot będzie widoczny na mapie i w wynikach wyszukiwania. Sprzedaż wymaga opłaty aktywacyjnej.
         hub_shop: Sklep
         hub_shop_text: Sprzedawaj produkty innych
-        hub_shop_description_text: Sprzedawaj produkty innych producentów lub sklepów w Smaki Wsi. Łączysz produkty i jesteś ważnym elementem lokalnego systemu żywnościowego.
+        hub_shop_description_text: Sprzedawaj produkty innych producentów lub sklepów w Smaki Wsi. Łączysz produkty i jesteś ważnym elementem lokalnego systemu żywnościowego. Aktywacja wymaga opłaty aktywacyjnej.
         choose_option: Wybierz jedną z powyższych opcji.
         change_now: Zmień teraz
       enterprise_user_index:
@@ -3366,14 +3366,14 @@ pl:
         saving: ZAPISYWANIE
         enterprise_package:
           hub_profile: Profil
-          hub_profile_cost: "ZAWSZE DARMOWE"
+          hub_profile_cost: "PROFIL (DARMOWY)"
           hub_profile_text1: >
               Przedstaw się w Smaki Wsi i nawiąż kontakty z
               innymi producentami i sklepami. Będziesz widoczny w Smaki Wsi,
               na mapie oraz w wynikach wyszukiwania.
           hub_profile_text2: >
               Posiadanie profilu i budowanie lokalnych relacji w Smaki Wsi
-              zawsze pozostanie bezpłatne.
+              pozostaje bezpłatne. Sprzedaż wymaga opłaty aktywacyjnej.
           hub_shop: "Sklep"
           hub_shop_text1: >
               Sprzedawaj produkty innych producentów lub sklepów w Smaki Wsi.
@@ -3385,6 +3385,7 @@ pl:
           hub_shop_text3: >
               Jeśli chcesz sprzedawać także własne produkty, wybierz
               w kolumnie „Producent?” pakiet „Producent”.
+              Aktywacja sklepu wymaga opłaty aktywacyjnej.
           choose_package: Wybierz pakiet
           choose_package_text1: >
               Podmiot nie zostanie w pełni aktywowany, dopóki
@@ -3393,7 +3394,7 @@ pl:
               Kliknij pakiet, aby zobaczyć szczegóły. Kliknij
               ZAPISZ, gdy skończysz!
           profile_only: Profil
-          profile_only_cost: "ZAWSZE DARMOWE"
+          profile_only_cost: "PROFIL (DARMOWY)"
           profile_only_text1: >
               Przedstaw siebie i swoje produkty w Smaki Wsi i nawiąż
               kontakty z producentami oraz sklepami.
@@ -3405,18 +3406,18 @@ pl:
               Jeśli chcesz sprzedawać produkty samodzielnie, wybierz „Sklep producenta”.
 
               Posiadanie profilu i budowanie lokalnych relacji w Smaki Wsi
-              zawsze pozostanie bezpłatne.
+              pozostaje bezpłatne. Sprzedaż wymaga opłaty aktywacyjnej.
           producer_shop: Sklep producenta
           producer_shop_text1: >
               Sprzedawaj własne produkty bezpośrednio klientom
-              poprzez swój sklep producenta w Smaki Wsi.
+              poprzez swój sklep producenta w Smaki Wsi. Aktywacja wymaga opłaty aktywacyjnej.
           producer_shop_text2: >
               Sklep producenta jest tylko dla własnych produktów. Jeśli
               chcesz sprzedawać produkty innych, wybierz „Sklep”.
           producer_hub: Sklep
           producer_hub_text1: >
               Sprzedawaj własne produkty i produkty innych producentów lub
-              sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu.
+              sklepów w Smaki Wsi. Twój sklep jest ważnym elementem lokalnego systemu. Aktywacja wymaga opłaty aktywacyjnej.
           producer_hub_text2: >
               Sklepy mogą mieć różne formy: targ, spółdzielnia,
               grupa zakupowa, abonament skrzynek lub lokalny sklep.

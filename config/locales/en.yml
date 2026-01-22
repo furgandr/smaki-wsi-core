@@ -1640,21 +1640,21 @@ en:
       change_type_form:
         producer_profile: Producer Profile
         connect_ofn: Connect through OFN
-        always_free: ALWAYS FREE
-        producer_description_text: Add your products to Open Food Network, allowing hubs to stock your products in their stores.
+        always_free: PROFILE ONLY (FREE)
+        producer_description_text: Add your products to Open Food Network, allowing hubs to stock your products in their stores. Selling requires activation fee.
         producer_shop: Producer Shop
         sell_your_produce: Sell your own produce
-        producer_shop_description_text: Sell your products directly to customers through your very own Open Food Network shopfront.
+        producer_shop_description_text: Sell your products directly to customers through your very own Open Food Network shopfront. Activation requires the activation fee.
         producer_shop_description_text2: A Producer Shop is for your produce only, if you want to sell produce grown/produced off site, select 'Producer Hub'.
         producer_hub: Producer Hub
         producer_hub_text: Sell produce from self and others
-        producer_hub_description_text: Your enterprise is the backbone of your local food system. You can sell your own produce as well as produce aggregated from other enterprises through your shopfront on the Open Food Network.
+        producer_hub_description_text: Your enterprise is the backbone of your local food system. You can sell your own produce as well as produce aggregated from other enterprises through your shopfront on the Open Food Network. Activation requires the activation fee.
         profile: Profile Only
         get_listing: Get a listing
-        profile_description_text: People can find and contact you on the Open Food Network. Your enterprise will be visible on the map, and will be searchable in listings.
+        profile_description_text: People can find and contact you on the Open Food Network. Your enterprise will be visible on the map, and will be searchable in listings. Selling requires activation fee.
         hub_shop: Hub Shop
         hub_shop_text: Sell produce from others
-        hub_shop_description_text: Your enterprise is the backbone of your local food system. You aggregate produce from other enterprises and can sell it through your shop on the Open Food Network.
+        hub_shop_description_text: Your enterprise is the backbone of your local food system. You aggregate produce from other enterprises and can sell it through your shop on the Open Food Network. Activation requires the activation fee.
         choose_option: Please choose one of the options above.
         change_now: Change now
       enterprise_user_index:
