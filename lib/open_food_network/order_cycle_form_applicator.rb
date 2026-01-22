@@ -137,11 +137,15 @@ module OpenFoodNetwork
     end
 
     def editable_variant_ids_for_incoming_exchange_between(sender, _receiver)
+      return [] if activation_fee_blocked_for?(sender)
+
       OpenFoodNetwork::OrderCyclePermissions.new(@spree_current_user, @order_cycle).
         editable_variants_for_incoming_exchanges_from(sender).pluck(:id)
     end
 
     def editable_variant_ids_for_outgoing_exchange_between(_sender, receiver)
+      return [] if activation_fee_blocked_for?(receiver)
+
       OpenFoodNetwork::OrderCyclePermissions.new(@spree_current_user, @order_cycle).
         editable_variants_for_outgoing_exchanges_to(receiver).pluck(:id)
     end
@@ -159,6 +163,7 @@ module OpenFoodNetwork
       requested_ids = variants_to_a(attrs[:variants]) # Only the ids the user has requested
       # The ids that already exist
       existing_ids = exchange.present? ? exchange.variants.pluck(:id) : []
+      return existing_ids if activation_fee_blocked_for?(sender)
       # The ids we are allowed to add/remove
       editable_ids = editable_variant_ids_for_incoming_exchange_between(sender, receiver)
 
@@ -180,6 +185,7 @@ module OpenFoodNetwork
       requested_ids = variants_to_a(attrs[:variants]) # Only the ids the user has requested
       # The ids that already exist
       existing_ids = exchange.present? ? exchange.variants.pluck(:id) : []
+      return existing_ids if activation_fee_blocked_for?(receiver)
       # The ids we are allowed to add/remove
       editable_ids = editable_variant_ids_for_outgoing_exchange_between(sender, receiver)
 
@@ -196,6 +202,13 @@ module OpenFoodNetwork
 
     def incoming_variant_ids
       @order_cycle.supplied_variants.map(&:id)
+    end
+
+    def activation_fee_blocked_for?(enterprise)
+      owner = enterprise&.owner
+      return false if owner.nil? || @spree_current_user&.admin?
+
+      owner.activation_fee_required?
     end
 
     def variants_to_a(variants)

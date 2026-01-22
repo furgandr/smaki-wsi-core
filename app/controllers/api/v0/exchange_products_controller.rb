@@ -26,7 +26,6 @@ module Api
           load_data_from_other_params
         end
 
-        return render_activation_fee_blocked if activation_fee_blocked?
         render_variant_count && return if params[:action_name] == "variant_count"
 
         render_paginated_products
@@ -94,23 +93,12 @@ module Api
         }
       end
 
-      def render_activation_fee_blocked
-        render json: { error: I18n.t("activation_fee.order_cycle_blocked") },
-               status: :forbidden
-      end
 
       def exchange_params
         params.permit(:enterprise_id, :exchange_id, :order_cycle_id, :incoming).
           to_h.with_indifferent_access
       end
 
-      def activation_fee_blocked?
-        owner = @enterprise&.owner
-        return false if owner.nil?
-        return false if current_api_user&.admin?
-
-        owner.activation_fee_required?
-      end
     end
   end
 end

@@ -6,7 +6,7 @@ module Api
   module Admin
     module ForOrderCycle
       class EnterpriseSerializer < ActiveModel::Serializer
-        attributes :id, :name, :managed,
+        attributes :id, :name, :managed, :activation_fee_required,
                    :issues_summary_supplier, :issues_summary_distributor,
                    :is_primary_producer, :is_distributor, :sells
 
@@ -28,6 +28,13 @@ module Api
 
         def managed
           Enterprise.managed_by(options[:spree_current_user]).include? object
+        end
+
+        def activation_fee_required
+          return false if options[:spree_current_user]&.admin?
+
+          owner = object.owner
+          owner&.activation_fee_required? || false
         end
 
         private

@@ -8,11 +8,12 @@
           value: 1,
           'ng-model' => 'exchange.select_all_variants',
           'ng-change' => 'setExchangeVariants(exchange, incomingExchangeVariantsFor(exchange.enterprise_id), exchange.select_all_variants)',
-          'id' => 'order_cycle_outgoing_exchange_{{ $parent.$index }}_select_all_variants' }
+          'id' => 'order_cycle_outgoing_exchange_{{ $parent.$index }}_select_all_variants',
+          'ng-disabled' => 'enterprises[exchange.enterprise_id].activation_fee_required' }
         {{ 'js.admin.panels.exchange_products.select_all_variants' | t:{ total_number_of_variants: exchangeTotalVariants(exchange) } }}
 
-    .exchange-products{ 'ng-hide' => 'productsLoading()' }
-      .exchange-product{'ng-repeat' => 'product in enterprises[exchange.enterprise_id].supplied_products | filter:visibleProducts:exchange:order_cycle.visible_variants_for_outgoing_exchanges' }
+    .exchange-products{ 'ng-hide' => 'productsLoading()', 'ng-class' => "{'is-disabled': enterprises[exchange.enterprise_id].activation_fee_required}" }
+      .exchange-product{'ng-repeat' => 'product in enterprises[exchange.enterprise_id].supplied_products | filter:visibleProducts:exchange:order_cycle.visible_variants_for_outgoing_exchanges', 'ng-class' => "{'is-disabled': enterprises[exchange.enterprise_id].activation_fee_required}" }
         .exchange-product-details
           %label
             %img{'ng-src' => '{{ product.image_url }}'} 
@@ -25,7 +26,7 @@
               value: 1,
               'ng-model' => 'exchange.variants[variant.id]',
               'id' => 'order_cycle_outgoing_exchange_{{ $parent.$parent.$index }}_variants_{{ variant.id }}',
-              'ng-disabled' => '!order_cycle.editable_variants_for_outgoing_exchanges.hasOwnProperty(exchange.enterprise_id) || order_cycle.editable_variants_for_outgoing_exchanges[exchange.enterprise_id].indexOf(variant.id) < 0' }
+              'ng-disabled' => 'enterprises[exchange.enterprise_id].activation_fee_required || !order_cycle.editable_variants_for_outgoing_exchanges.hasOwnProperty(exchange.enterprise_id) || order_cycle.editable_variants_for_outgoing_exchanges[exchange.enterprise_id].indexOf(variant.id) < 0' }
             {{ variant.label }}
         
         %em{ 'ng-if' => 'filteredVariants.length === 0' }

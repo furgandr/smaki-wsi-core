@@ -112,6 +112,9 @@ form.order_cycle {
       -webkit-flex-flow: row wrap;
       flex-flow: row wrap;
     }
+    .exchange-products.is-disabled {
+      opacity: 0.6;
+    }
     .exchange-product {
       overflow: auto;
       width: 18%;
@@ -119,6 +122,9 @@ form.order_cycle {
       margin: 0 1% 1% 0;
       border: 1px solid #dae7ff;
       padding: 5px;
+      &.is-disabled {
+        filter: grayscale(100%);
+      }
 
       .exchange-product-details {
         clear: both;
