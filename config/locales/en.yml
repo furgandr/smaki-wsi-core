@@ -4902,6 +4902,11 @@ en:
       general_settings:
         edit:
           legal_settings: "Legal Settings"
+          activation_fee_settings: "Activation Fee"
+          activation_fee_enabled: "Enable activation fee"
+          activation_fee_amount_cents: "Activation fee amount (cents)"
+          activation_fee_free_limit: "Free activation limit (first N users)"
+          activation_fee_free_limit_hint: "Set to 0 to disable free activations."
           cookies_consent_banner_toggle: "Display cookies consent banner"
           privacy_policy_url: "Privacy Policy URL"
           enterprises_require_tos: "Enterprises must accept Terms of Service"

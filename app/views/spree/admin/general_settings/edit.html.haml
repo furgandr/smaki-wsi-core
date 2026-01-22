@@ -42,6 +42,18 @@
             .field
               = label_tag(:embedded_shopfronts_whitelist, t('admin.shopfront_settings.embedded_shopfronts_whitelist')) + tag(:br)
               = preference_field_tag(:embedded_shopfronts_whitelist, Spree::Config[:embedded_shopfronts_whitelist], type: Spree::Config.preference_type(:embedded_shopfronts_whitelist))
+          %fieldset.activation_fee.no-border-bottom
+            %legend{:align => "center"}= t(".activation_fee_settings")
+            .field.label-inline
+              = preference_field_tag(:activation_fee_enabled, Spree::Config[:activation_fee_enabled], type: Spree::Config.preference_type(:activation_fee_enabled))
+              = label_tag(:activation_fee_enabled, t(".activation_fee_enabled")) + tag(:br)
+            .field
+              = label_tag(:activation_fee_amount_cents, t(".activation_fee_amount_cents")) + tag(:br)
+              = preference_field_tag(:activation_fee_amount_cents, Spree::Config[:activation_fee_amount_cents], type: Spree::Config.preference_type(:activation_fee_amount_cents))
+            .field
+              = label_tag(:activation_fee_free_limit, t(".activation_fee_free_limit")) + tag(:br)
+              = preference_field_tag(:activation_fee_free_limit, Spree::Config[:activation_fee_free_limit], type: Spree::Config.preference_type(:activation_fee_free_limit))
+              %p= t(".activation_fee_free_limit_hint")
 
         .omega.six.columns
           %fieldset.currency.no-border-bottom

@@ -4471,6 +4471,11 @@ pl:
       general_settings:
         edit:
           legal_settings: "Ustawienia prawne"
+          activation_fee_settings: "Opłata aktywacyjna"
+          activation_fee_enabled: "Włącz opłatę aktywacyjną"
+          activation_fee_amount_cents: "Kwota opłaty (grosze)"
+          activation_fee_free_limit: "Limit bezpłatnych aktywacji (pierwsze N)"
+          activation_fee_free_limit_hint: "Ustaw 0, aby wyłączyć darmowe aktywacje."
           cookies_consent_banner_toggle: "Pokaż baner zgody na pliki cookie"
           privacy_policy_url: "URL polityki prywatności"
           enterprises_require_tos: "Podmioty muszą zaakceptować regulamin"
