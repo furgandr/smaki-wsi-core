@@ -26,10 +26,6 @@
         %span= t(".activation_fee_free_status")
       - else
         %span= t(".activation_fee_required_status")
-      - unless @user.activation_fee_paid?
-        %div
-          = button_to t(".mark_activation_fee_paid"), mark_activation_fee_paid_admin_user_path(@user),
-            method: :patch, class: "button"
   .omega.five.columns
     = f.field_container :password do
       = f.label :password, t(".password")

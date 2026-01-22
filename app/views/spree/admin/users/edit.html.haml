@@ -15,3 +15,8 @@
         = render partial: "spree/admin/shared/edit_resource_links"
 
 = render partial: 'spree/admin/users/api_fields'
+
+- unless @user.activation_fee_paid?
+  %div
+    = form_with url: mark_activation_fee_paid_admin_user_path(@user), method: :patch do
+      = submit_tag t("spree.admin.users.form.mark_activation_fee_paid"), class: "button"
