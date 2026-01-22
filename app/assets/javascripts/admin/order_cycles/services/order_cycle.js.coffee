@@ -37,6 +37,11 @@ angular.module('admin.orderCycles').factory 'OrderCycle', ($resource, $window, $
       Panels.toggle(exchange,'products',state) for exchange in exchanges
 
     setExchangeVariants: (exchange, variants, selected) ->
+      enterprise = Enterprise.enterprises[exchange.enterprise_id]
+      if enterprise?.activation_fee_required
+        exchange.select_all_variants = false
+        return
+
       direction = if exchange.incoming then "incoming" else "outgoing"
       editable = @order_cycle["editable_variants_for_#{direction}_exchanges"][exchange.enterprise_id] || []
       for variant in variants when variant in editable
