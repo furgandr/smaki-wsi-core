@@ -3812,7 +3812,7 @@ pl:
   spree:
     order_updated: "Zamówienie zaktualizowane"
     activation_fee:
-      required: "Wymagana opłata aktywacyjna, aby aktywować to przedsiębiorstwo."
+      required: "Wymagana opłata aktywacyjna, aby aktywować Twoje przedsiębiorstwo."
       marked_as_paid: "Opłata aktywacyjna oznaczona jako opłacona."
     add_country: "Dodaj kraj"
     add_state: "Dodaj województwo"
