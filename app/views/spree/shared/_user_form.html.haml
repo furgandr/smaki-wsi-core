@@ -62,10 +62,9 @@
     = bill_address.select :state_id, states_for_country(bill_address_country), { selected: bill_address.object.state_id }, class: 'title', id: 'account_bill_state'
 
 %h4= t("checkout.step1.shipping_info.title")
-- %div
-  %label{ for: "account_ship_same" }
-    = check_box_tag "ship_address_same_as_billing", "1", false, id: "account_ship_same"
-    = t(:checkout_address_same)
+%p
+  = check_box_tag "ship_address_same_as_billing", "1", false, id: "account_ship_same"
+  %label{ for: "account_ship_same" }= t(:checkout_address_same)
 - ship_address_country = @user.ship_address.country || DefaultCountry.country
 = f.fields_for :ship_address do |ship_address|
   %p
@@ -92,57 +91,3 @@
     = ship_address.label :state_id, t("checkout.step1.address.state_id.label")
     %br
     = ship_address.select :state_id, states_for_country(ship_address_country), { selected: ship_address.object.state_id }, class: 'title', id: 'account_ship_state'
-
-:javascript
-  document.addEventListener('DOMContentLoaded', function () {
-    var checkbox = document.getElementById('account_ship_same');
-    if (!checkbox) return;
-    var shipFieldIds = [
-      'account_ship_address1',
-      'account_ship_address2',
-      'account_ship_city',
-      'account_ship_zipcode',
-      'account_ship_country',
-      'account_ship_state'
-    ];
-    var billFieldIds = [
-      'account_bill_address1',
-      'account_bill_address2',
-      'account_bill_city',
-      'account_bill_zipcode',
-      'account_bill_country',
-      'account_bill_state'
-    ];
-
-    function copyValue(sourceId, targetId) {
-      var source = document.getElementById(sourceId);
-      var target = document.getElementById(targetId);
-      if (!source || !target) return;
-      target.value = source.value;
-      target.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-
-    function syncShippingAddress() {
-      if (!checkbox.checked) return;
-      billFieldIds.forEach(function (billId, index) {
-        copyValue(billId, shipFieldIds[index]);
-      });
-    }
-
-    function toggleShippingFields() {
-      var disabled = checkbox.checked;
-      shipFieldIds.forEach(function (id) {
-        var field = document.getElementById(id);
-        if (field) field.disabled = disabled;
-      });
-      if (disabled) syncShippingAddress();
-    }
-
-    checkbox.addEventListener('change', toggleShippingFields);
-    billFieldIds.forEach(function (id) {
-      var field = document.getElementById(id);
-      if (!field) return;
-      field.addEventListener('input', syncShippingAddress);
-      field.addEventListener('change', syncShippingAddress);
-    });
-  });
