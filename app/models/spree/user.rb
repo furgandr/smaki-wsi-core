@@ -44,8 +44,10 @@ module Spree
     accepts_nested_attributes_for :enterprise_roles, allow_destroy: true
     accepts_nested_attributes_for :webhook_endpoints
 
-    accepts_nested_attributes_for :bill_address
-    accepts_nested_attributes_for :ship_address
+    accepts_nested_attributes_for :bill_address,
+                                  reject_if: ->(attrs) { Spree::Address.new(attrs).empty? }
+    accepts_nested_attributes_for :ship_address,
+                                  reject_if: ->(attrs) { Spree::Address.new(attrs).empty? }
 
     validates :email, 'valid_email_2/email': { mx: true }, if: :email_changed?
     validate :limit_owned_enterprises
