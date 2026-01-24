@@ -16,6 +16,10 @@ module Spree
 
       private
 
+      def model_class
+        ::SellerPromotion
+      end
+
       def collection
         super.includes(:supplier, :distributor, :promotion_plan, :products)
           .order(created_at: :desc)
