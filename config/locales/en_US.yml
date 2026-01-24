@@ -4209,7 +4209,7 @@ en_US:
 
   admin:
     tab:
-      seller_promotions: "Promotions"
+      seller_promotions: "Premium"
     seller_promotions:
       index:
         title: "Seller promotions"
