@@ -565,6 +565,7 @@ en:
   search_by_name: Search by name or suburb...
   search_by_product: Search products...
   search_radius: Search radius
+  search_radius_all: All
   search_radius_option: "%{km} km"
   enterprise_rating_mailer:
     seller_rating_received:

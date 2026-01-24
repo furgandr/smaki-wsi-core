@@ -1,7 +1,9 @@
 - # NOTE: make sure that any changes in this template are reflected in app/views/admin/products_v3/product_preview.turbo_stream.haml
 .row
   .columns.small-12.medium-6.large-6.product-header
-    %h3{"ng-bind" => "::product.name"}
+    %h3
+      %span{"ng-bind" => "::product.name"}
+      %span.product-promoted-badge{"ng-if" => "product.promoted"} {{ 'shops.promoted_label' | t }}
     %span
       %em {{'products_from' | t}}
       %span{"ng-bind" => "::enterprise.name"}

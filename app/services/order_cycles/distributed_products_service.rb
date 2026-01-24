@@ -132,6 +132,7 @@ module OrderCycles
 
     def promotion_order_sql
       now = ActiveRecord::Base.connection.quote(Time.current)
+      epoch = ActiveRecord::Base.connection.quote(Time.at(0))
       <<~SQL.squish
         CASE WHEN EXISTS (
           SELECT 1
@@ -142,7 +143,17 @@ module OrderCycles
              AND sp.status = 'active'
              AND sp.starts_at <= #{now}
              AND sp.ends_at > #{now}
-        ) THEN 1 ELSE 0 END DESC
+        ) THEN 1 ELSE 0 END DESC,
+        COALESCE((
+          SELECT MAX(sp.starts_at)
+            FROM seller_promotion_products spp
+            JOIN seller_promotions sp ON sp.id = spp.seller_promotion_id
+           WHERE spp.product_id = spree_products.id
+             AND sp.distributor_id = #{distributor.id}
+             AND sp.status = 'active'
+             AND sp.starts_at <= #{now}
+             AND sp.ends_at > #{now}
+        ), #{epoch}) DESC
       SQL
     end
 

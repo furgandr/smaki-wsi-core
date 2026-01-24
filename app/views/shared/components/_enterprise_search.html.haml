@@ -15,6 +15,7 @@
     .margin-top
       %label{for: "distance-range"}= t("search_radius")
       %select#distance-range{"ng-model" => "distanceRange"}
+        %option{value: "all"}= t("search_radius_all")
         %option{value: "20"}= t("search_radius_option", km: 20)
         %option{value: "50"}= t("search_radius_option", km: 50)
         %option{value: "100"}= t("search_radius_option", km: 100)

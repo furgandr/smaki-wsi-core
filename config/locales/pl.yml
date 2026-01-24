@@ -473,6 +473,7 @@ pl:
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
   search_by_product: Szukaj produktów...
   search_radius: Promien wyszukiwania
+  search_radius_all: Wszystkie
   search_radius_option: "%{km} km"
   enterprise_rating_mailer:
     seller_rating_received:
