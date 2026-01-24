@@ -36,7 +36,7 @@ module OrderCycles
 
     def relation_by_sorting
       query = Spree::Product.where(id: stocked_products)
-      query = promotion_joins(query)
+      query = promotion_joins(query) if promotion_sorting_enabled?
 
       if sorting == "by_producer"
         # Joins on the first product variant to allow us to filter product by supplier. This is so
@@ -91,23 +91,37 @@ module OrderCycles
     end
 
     def order
-      promotion_order = promotion_order_sql
+      promotion_order = promotion_sorting_enabled? ? promotion_order_sql : nil
       if sorting_by_producer?
         order_by_producer = distributor
           .preferred_shopfront_producer_order
           .split(",").map { |id| "first_variant.supplier_id=#{id} DESC" }
           .join(", ")
 
-        "#{promotion_order}, #{order_by_producer}, spree_products.name ASC, spree_products.id ASC"
+        [
+          promotion_order,
+          order_by_producer,
+          "spree_products.name ASC",
+          "spree_products.id ASC"
+        ].compact.join(", ")
       elsif sorting_by_category?
         order_by_category = distributor
           .preferred_shopfront_taxon_order
           .split(",").map { |id| "first_variant.primary_taxon_id=#{id} DESC" }
           .join(", ")
 
-        "#{promotion_order}, #{order_by_category}, spree_products.name ASC, spree_products.id ASC"
+        [
+          promotion_order,
+          order_by_category,
+          "spree_products.name ASC",
+          "spree_products.id ASC"
+        ].compact.join(", ")
       else
-        "#{promotion_order}, spree_products.name ASC, spree_products.id"
+        [
+          promotion_order,
+          "spree_products.name ASC",
+          "spree_products.id"
+        ].compact.join(", ")
       end
     end
 
@@ -133,6 +147,17 @@ module OrderCycles
 
     def promotion_order_sql
       "CASE WHEN seller_promotions.id IS NULL THEN 0 ELSE 1 END DESC"
+    end
+
+    def promotion_sorting_enabled?
+      return false unless distributor
+      return false unless defined?(SellerPromotion)
+      return false unless SellerPromotion.table_exists?
+
+      SellerPromotion
+        .where(distributor_id: distributor.id, status: 'active')
+        .where("starts_at <= ? AND ends_at > ?", Time.current, Time.current)
+        .exists?
     end
 
     def variants
