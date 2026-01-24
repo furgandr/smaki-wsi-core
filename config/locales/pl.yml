@@ -2058,6 +2058,7 @@ pl:
       hide_closed_shops: "Ukryj zamknięte sklepy"
       show_on_map: "Pokaż wszystkie na mapie"
     products_no_results: "Brak produktów w wybranym obszarze."
+    promoted_label: "Promowane"
   shared:
     mailers:
       powered_by:

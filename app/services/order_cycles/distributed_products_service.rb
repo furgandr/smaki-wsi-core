@@ -36,7 +36,6 @@ module OrderCycles
 
     def relation_by_sorting
       query = Spree::Product.where(id: stocked_products)
-      query = promotion_joins(query) if promotion_sorting_enabled?
 
       if sorting == "by_producer"
         # Joins on the first product variant to allow us to filter product by supplier. This is so
@@ -131,22 +130,20 @@ module OrderCycles
         select("DISTINCT spree_variants.product_id")
     end
 
-    def promotion_joins(query)
-      now = ActiveRecord::Base.connection.quote(Time.current)
-      query.joins(<<~SQL)
-        LEFT JOIN seller_promotion_products
-          ON seller_promotion_products.product_id = spree_products.id
-        LEFT JOIN seller_promotions
-          ON seller_promotions.id = seller_promotion_products.seller_promotion_id
-         AND seller_promotions.distributor_id = #{distributor.id}
-         AND seller_promotions.status = 'active'
-         AND seller_promotions.starts_at <= #{now}
-         AND seller_promotions.ends_at > #{now}
-      SQL
-    end
-
     def promotion_order_sql
-      "CASE WHEN seller_promotions.id IS NULL THEN 0 ELSE 1 END DESC"
+      now = ActiveRecord::Base.connection.quote(Time.current)
+      <<~SQL.squish
+        CASE WHEN EXISTS (
+          SELECT 1
+            FROM seller_promotion_products spp
+            JOIN seller_promotions sp ON sp.id = spp.seller_promotion_id
+           WHERE spp.product_id = spree_products.id
+             AND sp.distributor_id = #{distributor.id}
+             AND sp.status = 'active'
+             AND sp.starts_at <= #{now}
+             AND sp.ends_at > #{now}
+        ) THEN 1 ELSE 0 END DESC
+      SQL
     end
 
     def promotion_sorting_enabled?

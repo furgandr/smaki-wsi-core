@@ -5,6 +5,7 @@
     = t "shops.products_no_results"
   .product-card{"ng-repeat" => "product in visibleProducts track by (product.enterprise_id + '-' + product.id)"}
     %a.product-card__image{"ng-href" => "{{ product.enterprise_path }}", title: "{{ product.name }}"}
+      %span.product-card__badge{"ng-if" => "product.promoted"}= t("shops.promoted_label")
       %img{"ng-src" => "{{ product.primaryImageOrMissing }}", alt: "{{ product.name }}"}
     .product-card__body
       %div.product-card__name{"ng-bind" => "product.name"}

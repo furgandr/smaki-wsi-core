@@ -2315,6 +2315,7 @@ en:
       hide_closed_shops: "Hide closed shops"
       show_on_map: "Show all on the map"
     products_no_results: "No products found in the selected area."
+    promoted_label: "Promoted"
   shared:
     mailers:
       powered_by:

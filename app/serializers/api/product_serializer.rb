@@ -3,7 +3,7 @@
 require "open_food_network/scope_variant_to_hub"
 
 class Api::ProductSerializer < ActiveModel::Serializer
-  attributes :id, :name, :meta_keywords, :rating_average, :rating_count, :recent_reviews
+  attributes :id, :name, :meta_keywords, :rating_average, :rating_count, :recent_reviews, :promoted
   attributes :group_buy, :notes, :description, :description_html
   attributes :properties_with_values
 
@@ -50,6 +50,11 @@ class Api::ProductSerializer < ActiveModel::Serializer
         current_user_enterprise_ids: options[:current_user_enterprise_ids]
       ).serializable_hash
     end
+  end
+
+  def promoted
+    promoted_ids = options[:promoted_product_ids] || []
+    promoted_ids.include?(object.id)
   end
 
   private
