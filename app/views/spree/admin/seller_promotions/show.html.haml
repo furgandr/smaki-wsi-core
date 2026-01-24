@@ -24,4 +24,4 @@
       %th= t("admin.seller_promotions.show.products")
       %td= @seller_promotion.products.map(&:name).join(", ")
 
-= link_to t("admin.seller_promotions.show.edit"), edit_admin_seller_promotion_path(@seller_promotion), class: "button"
+= link_to t("admin.seller_promotions.show.edit"), spree.edit_admin_seller_promotion_path(@seller_promotion), class: "button"
