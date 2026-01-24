@@ -4,6 +4,8 @@
     %a{"ng-click" => "triggerProductModal()"}
       %span.product-thumb__bulk-label{"ng-if" => "::product.group_buy"}
         = t(".bulk")
+      %span.product-thumb__promoted-label{"ng-if" => "product.promoted"}
+        = t("shops.promoted_label")
       %img{"ng-src" => "{{::product.primaryImageOrMissing}}"}
 
   .summary

@@ -22,6 +22,19 @@
     padding: .25em .5em;
   }
 
+  .product-thumb__promoted-label {
+    background-color: $orange-600;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: .8em;
+    padding: .25em .5em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
   &:hover {
     filter: brightness(96%);
   }
