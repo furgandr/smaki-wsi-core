@@ -12,7 +12,6 @@ module PremiumPromotion
     TAX_CATEGORY_NAME = "Premium Promotion"
     TAXON_NAME = "Premium Promotion"
     ORDER_CYCLE_NAME = "Premium Promotion"
-    STOCK_LOCATION_NAME = "Premium Promotion"
 
     PLAN_DEFINITIONS = [
       { name: "Premium promotion 30 days", sku: SKU_30, duration_days: 30, price_cents: 2990 },
@@ -28,12 +27,10 @@ module PremiumPromotion
       attach_payment_methods(enterprise)
       tax_category = find_or_create_tax_category
       taxon = find_or_create_taxon
-      stock_location = find_or_create_stock_location
-
       plans = PLAN_DEFINITIONS.map { |definition| find_or_create_plan(definition) }
       plan_variants = plans.index_with do |plan|
         variant = find_or_create_product(enterprise, shipping_category, tax_category, taxon, plan)
-        ensure_stock_item(variant, stock_location)
+        ensure_stock_item(variant)
         variant
       end
 
@@ -138,20 +135,6 @@ module PremiumPromotion
       Spree::Taxon.find_or_create_by!(name: TAXON_NAME)
     end
 
-    def find_or_create_stock_location
-      Spree::StockLocation.find_or_create_by!(name: STOCK_LOCATION_NAME) do |location|
-        country = DefaultCountry.country
-        state = country&.states&.first
-        location.active = true
-        location.address1 = "Premium Promotion Street 1"
-        location.city = "Promotion City"
-        location.zipcode = "00-000"
-        location.phone = "000000000"
-        location.country = country
-        location.state = state if state
-      end
-    end
-
     def find_or_create_product(enterprise, shipping_category, tax_category, taxon, plan)
       variant = Spree::Variant.find_by(sku: plan.sku)
       if variant
@@ -179,14 +162,11 @@ module PremiumPromotion
       variant
     end
 
-    def ensure_stock_item(variant, stock_location)
-      Spree::StockItem.find_or_create_by!(
-        variant:,
-        stock_location:
-      ) do |stock_item|
-        stock_item.count_on_hand = 1_000_000
-        stock_item.backorderable = true
-      end
+    def ensure_stock_item(variant)
+      stock_item = Spree::StockItem.find_or_initialize_by(variant:)
+      stock_item.count_on_hand = 1_000_000 if stock_item.count_on_hand.to_i < 1_000_000
+      stock_item.backorderable = true if stock_item.respond_to?(:backorderable=)
+      stock_item.save!
     end
 
     def find_or_create_order_cycle(enterprise, variants)
