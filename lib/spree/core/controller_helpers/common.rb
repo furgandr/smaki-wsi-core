@@ -54,12 +54,17 @@ module Spree
           private
 
           def set_user_language
-            locale = session[:locale]
+            locale = spree_current_user&.locale
+            locale ||= cookies[:locale]
+            locale ||= session[:locale]
             locale ||= config_locale if respond_to?(:config_locale, true)
             locale ||= Rails.application.config.i18n.default_locale
+
+            locale = locale.to_s
             unless I18n.available_locales.map(&:to_s).include?(locale)
-              locale ||= I18n.default_locale
+              locale = I18n.default_locale.to_s
             end
+
             I18n.locale = locale
           end
 
