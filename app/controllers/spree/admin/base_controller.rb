@@ -84,6 +84,11 @@ module Spree
 
       private
 
+      def set_locale
+        # Keep admin UI pinned to the instance default to avoid mixed locales.
+        I18n.locale = I18n.default_locale
+      end
+
       def page_load_request?
         return false if request.format.include?('turbo')
 

@@ -109,8 +109,8 @@ module PremiumPromotion
       method.display_on = nil
       method.require_ship_address = false if method.respond_to?(:require_ship_address=)
       method.shipping_categories = [shipping_category]
+      method.distributors = (method.distributors.to_a + [enterprise]).uniq
       method.save!
-      method.distributors << enterprise unless method.distributors.exists?(enterprise.id)
       method
     end
 
