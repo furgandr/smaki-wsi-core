@@ -36,6 +36,7 @@ module OrderCycles
 
     def relation_by_sorting
       query = Spree::Product.where(id: stocked_products)
+      query = promotion_joins(query)
 
       if sorting == "by_producer"
         # Joins on the first product variant to allow us to filter product by supplier. This is so
@@ -90,22 +91,23 @@ module OrderCycles
     end
 
     def order
+      promotion_order = promotion_order_sql
       if sorting_by_producer?
         order_by_producer = distributor
           .preferred_shopfront_producer_order
           .split(",").map { |id| "first_variant.supplier_id=#{id} DESC" }
           .join(", ")
 
-        "#{order_by_producer}, spree_products.name ASC, spree_products.id ASC"
+        "#{promotion_order}, #{order_by_producer}, spree_products.name ASC, spree_products.id ASC"
       elsif sorting_by_category?
         order_by_category = distributor
           .preferred_shopfront_taxon_order
           .split(",").map { |id| "first_variant.primary_taxon_id=#{id} DESC" }
           .join(", ")
 
-        "#{order_by_category}, spree_products.name ASC, spree_products.id ASC"
+        "#{promotion_order}, #{order_by_category}, spree_products.name ASC, spree_products.id ASC"
       else
-        "spree_products.name ASC, spree_products.id"
+        "#{promotion_order}, spree_products.name ASC, spree_products.id"
       end
     end
 
@@ -113,6 +115,24 @@ module OrderCycles
       base_variants_relation.
         merge(variants).
         select("DISTINCT spree_variants.product_id")
+    end
+
+    def promotion_joins(query)
+      now = ActiveRecord::Base.connection.quote(Time.current)
+      query.joins(<<~SQL)
+        LEFT JOIN seller_promotion_products
+          ON seller_promotion_products.product_id = spree_products.id
+        LEFT JOIN seller_promotions
+          ON seller_promotions.id = seller_promotion_products.seller_promotion_id
+         AND seller_promotions.distributor_id = #{distributor.id}
+         AND seller_promotions.status = 'active'
+         AND seller_promotions.starts_at <= #{now}
+         AND seller_promotions.ends_at > #{now}
+      SQL
+    end
+
+    def promotion_order_sql
+      "CASE WHEN seller_promotions.id IS NULL THEN 0 ELSE 1 END DESC"
     end
 
     def variants

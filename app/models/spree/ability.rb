@@ -169,6 +169,15 @@ module Spree
         user.enterprises.include? enterprise_fee.enterprise
       end
 
+      managed_distributor_ids = OpenFoodNetwork::Permissions.new(user)
+        .managed_enterprises.select(:id)
+      managed_supplier_ids = OpenFoodNetwork::Permissions.new(user)
+        .managed_product_enterprises.select(:id)
+
+      can [:admin, :index, :read, :create, :edit, :update, :destroy], SellerPromotion,
+        distributor_id: managed_distributor_ids,
+        supplier_id: managed_supplier_ids
+
       can [:admin, :known_users, :customers], :search
 
       can [:admin, :show], :account

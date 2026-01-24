@@ -1,0 +1,35 @@
+= form_for [:admin, @seller_promotion] do |f|
+  = render partial: "spree/shared/error_messages", locals: { target: @seller_promotion }
+
+  .field
+    = f.label :supplier_id, t("admin.seller_promotions.form.supplier")
+    = f.collection_select :supplier_id, @suppliers, :id, :name, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :distributor_id, t("admin.seller_promotions.form.distributor")
+    = f.collection_select :distributor_id, @distributors, :id, :name, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :promotion_plan_id, t("admin.seller_promotions.form.plan")
+    = f.collection_select :promotion_plan_id, @promotion_plans, :id, :name, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :product_ids, t("admin.seller_promotions.form.products")
+    = f.collection_select :product_ids, @products, :id, :name, {},
+      { multiple: true, class: "select2 fullwidth" }
+    %p.hint= t("admin.seller_promotions.form.product_limit_hint", max: SellerPromotion::MAX_PRODUCTS)
+
+  - if spree_current_user.admin?
+    .field
+      = f.label :status, t("admin.seller_promotions.form.status")
+      = f.select :status, SellerPromotion::STATUSES, {}, class: "select2 fullwidth"
+
+    .field
+      = f.label :starts_at, t("admin.seller_promotions.form.starts_at")
+      = f.datetime_select :starts_at
+
+    .field
+      = f.label :ends_at, t("admin.seller_promotions.form.ends_at")
+      = f.datetime_select :ends_at
+
+  = f.submit class: "button"

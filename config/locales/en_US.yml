@@ -4206,3 +4206,67 @@ en_US:
     add_tag_rule_modal:
       select_rule_type: "Select a rule type:"
       add_rule: "Add Rule"
+
+  admin:
+    tab:
+      seller_promotions: "Promotions"
+    seller_promotions:
+      index:
+        title: "Seller promotions"
+        new: "New promotion"
+        id: "ID"
+        supplier: "Supplier"
+        distributor: "Shop/Hub"
+        plan: "Plan"
+        status: "Status"
+        starts_at: "Starts"
+        ends_at: "Ends"
+        products: "Products"
+        actions: "Actions"
+      new:
+        title: "New promotion"
+      edit:
+        title: "Edit promotion"
+      show:
+        title: "Promotion details"
+        supplier: "Supplier"
+        distributor: "Shop/Hub"
+        plan: "Plan"
+        status: "Status"
+        starts_at: "Starts"
+        ends_at: "Ends"
+        products: "Products"
+        edit: "Edit"
+      form:
+        supplier: "Supplier"
+        distributor: "Shop/Hub"
+        plan: "Plan"
+        products: "Products"
+        product_limit_hint: "Select up to %{max} products."
+        status: "Status"
+        starts_at: "Starts at"
+        ends_at: "Ends at"
+
+  premium_promotions:
+    title: "Premium promotion"
+    supplier: "Supplier"
+    distributor: "Shop/Hub"
+    plan: "Plan"
+    products: "Promoted products"
+    product_limit_hint: "Select up to %{max} products."
+    submit: "Purchase premium promotion"
+    errors:
+      invalid_selection: "Please choose valid supplier, shop, and plan."
+
+  seller_promotions:
+    errors:
+      too_many_products: "Select up to %{max} products."
+      invalid_supplier_products: "Selected products must belong to the supplier."
+      missing_products: "Select at least one product."
+
+  promotion_mailer:
+    expiring_soon:
+      subject: "%{site}: Premium promotion expires soon"
+      greeting: "Hello %{supplier},"
+      body: "Your premium promotion in %{distributor} expires on %{ends_at}."
+      cta: "You can renew the promotion from your account."
