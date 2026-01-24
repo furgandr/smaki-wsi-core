@@ -8,6 +8,9 @@ module Spree
       before_action :load_form_data, only: [:new, :edit, :create, :update]
       before_action :ensure_authorized_enterprises, only: [:create, :update]
 
+      def index
+      end
+
       def show
       end
 
