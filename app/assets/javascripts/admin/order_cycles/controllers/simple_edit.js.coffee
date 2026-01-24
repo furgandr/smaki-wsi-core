@@ -17,6 +17,10 @@ angular.module('admin.orderCycles').controller "AdminSimpleEditOrderCycleCtrl", 
     exchange = OrderCycle.order_cycle.incoming_exchanges[0]
     ExchangeProduct.index { exchange_id: exchange.id }, (products) ->
       $scope.enterprises[exchange.enterprise_id].supplied_products = products
+      if $scope.enterprises[exchange.enterprise_id].activation_fee_required
+        StatusMessage.display 'failure', t('activation_fee.order_cycle_blocked')
+    , (response) ->
+      StatusMessage.display 'failure', response.data?.error || t('activation_fee.order_cycle_blocked')
 
   $scope.removeDistributionOfVariant = angular.noop
 

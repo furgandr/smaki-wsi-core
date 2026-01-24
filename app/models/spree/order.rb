@@ -117,6 +117,7 @@ module Spree
 
     after_create :create_tax_charge!
     after_save :reapply_tax_on_changed_address
+    after_commit :mark_activation_fee_paid, on: :update
 
     after_save_commit DefaultAddressUpdater
 
@@ -240,6 +241,8 @@ module Spree
     # least one LineItem in the Order.  Feel free to override this logic in your
     # own application if you require additional steps before allowing a checkout.
     def checkout_allowed?
+      return false if activation_fee_blocked?
+
       line_items.count > 0
     end
 
@@ -779,5 +782,27 @@ module Spree
       adjustment.update_adjustment!(force: true)
       update_totals_and_states
     end
+
+    def activation_fee_order?
+      activation_fee_user_id.present?
+    end
+
+    def activation_fee_blocked?
+      return false if activation_fee_order?
+      return false if distributor.blank? || distributor.owner.blank?
+
+      distributor.owner.activation_fee_required?
+    end
+
+    def mark_activation_fee_paid
+      return unless activation_fee_order?
+      return unless saved_change_to_state? && state == "complete"
+
+      user = Spree::User.find_by(id: activation_fee_user_id)
+      return if user.blank? || user.activation_fee_paid?
+
+      user.update(activation_fee_paid_at: Time.zone.now)
+    end
+
   end
 end

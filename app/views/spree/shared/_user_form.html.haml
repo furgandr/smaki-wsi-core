@@ -7,6 +7,9 @@
   %p.alert-box
     = t('spree.users.show.unconfirmed_email', unconfirmed_email: @unconfirmed_email)
 
+- @user.build_bill_address if @user.bill_address.nil?
+- @user.build_ship_address if @user.ship_address.nil?
+
 %div{"id" => "password-credentials"}
   %p
     = f.label :password, Spree.t(:password)
@@ -17,3 +20,74 @@
     = f.label :password_confirmation, t(:password_confirmation)
     %br
     = f.password_field :password_confirmation, class: 'title'
+
+%h4= t("checkout.step1.billing_address.title")
+- bill_address_country = @user.bill_address.country || DefaultCountry.country
+= f.fields_for :bill_address do |bill_address|
+  %p
+    = bill_address.label :firstname, t("checkout.step1.billing_address.first_name.label")
+    %br
+    = bill_address.text_field :firstname, class: 'title', id: 'account_bill_firstname'
+  %p
+    = bill_address.label :lastname, t("checkout.step1.billing_address.last_name.label")
+    %br
+    = bill_address.text_field :lastname, class: 'title', id: 'account_bill_lastname'
+  %p
+    = bill_address.label :phone, t("checkout.step1.contact_information.phone.label")
+    %br
+    = bill_address.text_field :phone, class: 'title', id: 'account_bill_phone'
+  %p
+    = bill_address.label :address1, t("checkout.step1.address.address1.label")
+    %br
+    = bill_address.text_field :address1, class: 'title', id: 'account_bill_address1'
+  %p
+    = bill_address.label :address2, t("checkout.step1.address.address2.label")
+    %br
+    = bill_address.text_field :address2, class: 'title', id: 'account_bill_address2'
+  %p
+    = bill_address.label :city, t("checkout.step1.address.city.label")
+    %br
+    = bill_address.text_field :city, class: 'title', id: 'account_bill_city'
+  %p
+    = bill_address.label :zipcode, t("checkout.step1.address.zipcode.label")
+    %br
+    = bill_address.text_field :zipcode, class: 'title', id: 'account_bill_zipcode'
+  %p
+    = bill_address.label :country_id, t("checkout.step1.address.country_id.label")
+    %br
+    = bill_address.select :country_id, countries, { selected: bill_address_country.id }, class: 'title', id: 'account_bill_country'
+  %p
+    = bill_address.label :state_id, t("checkout.step1.address.state_id.label")
+    %br
+    = bill_address.select :state_id, states_for_country(bill_address_country), { selected: bill_address.object.state_id }, class: 'title', id: 'account_bill_state'
+
+%h4= t("checkout.step1.shipping_info.title")
+%p
+  = check_box_tag "ship_address_same_as_billing", "1", false, id: "account_ship_same"
+  %label{ for: "account_ship_same" }= t(:checkout_address_same)
+- ship_address_country = @user.ship_address.country || DefaultCountry.country
+= f.fields_for :ship_address do |ship_address|
+  %p
+    = ship_address.label :address1, t("checkout.step1.address.address1.label")
+    %br
+    = ship_address.text_field :address1, class: 'title', id: 'account_ship_address1'
+  %p
+    = ship_address.label :address2, t("checkout.step1.address.address2.label")
+    %br
+    = ship_address.text_field :address2, class: 'title', id: 'account_ship_address2'
+  %p
+    = ship_address.label :city, t("checkout.step1.address.city.label")
+    %br
+    = ship_address.text_field :city, class: 'title', id: 'account_ship_city'
+  %p
+    = ship_address.label :zipcode, t("checkout.step1.address.zipcode.label")
+    %br
+    = ship_address.text_field :zipcode, class: 'title', id: 'account_ship_zipcode'
+  %p
+    = ship_address.label :country_id, t("checkout.step1.address.country_id.label")
+    %br
+    = ship_address.select :country_id, countries, { selected: ship_address_country.id }, class: 'title', id: 'account_ship_country'
+  %p
+    = ship_address.label :state_id, t("checkout.step1.address.state_id.label")
+    %br
+    = ship_address.select :state_id, states_for_country(ship_address_country), { selected: ship_address.object.state_id }, class: 'title', id: 'account_ship_state'

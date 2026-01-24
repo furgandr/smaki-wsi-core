@@ -57,6 +57,7 @@ module Spree
     end
 
     def update
+      apply_default_ship_address_fields
       if @user.update(user_params)
         if params[:user][:password].present?
           # this logic needed b/c devise wants to log us out after password changes
@@ -94,6 +95,22 @@ module Spree
 
     def user_params
       ::PermittedAttributes::User.new(params).call
+    end
+
+    def apply_default_ship_address_fields
+      user_params = params[:user]
+      return unless user_params.is_a?(ActionController::Parameters)
+
+      ship_attrs = user_params[:ship_address_attributes]
+      bill_attrs = user_params[:bill_address_attributes]
+      return if ship_attrs.blank? || bill_attrs.blank?
+
+      ship_hash = ship_attrs.to_unsafe_h
+      return if Spree::Address.new(ship_hash).empty?
+
+      %w[firstname lastname phone].each do |key|
+        ship_attrs[key] = bill_attrs[key] if ship_attrs[key].blank?
+      end
     end
 
     def render_alert_timestamp_error_message

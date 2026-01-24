@@ -1,5 +1,5 @@
-.exchange-products{ 'ng-hide' => 'productsLoading()' }
-  .exchange-product{'ng-repeat' => 'product in enterprises[exchange.enterprise_id].supplied_products'}
+.exchange-products{ 'ng-hide' => 'productsLoading()', 'ng-class' => "{'is-disabled': enterprises[exchange.enterprise_id].activation_fee_required}" }
+  .exchange-product{'ng-repeat' => 'product in enterprises[exchange.enterprise_id].supplied_products', 'ng-class' => "{'is-disabled': enterprises[exchange.enterprise_id].activation_fee_required}"}
     .exchange-product-details
       %label
         %img{'ng-src' => '{{ product.image_url }}'}
@@ -12,5 +12,5 @@
           'ng-model' => 'exchange.variants[variant.id]',
           'ofn-sync-distributions' => '{{ variant.id }}',
           'id' => 'order_cycle_incoming_exchange_{{ $parent.$parent.$index }}_variants_{{ variant.id }}',
-          'ng-disabled' => '!order_cycle.editable_variants_for_incoming_exchanges.hasOwnProperty(exchange.enterprise_id) || order_cycle.editable_variants_for_incoming_exchanges[exchange.enterprise_id].indexOf(variant.id) < 0' }
+          'ng-disabled' => 'enterprises[exchange.enterprise_id].activation_fee_required || !order_cycle.editable_variants_for_incoming_exchanges.hasOwnProperty(exchange.enterprise_id) || order_cycle.editable_variants_for_incoming_exchanges[exchange.enterprise_id].indexOf(variant.id) < 0' }
         {{ variant.label }}

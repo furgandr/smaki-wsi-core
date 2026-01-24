@@ -13,6 +13,19 @@
     = f.field_container :enterprise_limit do
       = f.label :enterprise_limit, t(".enterprise_limit")
       = f.text_field :enterprise_limit, class: "fullwidth"
+    = f.field_container :activation_fee_exempt do
+      = f.label :activation_fee_exempt, t(".activation_fee_exempt")
+      = f.check_box :activation_fee_exempt
+    .field
+      %strong= t(".activation_fee_status")
+      - if @user.activation_fee_paid?
+        %span= t(".activation_fee_paid_at", time: l(@user.activation_fee_paid_at))
+      - elsif @user.activation_fee_exempt?
+        %span= t(".activation_fee_exempt_status")
+      - elsif @user.activation_fee_free?
+        %span= t(".activation_fee_free_status")
+      - else
+        %span= t(".activation_fee_required_status")
   .omega.five.columns
     = f.field_container :password do
       = f.label :password, t(".password")

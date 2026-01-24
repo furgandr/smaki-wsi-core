@@ -5,6 +5,10 @@
   = render 'admin/shared/user_guide_link'
 
 %div{ 'ng-app' => 'ofn.admin' }
+  - if spree_current_user.activation_fee_required? && !spree_current_user.admin?
+    .alert-box
+      %strong= t("activation_fee.admin_banner")
+      %a.button.small{ href: main_app.activation_fee_path }= t("activation_fee.pay_now")
   - if @enterprises.empty?
 
     = render partial: "enterprises"

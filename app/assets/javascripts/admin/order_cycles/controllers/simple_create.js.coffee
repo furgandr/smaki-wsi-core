@@ -20,10 +20,14 @@ angular.module('admin.orderCycles').controller "AdminSimpleCreateOrderCycleCtrl"
     $scope.incoming_exchange = OrderCycle.order_cycle.incoming_exchanges[0]
 
     params = { enterprise_id: $scope.incoming_exchange.enterprise_id, incoming: true }
-    ExchangeProduct.index params, $scope.storeProductsAndSelectAllVariants
+    ExchangeProduct.index params, $scope.storeProductsAndSelectAllVariants, (response) ->
+      StatusMessage.display 'failure', response.data?.error || t('activation_fee.order_cycle_blocked')
 
   $scope.storeProductsAndSelectAllVariants = (products) ->
     $scope.enterprises[$scope.incoming_exchange.enterprise_id].supplied_products = products
+    if $scope.enterprises[$scope.incoming_exchange.enterprise_id].activation_fee_required
+      StatusMessage.display 'failure', t('activation_fee.order_cycle_blocked')
+      return
 
     # All variants start as checked
     OrderCycle.setExchangeVariants($scope.incoming_exchange,

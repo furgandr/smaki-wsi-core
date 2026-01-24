@@ -13,9 +13,12 @@ module Api
 
       caches_action :taxons, :properties, :producer_properties,
                     expires_in: CacheService::FILTERS_EXPIRY,
-                    cache_path: proc { |controller| controller.request.url }
+                    cache_path: proc { |controller|
+                      "#{controller.request.url}-activation-fee-#{controller.activation_fee_cache_key}"
+                    }
 
       def products
+        return render_no_products if activation_fee_blocked?
         return render_no_products unless order_cycle.open?
 
         current_user = @current_api_user&.persisted? ? @current_api_user : nil
@@ -38,6 +41,8 @@ module Api
       end
 
       def taxons
+        return render plain: "[]" if activation_fee_blocked?
+
         taxons = Spree::Taxon.
           joins(:products).
           where(spree_products: { id: distributed_products }).
@@ -49,12 +54,16 @@ module Api
       end
 
       def properties
+        return render plain: "[]" if activation_fee_blocked?
+
         render plain: ActiveModel::ArraySerializer.new(
           product_properties, each_serializer: Api::PropertySerializer
         ).to_json
       end
 
       def producer_properties
+        return render plain: "[]" if activation_fee_blocked?
+
         render plain: ActiveModel::ArraySerializer.new(
           load_producer_properties, each_serializer: Api::PropertySerializer
         ).to_json
@@ -65,6 +74,7 @@ module Api
       def render_no_products
         render status: :not_found, json: {}
       end
+
 
       def product_properties
         Spree::Property.
@@ -112,6 +122,18 @@ module Api
 
       def variant_tag_enabled
         OpenFoodNetwork::FeatureToggle.enabled?(:variant_tag, distributor)
+      end
+
+      def activation_fee_blocked?
+        owner = distributor&.owner
+        return false if owner.nil?
+        return false if @current_api_user&.admin? || @current_api_user == owner
+
+        owner.activation_fee_required?
+      end
+
+      def activation_fee_cache_key
+        activation_fee_blocked? ? "blocked" : "open"
       end
     end
   end

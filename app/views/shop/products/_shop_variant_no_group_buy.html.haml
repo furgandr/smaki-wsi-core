@@ -3,15 +3,15 @@
   .small-5.medium-3.large-3.columns.variant-quantity-column.text-right{"ng-if" => "::!variant.product.group_buy"}
 
     .variant-quantity-inputs{ "ng-if": "variant.line_item.quantity == 0" }
-      %button.add-variant{ type: "button", "ng-click": "add(1)", "ng-disabled": "!canAdd(1)" }
+      %button.add-variant{ type: "button", "ng-click": "add(1)", "ng-disabled": "!canAdd(1) || currentHub.activation_fee_required" }
         {{ "js.shopfront.variant.add_to_cart" | t }}
 
     .variant-quantity-inputs{ "ng-if": "variant.line_item.quantity != 0" }
-      %button.variant-quantity{ type: "button", "ng-click": "add(-1)", "ng-disabled": "!canAdd(-1)" }>
+      %button.variant-quantity{ type: "button", "ng-click": "add(-1)", "ng-disabled": "!canAdd(-1) || currentHub.activation_fee_required" }>
         -# U+FF0D Fullwidth Hyphen-Minus
         －
-      %input.variant-quantity{ type: "number", min: "0", max: "{{ available() }}", "ng-model": "variant.line_item.quantity", "ng-max": "Infinity" }>
-      %button.variant-quantity{ type: "button", "ng-click": "add(1)", "ng-disabled": "!canAdd(1)" }
+      %input.variant-quantity{ type: "number", min: "0", max: "{{ available() }}", "ng-model": "variant.line_item.quantity", "ng-max": "Infinity", "ng-disabled": "currentHub.activation_fee_required" }>
+      %button.variant-quantity{ type: "button", "ng-click": "add(1)", "ng-disabled": "!canAdd(1) || currentHub.activation_fee_required" }
         -# U+FF0B Fullwidth Plus Sign
         ＋
     .variant-remaining-stock{ "ng-if": "displayRemainingInStock()" }

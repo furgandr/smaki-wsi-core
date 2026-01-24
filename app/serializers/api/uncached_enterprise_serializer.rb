@@ -5,7 +5,7 @@ module Api
     include SerializerHelper
 
     attributes :orders_close_at, :current_order_cycle_id, :active, :rating_average, :rating_count,
-               :recommendation_percent
+               :recommendation_percent, :activation_fee_required
 
     def orders_close_at
       options[:data].earliest_closing_times[object.id]&.to_time
@@ -29,6 +29,11 @@ module Api
 
     def recommendation_percent
       object.recommendation_percent
+    end
+
+    def activation_fee_required
+      owner = object.owner
+      owner&.activation_fee_required? || false
     end
   end
 end

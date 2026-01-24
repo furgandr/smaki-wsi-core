@@ -19,6 +19,17 @@
 #   https://github.com/openfoodfoundation/openfoodnetwork/wiki/Internationalisation-%28i18n%29#development
 #
 en:
+  activation_fee:
+    page_title: "Activation fee"
+    heading: "Account activation fee"
+    description: "To activate your enterprise you need to pay a one-time activation fee of %{amount}."
+    pay_now: "Pay now"
+    admin_banner: "Activation fee required to activate your enterprise."
+    user_banner: "Activation fee required to activate your enterprise."
+    required: "Activation fee required to activate your enterprise."
+    checkout_blocked: "Activation fee required before checkout."
+    shop_unavailable: "This shop is not available until the activation fee is paid."
+    order_cycle_blocked: "You cannot add products: activation fee not paid."
   # Overridden here due to a bug in spree i18n (Issue #870, and issue #1800)
   language_name: "English" # Localised name of this language
   time:
@@ -1633,21 +1644,21 @@ en:
       change_type_form:
         producer_profile: Producer Profile
         connect_ofn: Connect through OFN
-        always_free: ALWAYS FREE
-        producer_description_text: Add your products to Open Food Network, allowing hubs to stock your products in their stores.
+        always_free: PROFILE ONLY (FREE)
+        producer_description_text: Add your products to Open Food Network, allowing hubs to stock your products in their stores. Selling requires activation fee.
         producer_shop: Producer Shop
         sell_your_produce: Sell your own produce
-        producer_shop_description_text: Sell your products directly to customers through your very own Open Food Network shopfront.
+        producer_shop_description_text: Sell your products directly to customers through your very own Open Food Network shopfront. Activation requires the activation fee.
         producer_shop_description_text2: A Producer Shop is for your produce only, if you want to sell produce grown/produced off site, select 'Producer Hub'.
         producer_hub: Producer Hub
         producer_hub_text: Sell produce from self and others
-        producer_hub_description_text: Your enterprise is the backbone of your local food system. You can sell your own produce as well as produce aggregated from other enterprises through your shopfront on the Open Food Network.
+        producer_hub_description_text: Your enterprise is the backbone of your local food system. You can sell your own produce as well as produce aggregated from other enterprises through your shopfront on the Open Food Network. Activation requires the activation fee.
         profile: Profile Only
         get_listing: Get a listing
-        profile_description_text: People can find and contact you on the Open Food Network. Your enterprise will be visible on the map, and will be searchable in listings.
+        profile_description_text: People can find and contact you on the Open Food Network. Your enterprise will be visible on the map, and will be searchable in listings. Selling requires activation fee.
         hub_shop: Hub Shop
         hub_shop_text: Sell produce from others
-        hub_shop_description_text: Your enterprise is the backbone of your local food system. You aggregate produce from other enterprises and can sell it through your shop on the Open Food Network.
+        hub_shop_description_text: Your enterprise is the backbone of your local food system. You aggregate produce from other enterprises and can sell it through your shop on the Open Food Network. Activation requires the activation fee.
         choose_option: Please choose one of the options above.
         change_now: Change now
       enterprise_user_index:
@@ -3908,7 +3919,7 @@ en:
       one_override: one override
       overrides: overrides
       remain_unsaved: remain unsaved.
-      no_changes_to_save: No changes to save.'
+      no_changes_to_save: "No changes to save."
       no_authorisation: "I couldn't get authorisation to save those changes, so they remain unsaved."
       some_trouble: "I had some trouble saving: %{errors}"
       changing_on_hand_stock: Changing on hand stock levels...
@@ -3933,7 +3944,7 @@ en:
       create_failure: "Failed to create order cycle"
       update_success: 'Your order cycle has been updated.'
       update_failure: "Failed to update order cycle"
-      no_distributors: There are no distributors in this order cycle. This order cycle will not be visible to customers until you add one. Would you like to continue saving this order cycle?'
+      no_distributors: "There are no distributors in this order cycle. This order cycle will not be visible to customers until you add one. Would you like to continue saving this order cycle?"
     enterprises:
       producer: "Producer"
       non_producer: "Non-Producer"
@@ -4198,6 +4209,9 @@ en:
   spree:
     order_updated: "Order Updated"
     cannot_perform_operation: "Can not perform this operation"
+    activation_fee:
+      required: "Activation fee is required to activate this enterprise."
+      marked_as_paid: "Activation fee marked as paid."
     add_country: "Add country"
     add_state: "Add state"
     adjustment: "Adjustment"
@@ -4808,6 +4822,13 @@ en:
           back_to_users_list: "Back To Users List"
           general_settings: "General Settings"
         form:
+          activation_fee_exempt: "Activation fee exempt?"
+          activation_fee_status: "Activation fee status:"
+          activation_fee_paid_at: "Paid at %{time}"
+          activation_fee_exempt_status: "Exempt"
+          activation_fee_free_status: "Free (early access)"
+          activation_fee_required_status: "Payment required"
+          mark_activation_fee_paid: "Mark activation fee as paid"
           disabled: "Disabled?"
           email: "Email"
           admin: "Super admin?"
@@ -4885,6 +4906,11 @@ en:
       general_settings:
         edit:
           legal_settings: "Legal Settings"
+          activation_fee_settings: "Activation Fee"
+          activation_fee_enabled: "Enable activation fee"
+          activation_fee_amount: "Activation fee amount (PLN)"
+          activation_fee_free_limit: "Free activation limit (first N users)"
+          activation_fee_free_limit_hint: "Set to 0 to disable free activations."
           cookies_consent_banner_toggle: "Display cookies consent banner"
           privacy_policy_url: "Privacy Policy URL"
           enterprises_require_tos: "Enterprises must accept Terms of Service"

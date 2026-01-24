@@ -44,8 +44,10 @@ module Spree
     accepts_nested_attributes_for :enterprise_roles, allow_destroy: true
     accepts_nested_attributes_for :webhook_endpoints
 
-    accepts_nested_attributes_for :bill_address
-    accepts_nested_attributes_for :ship_address
+    accepts_nested_attributes_for :bill_address,
+                                  reject_if: ->(attrs) { Spree::Address.new(attrs).empty? }
+    accepts_nested_attributes_for :ship_address,
+                                  reject_if: ->(attrs) { Spree::Address.new(attrs).empty? }
 
     validates :email, 'valid_email_2/email': { mx: true }, if: :email_changed?
     validate :limit_owned_enterprises
@@ -120,6 +122,29 @@ module Spree
 
     def can_own_more_enterprises?
       owned_enterprises.reload.size < enterprise_limit
+    end
+
+    def activation_fee_paid?
+      activation_fee_paid_at.present?
+    end
+
+    def activation_fee_exempt?
+      activation_fee_exempt
+    end
+
+    def activation_fee_free?
+      free_limit = Spree::Config[:activation_fee_free_limit].to_i
+      return false if free_limit <= 0 || id.nil?
+
+      self.class.order(:created_at, :id).limit(free_limit).where(id: id).exists?
+    end
+
+    def activation_fee_required?
+      return false unless Spree::Config[:activation_fee_enabled]
+      return false if admin?
+      return false if activation_fee_paid? || activation_fee_exempt? || activation_fee_free?
+
+      true
     end
 
     def default_card

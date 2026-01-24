@@ -21,6 +21,7 @@ class CheckoutController < BaseController
 
   before_action :set_checkout_redirect
   before_action :hide_ofn_navigation, only: [:edit, :update]
+  before_action :ensure_activation_fee_allowed, only: [:edit, :update]
 
   def edit
     if params[:step].blank?
@@ -162,5 +163,12 @@ class CheckoutController < BaseController
     return unless @order.after_delivery_state? && details_step?
 
     @order.back_to_address
+  end
+
+  def ensure_activation_fee_allowed
+    return unless current_order&.activation_fee_blocked?
+
+    flash[:error] = I18n.t("activation_fee.checkout_blocked")
+    redirect_to main_app.activation_fee_path
   end
 end

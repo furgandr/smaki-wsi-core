@@ -15,6 +15,8 @@ angular.module('admin.orderCycles').controller 'AdminOrderCycleIncomingCtrl', ($
     ExchangeProduct.countVariants params, (variants_count) ->
       enterprise.numVariants = variants_count
       $scope.setSelectAllVariantsCheckboxValue(exchange, enterprise.numVariants)
+    , ->
+      enterprise.numVariants = 0
 
     return enterprise.numVariants
 

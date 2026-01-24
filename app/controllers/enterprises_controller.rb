@@ -20,6 +20,7 @@ class EnterprisesController < BaseController
 
   def shop
     return redirect_to main_app.cart_path unless enough_stock?
+    return redirect_for_activation_fee if activation_fee_blocked_for_distributor?
 
     set_noindex_meta_tag
 
@@ -61,6 +62,23 @@ class EnterprisesController < BaseController
 
   def clean_permalink
     params[:permalink] = params[:permalink].parameterize
+  end
+
+  def activation_fee_blocked_for_distributor?
+    return false if spree_current_user&.admin?
+
+    owner = current_distributor&.owner
+    owner&.activation_fee_required?
+  end
+
+  def redirect_for_activation_fee
+    if spree_current_user == current_distributor&.owner
+      flash[:error] = I18n.t("activation_fee.required")
+      redirect_to main_app.activation_fee_path
+    else
+      flash[:error] = I18n.t("activation_fee.shop_unavailable")
+      redirect_to main_app.shops_path
+    end
   end
 
   def enough_stock?

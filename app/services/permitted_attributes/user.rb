@@ -17,6 +17,8 @@ module PermittedAttributes
     def permitted_attributes
       [
         :email, :locale, :password, :password_confirmation, :disabled,
+        { bill_address_attributes: PermittedAttributes::Address.attributes },
+        { ship_address_attributes: PermittedAttributes::Address.attributes },
         { webhook_endpoints_attributes: [:id, :url] },
       ]
     end

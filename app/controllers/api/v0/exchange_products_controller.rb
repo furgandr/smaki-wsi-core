@@ -93,10 +93,12 @@ module Api
         }
       end
 
+
       def exchange_params
         params.permit(:enterprise_id, :exchange_id, :order_cycle_id, :incoming).
           to_h.with_indifferent_access
       end
+
     end
   end
 end

@@ -19,6 +19,10 @@ module Spree
         end
       end
 
+      def show
+        redirect_to edit_admin_user_path(@user)
+      end
+
       def create
         @user = Spree::User.new(user_params)
         if @user.save
@@ -37,6 +41,18 @@ module Spree
         else
           render :edit
         end
+      end
+
+      def mark_activation_fee_paid
+        @user ||= Spree::User.find(params[:id])
+
+        if @user.update(activation_fee_paid_at: Time.zone.now)
+          flash[:success] = Spree.t('activation_fee.marked_as_paid')
+        else
+          flash[:error] = @user.errors.full_messages.to_sentence
+        end
+
+        redirect_to edit_admin_user_path(@user)
       end
 
       protected
@@ -115,7 +131,7 @@ module Spree
 
       def user_params
         ::PermittedAttributes::User.new(params).call(
-          %i[admin enterprise_limit show_api_key_view]
+          %i[admin enterprise_limit show_api_key_view activation_fee_exempt]
         )
       end
     end
