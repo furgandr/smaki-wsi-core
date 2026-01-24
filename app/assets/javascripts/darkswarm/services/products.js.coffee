@@ -26,6 +26,10 @@ angular.module('Darkswarm').factory 'Products', (OrderCycleResource, OrderCycle,
         @registerVariants()
         @products = @products.concat(@fetched_products)
         @loading = false
+      , =>
+        @products = [] unless load_more
+        @fetched_products = []
+        @loading = false
 
     extend: ->
       for product in @fetched_products
