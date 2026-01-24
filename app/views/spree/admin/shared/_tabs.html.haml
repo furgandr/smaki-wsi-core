@@ -6,7 +6,10 @@
 = tab :product_reviews, label: t('admin.product_reviews.index.title', default: 'Opinie o produktach'), url: main_app.admin_product_reviews_path
 = tab :general_settings, :terms_of_service_files, :mail_methods, :tax_categories, :tax_rates, :tax_settings, :zones, :countries, :states, :payment_methods, :taxons, :shipping_methods, :shipping_categories, :enterprise_fees, :contents, :invoice_settings, :matomo_settings, :stripe_connect_settings, :przelewy24_settings, :connected_app_settings, label: 'configuration', url: edit_admin_general_settings_path
 = tab :enterprises, :enterprise_relationships, :vouchers, :oidc_settings, url: main_app.admin_enterprises_path
-= tab :seller_promotions, url: spree.admin_seller_promotions_path
+- if can? :admin, Spree::User
+  = tab :seller_promotions, url: spree.admin_seller_promotions_path
+- else
+  = tab :seller_promotions, url: main_app.premium_promotion_path
 = tab :customers, url: main_app.admin_customers_path
 = tab :enterprise_groups, url: main_app.admin_enterprise_groups_path, label: 'groups'
 - if can? :admin, Spree::User
