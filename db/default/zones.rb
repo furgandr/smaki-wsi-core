@@ -10,7 +10,10 @@ unless Spree::Zone.find_by(name: "EU_VAT")
    "Italy", "Belgium", "Sweden", "Latvia", "Bulgaria", "United Kingdom",
    "Lithuania", "Cyprus", "Luxembourg", "Malta", "Denmark", "Netherlands",
    "Estonia"].each do |name|
-    eu_vat.zone_members.new(zoneable: Spree::Country.find_by!(name:))
+    country = Spree::Country.find_by(name:)
+    next unless country
+
+    eu_vat.zone_members.new(zoneable: country)
   end
   eu_vat.save!
 end
@@ -19,7 +22,10 @@ unless Spree::Zone.find_by(name: "North America")
   north_america = Spree::Zone.new(name: "North America", description: "USA + Canada")
 
   ["United States", "Canada"].each do |name|
-    north_america.zone_members.new(zoneable: Spree::Country.find_by!(name:))
+    country = Spree::Country.find_by(name:)
+    next unless country
+
+    north_america.zone_members.new(zoneable: country)
   end
   north_america.save!
 end
