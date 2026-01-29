@@ -15,7 +15,7 @@ unless Spree::Zone.find_by(name: "EU_VAT")
 
     eu_vat.zone_members.new(zoneable: country)
   end
-  eu_vat.save!
+  eu_vat.save! if eu_vat.zone_members.any?
 end
 
 unless Spree::Zone.find_by(name: "North America")
@@ -27,5 +27,5 @@ unless Spree::Zone.find_by(name: "North America")
 
     north_america.zone_members.new(zoneable: country)
   end
-  north_america.save!
+  north_america.save! if north_america.zone_members.any?
 end
