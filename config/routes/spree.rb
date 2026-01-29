@@ -145,6 +145,7 @@ Spree::Core::Engine.routes.draw do
     resources :shipping_methods
     resources :shipping_categories
     resources :payment_methods
+    resources :seller_promotions
   end
 
   resources :products

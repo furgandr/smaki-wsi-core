@@ -1,0 +1,27 @@
+%h1= t("admin.seller_promotions.show.title")
+
+%table.index
+  %tbody
+    %tr
+      %th= t("admin.seller_promotions.show.supplier")
+      %td= @seller_promotion.supplier&.name
+    %tr
+      %th= t("admin.seller_promotions.show.distributor")
+      %td= @seller_promotion.distributor&.name
+    %tr
+      %th= t("admin.seller_promotions.show.plan")
+      %td= @seller_promotion.promotion_plan&.name
+    %tr
+      %th= t("admin.seller_promotions.show.status")
+      %td= @seller_promotion.status
+    %tr
+      %th= t("admin.seller_promotions.show.starts_at")
+      %td= @seller_promotion.starts_at ? l(@seller_promotion.starts_at, format: :short) : "-"
+    %tr
+      %th= t("admin.seller_promotions.show.ends_at")
+      %td= @seller_promotion.ends_at ? l(@seller_promotion.ends_at, format: :short) : "-"
+    %tr
+      %th= t("admin.seller_promotions.show.products")
+      %td= @seller_promotion.products.map(&:name).join(", ")
+
+= link_to t("admin.seller_promotions.show.edit"), spree.edit_admin_seller_promotion_path(@seller_promotion), class: "button"

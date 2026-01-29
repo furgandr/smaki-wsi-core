@@ -118,6 +118,7 @@ module Spree
     after_create :create_tax_charge!
     after_save :reapply_tax_on_changed_address
     after_commit :mark_activation_fee_paid, on: :update
+    after_commit :activate_seller_promotions, on: :update
 
     after_save_commit DefaultAddressUpdater
 
@@ -802,6 +803,13 @@ module Spree
       return if user.blank? || user.activation_fee_paid?
 
       user.update(activation_fee_paid_at: Time.zone.now)
+    end
+
+    def activate_seller_promotions
+      return unless saved_change_to_state? && state == "complete"
+      return if SellerPromotion.pending.where(order_id: id).blank?
+
+      PremiumPromotion::ActivationService.new(self).call
     end
 
   end

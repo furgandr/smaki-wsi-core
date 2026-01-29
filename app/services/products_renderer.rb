@@ -25,6 +25,7 @@ class ProductsRenderer
                                      current_distributor: distributor,
                                      current_user: options[:current_user],
                                      current_user_enterprise_ids: options[:current_user_enterprise_ids],
+                                     promoted_product_ids: promoted_product_ids,
                                      variants: variants_for_shop_by_id,
                                      enterprise_fee_calculator:).to_json
   end
@@ -117,6 +118,17 @@ class ProductsRenderer
 
   def distributed_products
     OrderCycles::DistributedProductsService.new(distributor, order_cycle, customer, **options)
+  end
+
+  def promoted_product_ids
+    return [] unless distributor
+
+    SellerPromotion
+      .where(distributor_id: distributor.id, status: "active")
+      .where("starts_at <= ? AND ends_at > ?", Time.current, Time.current)
+      .joins(:seller_promotion_products)
+      .distinct
+      .pluck("seller_promotion_products.product_id")
   end
 
   def variants_for_shop

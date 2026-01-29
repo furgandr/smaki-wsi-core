@@ -1,0 +1,30 @@
+%h1= t("admin.seller_promotions.index.title")
+
+= link_to t("admin.seller_promotions.index.new"), spree.new_admin_seller_promotion_path, class: "button"
+
+%table.index
+  %thead
+    %tr
+      %th= t("admin.seller_promotions.index.id")
+      %th= t("admin.seller_promotions.index.supplier")
+      %th= t("admin.seller_promotions.index.distributor")
+      %th= t("admin.seller_promotions.index.plan")
+      %th= t("admin.seller_promotions.index.status")
+      %th= t("admin.seller_promotions.index.starts_at")
+      %th= t("admin.seller_promotions.index.ends_at")
+      %th= t("admin.seller_promotions.index.products")
+      %th= t("admin.seller_promotions.index.actions")
+  %tbody
+    - @seller_promotions.each do |promotion|
+      %tr
+        %td= promotion.id
+        %td= promotion.supplier&.name
+        %td= promotion.distributor&.name
+        %td= promotion.promotion_plan&.name
+        %td= promotion.status
+        %td= promotion.starts_at ? l(promotion.starts_at, format: :short) : "-"
+        %td= promotion.ends_at ? l(promotion.ends_at, format: :short) : "-"
+        %td= promotion.products.map(&:name).join(", ")
+        %td
+          = link_to_edit(promotion)
+          = link_to_delete(promotion)

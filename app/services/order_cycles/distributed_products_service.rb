@@ -90,22 +90,37 @@ module OrderCycles
     end
 
     def order
+      promotion_order = promotion_sorting_enabled? ? promotion_order_sql : nil
       if sorting_by_producer?
         order_by_producer = distributor
           .preferred_shopfront_producer_order
           .split(",").map { |id| "first_variant.supplier_id=#{id} DESC" }
           .join(", ")
 
-        "#{order_by_producer}, spree_products.name ASC, spree_products.id ASC"
+        [
+          promotion_order,
+          order_by_producer,
+          "spree_products.name ASC",
+          "spree_products.id ASC"
+        ].compact.join(", ")
       elsif sorting_by_category?
         order_by_category = distributor
           .preferred_shopfront_taxon_order
           .split(",").map { |id| "first_variant.primary_taxon_id=#{id} DESC" }
           .join(", ")
 
-        "#{order_by_category}, spree_products.name ASC, spree_products.id ASC"
+        [
+          promotion_order,
+          order_by_category,
+          "spree_products.name ASC",
+          "spree_products.id ASC"
+        ].compact.join(", ")
       else
-        "spree_products.name ASC, spree_products.id"
+        [
+          promotion_order,
+          "spree_products.name ASC",
+          "spree_products.id"
+        ].compact.join(", ")
       end
     end
 
@@ -113,6 +128,44 @@ module OrderCycles
       base_variants_relation.
         merge(variants).
         select("DISTINCT spree_variants.product_id")
+    end
+
+    def promotion_order_sql
+      now = ActiveRecord::Base.connection.quote(Time.current)
+      epoch = ActiveRecord::Base.connection.quote(Time.at(0))
+      <<~SQL.squish
+        CASE WHEN EXISTS (
+          SELECT 1
+            FROM seller_promotion_products spp
+            JOIN seller_promotions sp ON sp.id = spp.seller_promotion_id
+           WHERE spp.product_id = spree_products.id
+             AND sp.distributor_id = #{distributor.id}
+             AND sp.status = 'active'
+             AND sp.starts_at <= #{now}
+             AND sp.ends_at > #{now}
+        ) THEN 1 ELSE 0 END DESC,
+        COALESCE((
+          SELECT MAX(sp.starts_at)
+            FROM seller_promotion_products spp
+            JOIN seller_promotions sp ON sp.id = spp.seller_promotion_id
+           WHERE spp.product_id = spree_products.id
+             AND sp.distributor_id = #{distributor.id}
+             AND sp.status = 'active'
+             AND sp.starts_at <= #{now}
+             AND sp.ends_at > #{now}
+        ), #{epoch}) DESC
+      SQL
+    end
+
+    def promotion_sorting_enabled?
+      return false unless distributor
+      return false unless defined?(SellerPromotion)
+      return false unless SellerPromotion.table_exists?
+
+      SellerPromotion
+        .where(distributor_id: distributor.id, status: 'active')
+        .where("starts_at <= ? AND ends_at > ?", Time.current, Time.current)
+        .exists?
     end
 
     def variants

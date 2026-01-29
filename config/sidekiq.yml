@@ -19,3 +19,6 @@
       every: "5m"
     OrderCycleClosingJob:
       every: "5m"
+    PromotionExpiryReminderJob:
+      every: "1d"
+      first_in: "10m"

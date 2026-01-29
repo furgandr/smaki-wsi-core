@@ -1,0 +1,5 @@
+= t("promotion_mailer.expiring_soon.greeting", supplier: @supplier.name)
+
+= t("promotion_mailer.expiring_soon.body", distributor: @distributor.name, ends_at: l(@ends_at, format: :long))
+
+= t("promotion_mailer.expiring_soon.cta")

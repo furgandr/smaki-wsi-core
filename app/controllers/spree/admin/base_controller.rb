@@ -82,7 +82,6 @@ module Spree
         raise(ActionController::InvalidAuthenticityToken)
       end
 
-      private
 
       def page_load_request?
         return false if request.format.include?('turbo')
@@ -119,6 +118,11 @@ module Spree
         prefix = ams_prefix&.classify || ""
         name = controller_name.classify
         "::Api::Admin::#{prefix}#{name}Serializer".constantize
+      end
+
+      def set_locale
+        user_locale = spree_current_user&.locale
+        I18n.locale = user_locale.presence || I18n.default_locale
       end
     end
   end

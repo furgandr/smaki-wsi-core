@@ -473,6 +473,7 @@ pl:
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
   search_by_product: Szukaj produktów...
   search_radius: Promien wyszukiwania
+  search_radius_all: Wszystkie
   search_radius_option: "%{km} km"
   enterprise_rating_mailer:
     seller_rating_received:
@@ -1465,7 +1466,7 @@ pl:
         title: Nowy podmiot
         back_link: Wróć do listy podmiotów
       welcome:
-        welcome_title: Witamy w Smaki Wsi!
+        welcome_title: Witamy w Smakach Wsi!
         welcome_text: 'Utworzono pomyślnie:'
         next_step: Następny krok
         choose_starting_point: 'Wybierz pakiet:'
@@ -2058,6 +2059,7 @@ pl:
       hide_closed_shops: "Ukryj zamknięte sklepy"
       show_on_map: "Pokaż wszystkie na mapie"
     products_no_results: "Brak produktów w wybranym obszarze."
+    promoted_label: "Promowane"
   shared:
     mailers:
       powered_by:
@@ -2418,7 +2420,7 @@ pl:
   email_shipping_collection_instructions: "Instrukcje odbioru:"
   email_special_instructions: "Twoje notatki:"
   email_signup_greeting: Cześć!
-  email_signup_welcome: "Witamy w Smaki Wsi!"
+  email_signup_welcome: "Witamy w Smakach Wsi!"
   email_signup_confirmed_email: "Dziękujemy za potwierdzenie adresu e-mail."
   email_signup_shop_html: "Możesz teraz zalogować się pod %{link}."
   email_signup_text: "Dziękujemy za dołączenie do sieci. Jeśli jesteś klientem, z przyjemnością przedstawimy Ci wspaniałych rolników, świetne sklepy i pyszne jedzenie! Jeśli jesteś producentem lub prowadzisz biznes żywnościowy, cieszymy się, że jesteś częścią sieci."
@@ -3629,7 +3631,7 @@ pl:
       users:
         order: "Zamówienie"
     registration:
-      welcome_to_ofn: "Witamy w Smaki Wsi!"
+      welcome_to_ofn: "Witamy w Smakach Wsi!"
       signup_or_login: "Zarejestruj się lub zaloguj"
       have_an_account: "Masz już konto?"
       action_login: "Zaloguj się teraz."
@@ -4799,3 +4801,67 @@ pl:
         create_placeholder: "Wpisz URL zdalnego endpointu webhooka"
       event_types:
         order_cycle_opened: "Cykl zamówień otwarty"
+
+  admin:
+    tab:
+      seller_promotions: "Premium"
+    seller_promotions:
+      index:
+        title: "Promocje sprzedawcow"
+        new: "Nowa promocja"
+        id: "ID"
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
+        products: "Produkty"
+        actions: "Akcje"
+      new:
+        title: "Nowa promocja"
+      edit:
+        title: "Edytuj promocje"
+      show:
+        title: "Szczegoly promocji"
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
+        products: "Produkty"
+        edit: "Edytuj"
+      form:
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        products: "Produkty"
+        product_limit_hint: "Wybierz maksymalnie %{max} produkty."
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
+
+  premium_promotions:
+    title: "Promocja premium"
+    supplier: "Sprzedawca"
+    distributor: "Sklep/Hub"
+    plan: "Pakiet"
+    products: "Promowane produkty"
+    product_limit_hint: "Wybierz maksymalnie %{max} produkty."
+    submit: "Kup promocje premium"
+    errors:
+      invalid_selection: "Wybierz poprawnego sprzedawce, sklep i pakiet."
+
+  seller_promotions:
+    errors:
+      too_many_products: "Wybierz maksymalnie %{max} produkty."
+      invalid_supplier_products: "Wybrane produkty musza nalezec do sprzedawcy."
+      missing_products: "Wybierz co najmniej jeden produkt."
+
+  promotion_mailer:
+    expiring_soon:
+      subject: "%{site}: Promocja premium wkrotce wygasa"
+      greeting: "Czesc %{supplier},"
+      body: "Twoja promocja premium w %{distributor} wygasa %{ends_at}."
+      cta: "Mozesz przedluzyc promocje w swoim panelu."

@@ -1,0 +1,23 @@
+%h1= t("premium_promotions.title")
+
+= form_with url: premium_promotion_path, method: :post, local: true, scope: :premium_promotion do |f|
+  .field
+    = f.label :supplier_id, t("premium_promotions.supplier")
+    = f.collection_select :supplier_id, @suppliers, :id, :name, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :distributor_id, t("premium_promotions.distributor")
+    = f.collection_select :distributor_id, @distributors, :id, :name, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :promotion_plan_id, t("premium_promotions.plan")
+    - plan_options = @promotion_plans.map { |plan| ["#{plan.name} (#{plan.price})", plan.id] }
+    = f.select :promotion_plan_id, plan_options, {}, class: "select2 fullwidth"
+
+  .field
+    = f.label :product_ids, t("premium_promotions.products")
+    = f.collection_select :product_ids, @products, :id, :name, {},
+      { multiple: true, class: "select2 fullwidth" }
+    %p.hint= t("premium_promotions.product_limit_hint", max: SellerPromotion::MAX_PRODUCTS)
+
+  = f.submit t("premium_promotions.submit"), class: "button"

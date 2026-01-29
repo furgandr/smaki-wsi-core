@@ -41,7 +41,7 @@ class UserLocaleSetter
   end
 
   def available_locale?(locale)
-    Rails.application.config.i18n.available_locales.include?(locale)
+    Rails.application.config.i18n.available_locales.map(&:to_s).include?(locale.to_s)
   end
 
   def current_user_locale
