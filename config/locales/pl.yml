@@ -417,7 +417,7 @@ pl:
         explainer: Automatyczne przetwarzanie nie powiodło się z nieznanego powodu. To nie powinno się zdarzyć — skontaktuj się z nami, jeśli to widzisz.
   home: "Smaki Wsi"
   title: "Smaki Wsi"
-  welcome_to: "Regionalne produkty online w"
+  welcome_to: "Lokalne produkty online"
   site_meta_description: "Nowy start. Z rolnikami i hodowcami, którzy chcą opowiadać swoje historie uczciwie. Z dystrybutorami, którzy łączą ludzi z produktami fair i odpowiedzialnie. Z kupującymi, którzy wierzą, że ich wybory mogą zmieniać świat."
   search_by_name: Szukaj lokalizacji lub nazwy sklepu/producenta...
   search_by_product: Szukaj produktów...
@@ -2782,7 +2782,7 @@ pl:
   email_signup_confirmed_email: "Dziękujemy za potwierdzenie adresu e-mail."
   email_signup_shop_html: "Możesz teraz zalogować się pod %{link}."
   email_signup_text: "Dziękujemy za dołączenie do sieci. Jeśli jesteś klientem, z przyjemnością przedstawimy Ci wspaniałych rolników, świetne sklepy i pyszne jedzenie! Jeśli jesteś producentem lub prowadzisz biznes żywnościowy, cieszymy się, że jesteś częścią sieci."
-  email_signup_help_html: "Chętnie odpowiemy na pytania i przyjmiemy uwagi. Napisz do nas na %{email}."
+  email_signup_help_html: "Masz pytania? Napisz do nas na %{email}."
   invite_email:
     greeting: "Cześć!"
     invited_to_manage: "Zostałeś zaproszony do zarządzania %{enterprise} na %{instance}."
