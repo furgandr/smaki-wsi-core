@@ -2778,7 +2778,7 @@ pl:
   email_shipping_collection_instructions: "Instrukcje odbioru:"
   email_special_instructions: "Twoje notatki:"
   email_signup_greeting: Cześć!
-  email_signup_welcome: "Witamy w Smakach Wsi!"
+  email_signup_welcome: "Witamy w Smaki Wsi!"
   email_signup_confirmed_email: "Dziękujemy za potwierdzenie adresu e-mail."
   email_signup_shop_html: "Możesz teraz zalogować się pod %{link}."
   email_signup_text: "Dziękujemy za dołączenie do sieci. Jeśli jesteś klientem, z przyjemnością przedstawimy Ci wspaniałych rolników, świetne sklepy i pyszne jedzenie! Jeśli jesteś producentem lub prowadzisz biznes żywnościowy, cieszymy się, że jesteś częścią sieci."

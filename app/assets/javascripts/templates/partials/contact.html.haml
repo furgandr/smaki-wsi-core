@@ -13,3 +13,7 @@
 
     %p{"ng-if" => "enterprise.website"}
       %a{"ng-href" => "http://{{::enterprise.website | stripUrl}}", target: "_blank", "ng-bind" => "::enterprise.website | stripUrl"}
+
+  .contact-map{"ng-if" => "enterprise.address && enterprise.address.latitude && enterprise.address.longitude"}
+    %p.modal-header {{'label_map' | t}}
+    .enterprise-location-map{"enterprise-location-map" => "", "data-lat" => "{{::enterprise.address.latitude}}", "data-lng" => "{{::enterprise.address.longitude}}", "data-name" => "{{::enterprise.name}}"}
