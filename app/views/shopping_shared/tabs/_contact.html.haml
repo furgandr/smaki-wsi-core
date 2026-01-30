@@ -64,3 +64,11 @@
               %span
                 %a{href: "http://instagram.com/#{current_distributor.instagram}", target: "_blank" }
                   %i.instagram.ofn-i_043-instagram
+
+  - if current_distributor.address&.latitude.present? && current_distributor.address&.longitude.present?
+    .row
+      .small-12.columns
+        .contact-map
+          .header.center
+            = t :label_map
+          .enterprise-location-map{"enterprise-location-map" => "", "lat" => current_distributor.address.latitude, "lng" => current_distributor.address.longitude, "name" => current_distributor.name}
