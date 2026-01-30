@@ -227,86 +227,6 @@ pl:
       reminder_intro: "Przypomnienie: Twoje zamówienie z %{distributor} zostało wysłane."
       reminder_body: "Wciąż możesz ocenić sprzedawcę i dodać recenzje produktów. Masz %{days} dni od wysyłki."
       leave_review_link: "Dodaj opinię"
-  admin:
-    enterprise_ratings:
-      index:
-        title: "Opinie o sprzedawcach"
-        enterprise: "Sprzedawca"
-        order: "Zamówienie"
-        buyer: "Kupujący"
-        rating: "Ocena"
-        comment: "Komentarz"
-        created_at: "Utworzono"
-        status: "Status"
-        active: "Aktywna"
-        excluded: "Wykluczona"
-        removed: "Usunięta"
-        removal_requested: "Prośba o usunięcie"
-        remove: "Usuń"
-        restore: "Przywróć"
-        exclude: "Wyklucz"
-        include: "Uwzględnij"
-        request_removal: "Poproś o usunięcie"
-        default_removal_reason: "Usunięta przez admina"
-      flash:
-        removed: "Ocena została usunięta."
-        restored: "Ocena została przywrócona."
-        excluded: "Ocena wykluczona ze statystyk."
-        included: "Ocena uwzględniona w statystykach."
-        removal_requested: "Prośba o usunięcie została wysłana."
-        removal_request_denied: "Nie można wysłać prośby o usunięcie."
-    shared:
-      side_menu:
-        enterprise:
-          primary_details: Dane podstawowe
-          address: Adres
-          contact: Kontakt
-          social: Społeczności
-          about: O nas
-          business_details: Dane firmowe
-          images: Obrazy
-          properties: Właściwości
-          shipping_methods: Metody dostaw
-          payment_methods: Metody płatności
-          enterprise_fees: Opłaty dla podmiotów
-          enterprise_permissions: Uprawnienia podmiotu
-          inventory_settings: Ustawienia magazynu
-          tag_rules: Reguły tagów
-          shop_preferences: Preferencje sklepu
-          users: Użytkownicy
-          vouchers: Vouchery
-          white_label: White label
-          connected_apps: Połączone aplikacje
-        enterprise_group:
-          primary_details: Dane podstawowe
-          users: Użytkownicy
-          about: O nas
-          images: Obrazy
-          contact: Kontakt
-          web: Zasoby WWW
-    product_reviews:
-      index:
-        title: "Opinie o produktach"
-        product: "Produkt"
-        order: "Zamówienie"
-        buyer: "Kupujący"
-        rating: "Ocena"
-        comment: "Komentarz"
-        created_at: "Utworzono"
-        status: "Status"
-        active: "Aktywna"
-        excluded: "Wykluczona"
-        removed: "Usunięta"
-        remove: "Usuń"
-        restore: "Przywróć"
-        exclude: "Wyklucz"
-        include: "Uwzględnij"
-        default_removal_reason: "Usunięta przez admina"
-      flash:
-        removed: "Opinia została usunięta."
-        restored: "Opinia została przywrócona."
-        excluded: "Opinia wykluczona ze statystyk."
-        included: "Opinia uwzględniona w statystykach."
   rating_exclusions:
     duplicate_recent: "Wiele ocen w krótkim czasie nie liczy się do średniej."
   activemodel:
@@ -634,6 +554,377 @@ pl:
     destroy: "Usuń"
     rename: "Zmień nazwę"
   admin:
+    enterprise_ratings:
+      index:
+        title: "Opinie o sprzedawcach"
+        enterprise: "Sprzedawca"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        removal_requested: "Prośba o usunięcie"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        request_removal: "Poproś o usunięcie"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Ocena została usunięta."
+        restored: "Ocena została przywrócona."
+        excluded: "Ocena wykluczona ze statystyk."
+        included: "Ocena uwzględniona w statystykach."
+        removal_requested: "Prośba o usunięcie została wysłana."
+        removal_request_denied: "Nie można wysłać prośby o usunięcie."
+    product_reviews:
+      index:
+        title: "Opinie o produktach"
+        product: "Produkt"
+        order: "Zamówienie"
+        buyer: "Kupujący"
+        rating: "Ocena"
+        comment: "Komentarz"
+        created_at: "Utworzono"
+        status: "Status"
+        active: "Aktywna"
+        excluded: "Wykluczona"
+        removed: "Usunięta"
+        remove: "Usuń"
+        restore: "Przywróć"
+        exclude: "Wyklucz"
+        include: "Uwzględnij"
+        default_removal_reason: "Usunięta przez admina"
+      flash:
+        removed: "Opinia została usunięta."
+        restored: "Opinia została przywrócona."
+        excluded: "Opinia wykluczona ze statystyk."
+        included: "Opinia uwzględniona w statystykach."
+    shared:
+      side_menu:
+        enterprise:
+          primary_details: Dane podstawowe
+          address: Adres
+          contact: Kontakt
+          social: Społeczności
+          about: O nas
+          business_details: Dane firmowe
+          images: Obrazy
+          properties: Właściwości
+          shipping_methods: Metody dostaw
+          payment_methods: Metody płatności
+          enterprise_fees: Opłaty dla podmiotów
+          enterprise_permissions: Uprawnienia podmiotu
+          inventory_settings: Ustawienia magazynu
+          tag_rules: Reguły tagów
+          shop_preferences: Preferencje sklepu
+          users: Użytkownicy
+          vouchers: Vouchery
+          white_label: White label
+          connected_apps: Połączone aplikacje
+        enterprise_group:
+          primary_details: Dane podstawowe
+          users: Użytkownicy
+          about: O nas
+          images: Obrazy
+          contact: Kontakt
+          web: Zasoby WWW
+    enterprises:
+      index:
+        title: Podmioty
+        new_enterprise: Nowy podmiot
+        producer?: "Producent?"
+        package: "Pakiet"
+        status: "Status"
+        manage: Zarządzaj
+      form:
+        about_us:
+          legend: "O nas"
+          desc_short: Krótki opis
+          desc_short_placeholder: Napisz coś o swoim podmiocie w jednym lub dwóch zdaniach.
+          desc_long: O nas
+          desc_long_placeholder: Napisz coś o sobie i swojej firmie. Te informacje pojawią się w profilu publicznym.
+        address:
+          legend: "Adres"
+        business_details:
+          legend: "Dane firmy"
+          upload: 'Prześlij'
+          abn: NIP
+          abn_placeholder: np. DE999999999
+          acn: Nr rejestru
+          acn_placeholder: z. B. 93815/08152
+          display_invoice_logo: Wyświetl logo na fakturach
+          invoice_text: Dodaj własny tekst na końcu faktur
+          terms_and_conditions: "Regulamin"
+          remove_terms_and_conditions: "Usuń plik"
+          uploaded_on: "przesłano"
+          reset_form: "zresetuj"
+          business_address_legend: "Dane firmy"
+          invoice_item_sorting_legend: "Ustawienia faktury"
+          sort_items_by_supplier?: Grupować po dostawcy?
+          sort_items_by_supplier_tip: "Jeśli włączone, pozycje będą grupowane po dostawcach i sortowane alfabetycznie. Jeśli wyłączone, pozycje będą sortowane alfabetycznie niezależnie od dostawcy."
+          enabled: Włączone
+          disabled: Wyłączone
+        business_address:
+          company_legal_name: Nazwa firmy
+          company_placeholder: np. Wspaniała farma Charliego
+          address1: Ulica i numer
+          address1_placeholder: np. Ogrodowa 123
+          address2: Adres (opcjonalnie)
+          legal_phone_number: Telefon
+          phone_placeholder: "np. +48 123 456 789"
+          select_country: "Wybierz kraj"
+          select_state: "Wybierz województwo"
+        contact:
+          legend: "Dane kontaktowe"
+          name: Imię i nazwisko
+          name_placeholder: np. Jan Kowalski
+          email_address: Publiczny adres e-mail
+          email_address_placeholder: np. kontakt@fresh-food.com
+          email_address_tip: "Ten adres e-mail jest widoczny w profilu publicznym."
+          phone: Telefon
+          phone_placeholder: np. +48 123 456 789
+          whatsapp_phone: Numer WhatsApp
+          whatsapp_phone_placeholder: np. +48 600 123 456
+          whatsapp_phone_tip: "Ten numer będzie widoczny w profilu publicznym jako link do WhatsApp."
+          website: Strona WWW
+        enterprise_fees:
+          legend: Opłaty dla podmiotów
+          name: Nazwa
+          fee_type: Typ opłaty
+          manage_fees: Zarządzaj opłatami dla podmiotów
+          no_fees_yet: Nie masz jeszcze żadnych opłat dla podmiotów.
+          create_button: Utwórz je teraz
+        enterprise_permissions:
+          legend: Uprawnienia podmiotu
+        images:
+          legend: Obrazy
+          logo: Logo
+        inventory_settings:
+          legend: Ustawienia magazynu
+          text1: Możesz zdecydować się na zarządzanie stanami magazynowymi i cenami za pośrednictwem swojego
+          inventory: Zapasy
+          text2: |-
+            Jeśli korzystasz z narzędzia do inwentaryzacji, możesz wybrać, czy nowe produkty dodane przez dostawców muszą zostać dodane do Twojego magazynu, zanim będą mogły być magazynowane. Jeśli nie używasz zapasów do zarządzania produktami, wybierz opcję „zalecane” poniżej:
+          preferred_product_selection_from_inventory_only_yes: Nowe produkty można umieścić w moim sklepie (zalecane)
+          preferred_product_selection_from_inventory_only_no: Nowe produkty muszą zostać dodane do mojego magazynu, zanim będą mogły zostać umieszczone w moim sklepie
+        payment_methods:
+          legend: Metody płatności
+          name: Nazwa
+          applies: Dotyczy?
+          manage: Zarządzaj formami płatności
+          no_method_yet: Nie masz jeszcze żadnych metod płatności.
+          create_button: Utwórz nową metodę płatności
+          create_one_button: Utwórz je teraz
+        primary_details:
+          legend: Dane podstawowe
+          name: Nazwa
+          name_placeholder: np. Trufle biodynamiczne profesora Śliwki
+          groups: Grupy
+          groups_tip: Wybierz dowolne grupy lub regiony, których jesteś członkiem. Pomoże to klientom znaleźć Twój podmiot.
+          groups_placeholder: Zacznij pisać, aby wyszukać dostępne grupy ...
+          primary_producer: Pierwotny producent?
+          primary_producer_tip: Wybierz „Producent”, jeśli jesteś pierwotnym producentem żywności.
+          producer: Producent
+          any: Dowolne
+          none: Nic
+          own: Tylko własne
+          sells: Sprzedaje
+          sells_tip: Brak - podmiot nie prowadzi sprzedaży bezpośredniej klientom. <br /> Własne - podmiot sprzedaje klientom własne produkty. <br /> Dowolne - podmiot może sprzedawać własne lub produkty innego podmiotu. <br />
+          external_billing_id: Zewnętrzny identyfikator rozliczeń
+          external_billing_id_placeholder: np. INV-2024-123456
+          external_billing_id_tip: To identyfikator używany przez zewnętrzny system rozliczeń.
+          visible_in_search: Widoczne w wynikach wyszukiwania?
+          visible: Publiczny
+          not_visible: Ukryty
+          hidden: Ukryj wszystkie odwołania
+          admin_only_legend: Tylko dla admina
+        properties:
+          legend: Właściwości
+        permalink:
+          link_to_front: Link do strony sklepu
+          ofn_uid_tip: Unikalny identyfikator używany do identyfikacji podmiotów w Open Food Network.
+        shipping_methods:
+          legend: Metody dostaw
+          name: Nazwa
+          applies: Aktywny?
+          manage: Zarządzaj metodami dostaw
+          create_button: Utwórz nową metodę dostawy
+          create_one_button: Utwórz je teraz
+          no_method_yet: Nie masz jeszcze żadnych metod dostaw.
+        shop_preferences:
+          legend: Preferencje sklepu
+          shopfront_requires_login: Widoczna publicznie witryna sklepowa?
+          shopfront_requires_login_tip: Wybierz, czy klienci muszą się zalogować, aby wyświetlić witrynę sklepu, czy też jest ona widoczna dla wszystkich.
+          shopfront_requires_login_false: Publiczny
+          shopfront_requires_login_true: Widoczne tylko dla zarejestrowanych klientów
+          recommend_require_login: Zalecamy wymaganie od użytkowników logowania się, gdy można zmienić zamówienia.
+          allow_guest_orders: Zamówienia gości
+          allow_guest_orders_tip: Zezwól na płatność jako gość lub wymagaj zarejestrowanego użytkownika.
+          allow_guest_orders_false: Wymagaj logowania do zamówienia
+          allow_guest_orders_true: Zezwalaj na kasę gościa
+          allow_order_changes: Zmienić zamówienia
+          allow_order_changes_tip: Pozwól klientom zmieniać zamówienie, dopóki cykl zamówień jest otwarty.
+          allow_order_changes_false: Złożonych zamówień nie można zmienić / anulować
+          allow_order_changes_true: Klienci mogą zmieniać / anulować zamówienia, gdy cykl zamówień jest otwarty
+          enable_subscriptions: Subskrypcje
+          enable_subscriptions_tip: Włączyć funkcję subskrypcji?
+          enable_subscriptions_false: Wyłączone
+          enable_subscriptions_true: Włączono
+          customer_names_in_reports: Nazwy klientów w raportach
+          customer_names_tip: Umożliwiaj swoim dostawcom wyświetlanie nazw klientów w raportach
+          customer_names_false: Wyłączone
+          customer_names_true: Włączono
+          shopfront_message: Wiadomość dotycząca sklepu
+          shopfront_message_placeholder: |-
+            Opcjonalna wiadomość witająca klientów i wyjaśniająca, jak robić u Ciebie zakupy. Jeśli tu wprowadzisz tekst, zostanie on wyświetlony na karcie głównej, gdy klienci po raz pierwszy pojawią się w Twoim sklepie.
+          shopfront_closed_message: Komunikat o zamknięciu witryny sklepowej
+          shopfront_closed_message_placeholder: |-
+            Wiadomość, która zawiera bardziej szczegółowe wyjaśnienie, dlaczego Twój sklep jest zamknięty i / lub kiedy klienci mogą spodziewać się ponownego otwarcia. Jest to wyświetlane w Twoim sklepie tylko wtedy, gdy nie masz aktywnych cykli zamówień (tj. Sklep jest zamknięty).
+          shopfront_category_ordering: Zamawianie kategorii sklepu
+          open_date: Data otwarcia
+          close_date: Data zamknięcia
+          shopfront_sort_by_category_placeholder: Kategoria
+          shopfront_sort_by_producer_placeholder: Producent
+        social:
+          legend: Społeczności
+          twitter_placeholder: np. @profesor
+          instagram_placeholder: np. @profesor
+          facebook_placeholder: np. www.facebook.com/TwojaNazwa
+          linkedin_placeholder: np. www.linkedin.com/in/TwojaNazwa
+        stripe_connect:
+          connect_with_stripe: Połącz się ze Stripe
+          stripe_connect_intro: Aby akceptować płatności kartą kredytową, musisz połączyć swoje konto stripe z Open Food Network. Aby rozpocząć, użyj przycisku po prawej stronie.
+          stripe_account_connected: Konto Stripe jest połączone.
+          disconnect: Odłącz konto
+          confirm_modal:
+            title: Połącz się ze Stripe
+            part1: Stripe to usługa przetwarzania płatności, która umożliwia sklepom w OFN przyjmowanie płatności kartą kredytową od klientów.
+            part2: Aby skorzystać z tej funkcji, musisz połączyć swoje konto Stripe z OFN. Kliknięcie poniższego przycisku „Zgadzam się” spowoduje przekierowanie do witryny Stripe, na której możesz połączyć istniejące konto Stripe lub utworzyć nowe, jeśli jeszcze go nie masz.
+            part3: Umożliwi to Open Food Network akceptowanie płatności kartą kredytową od klientów w Twoim imieniu. Pamiętaj, że będziesz musiał prowadzić własne konto Stripe, uiszczać opłaty pobierane przez Stripe oraz samodzielnie zajmować się wszelkimi obciążeniami zwrotnymi i obsługą klienta.
+            i_agree: Zgadzam się
+            cancel: anulować
+        tag_rules:
+          legend: Reguły tagów
+          default_rules:
+            by_default: Domyślnie
+            no_rules_yet: Nie obowiązują jeszcze żadne reguły domyślne
+            add_new_button: "+ Dodaj nową regułę domyślną"
+          no_tags_yet: Żadne tagi nie mają jeszcze zastosowania do tego podmiotu
+          add_new_tag: "+ Dodaj nowy tag"
+          show_hide_shipping: Pokaż lub ukryj metody dostaw przy kasie
+        users:
+          legend: Użytkownicy
+          email_confirmation_notice_html: Oczekuje na potwierdzenie e-mailem. Wysłaliśmy wiadomość e-mail z potwierdzeniem na adres %{email}.
+          resend: Wysłać ponownie
+          owner: Właściciel
+          contact: Kontakt
+          contact_tip: Menedżer, który będzie otrzymywał firmowe wiadomości e-mail dotyczące zamówień i powiadomień. Musi mieć potwierdzony adres e-mail.
+          owner_tip: Główny użytkownik odpowiedzialny za ten podmiot.
+          notifications: Powiadomienia
+          notifications_tip: Powiadomienia o zamówieniach będą wysyłane na ten adres e-mail.
+          notifications_placeholder: np. jan@sliwa.pl
+          notifications_note: 'Uwaga: nowy adres e-mail może wymagać potwierdzenia przed użyciem'
+          managers: Menedżerowie
+          managers_tip: Inni użytkownicy z uprawnieniami do zarządzania tym podmiotem.
+          invite_manager: Zaproś menedżera
+          invite_manager_tip: Zaproś niezarejestrowanego użytkownika, aby zarejestrował się i został menedżerem tego podmiotu.
+          add_unregistered_user: Dodaj niezarejestrowanego użytkownika
+          email_confirmed: E-mail potwierdzony
+          email_not_confirmed: Adres e-mail nie został potwierdzony
+        vouchers:
+          legend: Vouchery
+          voucher_code: Kod kuponu
+          rate: Wartość kuponu
+          label: Etykieta
+          purpose: Cel
+          expiry: Ważność
+          use_limit: Limit użycia
+          customers: Klient
+          net_value: Wartość netto
+          active: Aktywny?
+          add_new: + Nowy kupon
+          no_voucher_yet: Brak kuponów.
+        white_label:
+          legend: "Ukryj Smaki Wsi"
+          hide_ofn_navigation: "Ukryj nawigację Smaki Wsi"
+          white_label_logo_link_label: "Docelowy link logo w sklepie"
+          hide_groups_tab: "Ukryj zakładkę \"Grupy\" w sklepie"
+          create_custom_tab: "Dodaj własną zakładkę w sklepie"
+          custom_tab_title: "Tytuł zakładki"
+          custom_tab_content: "Treść zakładki"
+        connected_apps:
+          legend: "Połączone aplikacje"
+      actions:
+        edit_profile: Ustawienia
+        properties: Właściwości
+        payment_methods: Metody płatności
+        payment_methods_tip: Ten podmiot nie ma metod płatności.
+        shipping_methods: Opcje dostawy
+        shipping_methods_tip: Ten podmiot ma opcje dostawy.
+        enterprise_fees: Opłaty podmiotu
+        enterprise_fees_tip: Ten podmiot nie pobiera opłat.
+      admin_index:
+        name: Nazwa
+        role: Rola
+        sells: Sprzedaje
+        visible: Widoczny?
+        owner: Właściciel
+        producer: Producent
+      change_type_form:
+        producer_profile: Profil producenta
+        connect_ofn: Połącz się przez OFN
+        always_free: ZAWSZE DARMOWY
+        producer_description_text: Dodaj swoje produkty do Open Food Network, umożliwiając hubom przechowywanie Twoich produktów w swoich sklepach.
+        producer_shop: Sklep producenta
+        sell_your_produce: Sprzedawaj własne produkty
+        producer_shop_description_text: Sprzedawaj swoje produkty bezpośrednio klientom za pośrednictwem własnej witryny sklepowej Open Food Network.
+        producer_shop_description_text2: Sklep producenta jest przeznaczony tylko dla twoich produktów, jeśli chcesz sprzedawać produkty wyhodowane / wyprodukowane poza miejscem, wybierz „Hub producentów”.
+        producer_hub: Hub producentów
+        producer_hub_text: Sprzedawaj produkty od siebie i innych
+        producer_hub_description_text: Twój podmiot jest podstawą lokalnego systemu żywnościowego. Możesz sprzedawać własne produkty, a także produkty pochodzące z innych przedsiębiorstw za pośrednictwem swojej witryny sklepowej w Open Food Network.
+        profile: Profil
+        get_listing: Ogłoś się
+        profile_description_text: Ludzie mogą Cię znaleźć i skontaktować się z Open Food Network. Twój podmiot będzie widoczny na mapie i będzie można go wyszukiwać na listach.
+        hub_shop: Sklep
+        hub_shop_text: Sprzedawaj produkty od innych
+        hub_shop_description_text: Twój podmiot jest podstawą lokalnego systemu żywnościowego. Gromadzisz produkty z innych podmiotów i możesz je sprzedawać za pośrednictwem swojego sklepu w Open Food Network.
+        choose_option: Wybierz jedną z powyższych opcji.
+        change_now: Zmień teraz
+      enterprise_user_index:
+        loading_enterprises: ŁADOWANIE PODMIOTÓW
+        no_enterprises_found: Nie znaleziono podmiotów.
+        search_placeholder: Szukaj po nazwie
+        manage: Zarządzaj
+        manage_link: Ustawienia
+        producer?: "Producent?"
+        package: "Pakiet"
+        status: "Status"
+      new_form:
+        owner: Właściciel
+        owner_tip: Główny użytkownik odpowiedzialny za ten podmiot.
+        i_am_producer: Jestem producentem
+        contact_name: Nazwa kontaktu
+      edit:
+        editing: 'Ustawienia:'
+        back_link: Wróć do listy podmiotów
+      new:
+        title: Nowy podmiot
+        back_link: Wróć do listy podmiotów
+      welcome:
+        welcome_title: Witamy w Smakach Wsi!
+        welcome_text: 'Utworzono pomyślnie:'
+        next_step: Następny krok
+        choose_starting_point: 'Wybierz pakiet:'
+        profile: 'Profil'
+        producer_profile: 'Profil'
+      invite_manager:
+        user_already_exists: "Użytkownik już istnieje. Użyj funkcji \"dodaj istniejącego użytkownika\"."
+        error: "Coś poszło nie tak."
     products_page:
       title: Produkty
       filters:
@@ -1177,6 +1468,44 @@ pl:
         no_note_present: "Brak notatki."
     enterprise:
       select_outgoing_oc_products_from: Wybierz wychodzące produkty w cyklu zamówień z
+    tab:
+      seller_promotions: "Premium"
+    seller_promotions:
+      index:
+        title: "Promocje sprzedawcow"
+        new: "Nowa promocja"
+        id: "ID"
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
+        products: "Produkty"
+        actions: "Akcje"
+      new:
+        title: "Nowa promocja"
+      edit:
+        title: "Edytuj promocje"
+      show:
+        title: "Szczegoly promocji"
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
+        products: "Produkty"
+        edit: "Edytuj"
+      form:
+        supplier: "Sprzedawca"
+        distributor: "Sklep/Hub"
+        plan: "Pakiet"
+        products: "Produkty"
+        product_limit_hint: "Wybierz maksymalnie %{max} produkty."
+        status: "Status"
+        starts_at: "Start"
+        ends_at: "Koniec"
     enterprises:
       index:
         title: Podmioty
@@ -4830,46 +5159,6 @@ pl:
         create_placeholder: "Wpisz URL zdalnego endpointu webhooka"
       event_types:
         order_cycle_opened: "Cykl zamówień otwarty"
-
-  admin:
-    tab:
-      seller_promotions: "Premium"
-    seller_promotions:
-      index:
-        title: "Promocje sprzedawcow"
-        new: "Nowa promocja"
-        id: "ID"
-        supplier: "Sprzedawca"
-        distributor: "Sklep/Hub"
-        plan: "Pakiet"
-        status: "Status"
-        starts_at: "Start"
-        ends_at: "Koniec"
-        products: "Produkty"
-        actions: "Akcje"
-      new:
-        title: "Nowa promocja"
-      edit:
-        title: "Edytuj promocje"
-      show:
-        title: "Szczegoly promocji"
-        supplier: "Sprzedawca"
-        distributor: "Sklep/Hub"
-        plan: "Pakiet"
-        status: "Status"
-        starts_at: "Start"
-        ends_at: "Koniec"
-        products: "Produkty"
-        edit: "Edytuj"
-      form:
-        supplier: "Sprzedawca"
-        distributor: "Sklep/Hub"
-        plan: "Pakiet"
-        products: "Produkty"
-        product_limit_hint: "Wybierz maksymalnie %{max} produkty."
-        status: "Status"
-        starts_at: "Start"
-        ends_at: "Koniec"
 
   premium_promotions:
     title: "Promocja premium"
