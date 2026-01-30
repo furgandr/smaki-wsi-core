@@ -27,6 +27,7 @@ gem 'sprockets', '~> 3.7'
 gem 'i18n'
 gem 'i18n-js', '~> 3.9.0'
 gem 'rails-i18n'
+gem 'spree_i18n'
 
 gem "activerecord-import"
 gem "db2fog", github: "openfoodfoundation/db2fog", branch: "rails-7"

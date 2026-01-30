@@ -32,6 +32,25 @@ We also have a [Super Admin Guide][super-admin-guide] to help with configuration
 
 For Smaki Wsi, see the Przelewy24 setup guide: `doc/Setting-up-Przelewy24-on-a-Smaki-Wsi-instance.md`.
 
+## Admin locale (Spree)
+
+The Spree admin UI translations are provided by `spree_i18n`. Local overrides in `config/locales/*.yml` take precedence.
+
+Debug missing admin translations:
+
+- Check locale settings:
+  - `ENV["LOCALE"]`, `ENV["AVAILABLE_LOCALES"]`
+  - `I18n.default_locale`, `I18n.available_locales`
+- Check the specific key:
+  - `I18n.t("spree.admin.configuration")`
+
+If you see `Translation missing`, add a local override in `config/locales/pl.yml` or ensure `spree_i18n` is installed.
+
+JavaScript translations:
+
+- Admin JS loads translations from `i18n/translations` (see `app/assets/javascripts/admin/all.js` and `admin_minimal.js`).
+- After changing locale files, recompile assets for production so JS gets updated.
+
 ## Testing
 
 If you'd like to help out with testing, please introduce yourself on the #testing channel on [Slack][slack-invite]. Also, do have a look in our [Welcome New QAs board][welcome-qa] for some good first issues, both on manual and automated testing (RSpec/Capybara).

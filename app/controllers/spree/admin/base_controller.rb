@@ -121,8 +121,7 @@ module Spree
       end
 
       def set_locale
-        user_locale = spree_current_user&.locale
-        I18n.locale = user_locale.presence || I18n.default_locale
+        UserLocaleSetter.new(spree_current_user, params[:locale], cookies).set_locale
       end
     end
   end
