@@ -698,6 +698,17 @@ module Spree
       voucher.rate(self)
     end
 
+    def activation_fee_order?
+      activation_fee_user_id.present?
+    end
+
+    def activation_fee_blocked?
+      return false if activation_fee_order?
+      return false if distributor.blank? || distributor.owner.blank?
+
+      distributor.owner.activation_fee_required?
+    end
+
     private
 
     def reapply_tax_on_changed_address
@@ -782,17 +793,6 @@ module Spree
 
       adjustment.update_adjustment!(force: true)
       update_totals_and_states
-    end
-
-    def activation_fee_order?
-      activation_fee_user_id.present?
-    end
-
-    def activation_fee_blocked?
-      return false if activation_fee_order?
-      return false if distributor.blank? || distributor.owner.blank?
-
-      distributor.owner.activation_fee_required?
     end
 
     def mark_activation_fee_paid
