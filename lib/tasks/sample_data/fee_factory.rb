@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class FeeFactory
     include Logging
 
@@ -30,4 +31,5 @@ module SampleData
       fee.save!
     end
   end
+end
 end

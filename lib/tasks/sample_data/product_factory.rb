@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class ProductFactory
     include Logging
 
@@ -82,4 +83,5 @@ module SampleData
       tax_category
     end
   end
+end
 end

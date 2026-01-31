@@ -3,7 +3,8 @@
 require "tasks/sample_data/addressing"
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class GroupFactory
     include Logging
     include Addressing
@@ -42,4 +43,5 @@ module SampleData
       )
     end
   end
+end
 end

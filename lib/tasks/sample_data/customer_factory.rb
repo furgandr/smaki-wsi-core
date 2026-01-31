@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class CustomerFactory
     include Logging
 
@@ -20,4 +21,5 @@ module SampleData
       )
     end
   end
+end
 end

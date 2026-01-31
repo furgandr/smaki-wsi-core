@@ -3,7 +3,8 @@
 require "tasks/sample_data/addressing"
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class ShippingMethodFactory
     include Logging
     include Addressing
@@ -57,4 +58,5 @@ module SampleData
       method
     end
   end
+end
 end

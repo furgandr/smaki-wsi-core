@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class TaxonFactory
     include Logging
 
@@ -25,4 +26,5 @@ module SampleData
       )
     end
   end
+end
 end

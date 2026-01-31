@@ -3,7 +3,8 @@
 require "tasks/sample_data/addressing"
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class EnterpriseFactory
     include Logging
     include Addressing
@@ -99,4 +100,5 @@ DESC
     end
     # rubocop:enable Metrics/MethodLength
   end
+end
 end

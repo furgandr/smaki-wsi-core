@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class InventoryFactory
     include Logging
 
@@ -35,4 +36,5 @@ module SampleData
       ).find_or_create_by!(variant_id: product.variants.first.id)
     end
   end
+end
 end

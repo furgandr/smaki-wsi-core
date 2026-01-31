@@ -2,7 +2,8 @@
 
 require "tasks/sample_data/logging"
 
-module SampleData
+module Tasks
+  module SampleData
   class UserFactory
     include Logging
 
@@ -41,4 +42,5 @@ module SampleData
       [name, user]
     end
   end
+end
 end

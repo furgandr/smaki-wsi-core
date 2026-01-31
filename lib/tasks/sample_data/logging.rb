@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
-module Logging
-  private
+# Zeitwerk expects this constant to match the file path.
+module Tasks
+  module SampleData
+    module Logging
+      private
 
-  def log(message)
-    @logger ||= ActiveSupport::TaggedLogging.new(Logger.new($stdout))
-    @logger.tagged("ofn:sample_data") { @logger.info(message) }
+      def log(message)
+        @logger ||= ActiveSupport::TaggedLogging.new(Logger.new($stdout))
+        @logger.tagged("ofn:sample_data") { @logger.info(message) }
+      end
+    end
   end
 end

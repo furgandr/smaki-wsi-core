@@ -3,7 +3,8 @@
 require "tasks/sample_data/logging"
 require "tasks/sample_data/addressing"
 
-module SampleData
+module Tasks
+  module SampleData
   class OrderFactory
     include Logging
     include Addressing
@@ -90,4 +91,5 @@ module SampleData
       address
     end
   end
+end
 end

@@ -32,31 +32,31 @@ namespace :ofn do
     # The sample domains like example.org are not resolved by all nameservers.
     ValidEmail2::Address.define_method(:valid_mx?) { true }
 
-    users = SampleData::UserFactory.new.create_samples
+    users = Tasks::SampleData::UserFactory.new.create_samples
 
-    enterprises = SampleData::EnterpriseFactory.new.create_samples(users)
+    enterprises = Tasks::SampleData::EnterpriseFactory.new.create_samples(users)
 
-    SampleData::PermissionFactory.new.create_samples(enterprises)
+    Tasks::SampleData::PermissionFactory.new.create_samples(enterprises)
 
-    SampleData::FeeFactory.new.create_samples(enterprises)
+    Tasks::SampleData::FeeFactory.new.create_samples(enterprises)
 
-    SampleData::ShippingMethodFactory.new.create_samples(enterprises)
+    Tasks::SampleData::ShippingMethodFactory.new.create_samples(enterprises)
 
-    SampleData::PaymentMethodFactory.new.create_samples(enterprises)
+    Tasks::SampleData::PaymentMethodFactory.new.create_samples(enterprises)
 
-    SampleData::TaxonFactory.new.create_samples
+    Tasks::SampleData::TaxonFactory.new.create_samples
 
-    products = SampleData::ProductFactory.new.create_samples(enterprises)
+    products = Tasks::SampleData::ProductFactory.new.create_samples(enterprises)
 
-    SampleData::InventoryFactory.new.create_samples(products)
+    Tasks::SampleData::InventoryFactory.new.create_samples(products)
 
-    SampleData::OrderCycleFactory.new.create_samples
+    Tasks::SampleData::OrderCycleFactory.new.create_samples
 
-    SampleData::CustomerFactory.new.create_samples(users)
+    Tasks::SampleData::CustomerFactory.new.create_samples(users)
 
-    SampleData::GroupFactory.new.create_samples
+    Tasks::SampleData::GroupFactory.new.create_samples
 
-    SampleData::OrderFactory.new.create_samples
+    Tasks::SampleData::OrderFactory.new.create_samples
   end
 
   def seeded?
