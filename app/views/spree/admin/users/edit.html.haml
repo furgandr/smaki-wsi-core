@@ -35,7 +35,7 @@
     class: "button",
     style: "display:block; width:100%; text-align:center;"
 
-- if @mfa_backup_codes.present?
+- if flash[:mfa_backup_codes].present?
   %div
     %p= t("mfa.backup_codes_label")
-    %pre= @mfa_backup_codes
+    %pre= flash[:mfa_backup_codes]

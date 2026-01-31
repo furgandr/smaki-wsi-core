@@ -25,13 +25,6 @@ module Spree
         redirect_to edit_admin_user_path(@user)
       end
 
-      def edit
-        super
-        cache_key = "mfa_backup_codes:#{@user.id}"
-        @mfa_backup_codes = Rails.cache.read(cache_key)
-        Rails.cache.delete(cache_key) if @mfa_backup_codes.present?
-      end
-
       def create
         @user = Spree::User.new(user_params)
         if @user.save
@@ -89,8 +82,17 @@ module Spree
       def generate_mfa_backup_codes
         @user ||= Spree::User.find(params[:id])
 
-        Spree::MfaBackupCodesJob.perform_later(@user.id, spree_current_user.id)
-        flash[:success] = I18n.t("mfa.backup_codes_queued")
+        codes = @user.generate_fast_otp_backup_codes!
+
+        MfaAuditLog.create!(
+          user: @user,
+          admin: spree_current_user,
+          action: MfaAuditLog::ACTION_RESET,
+          metadata: { source: "admin/users#generate_mfa_backup_codes" }
+        )
+
+        flash[:success] = I18n.t("mfa.backup_codes_generated")
+        flash[:mfa_backup_codes] = codes.join("\n")
         redirect_to edit_admin_user_path(@user)
       end
 
