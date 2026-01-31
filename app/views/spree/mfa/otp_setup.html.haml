@@ -1,6 +1,6 @@
 %h1= t("mfa.otp_setup_title")
 
-- if spree_current_user.otp_secret.present?
+- if spree_current_user.otp_secret.present? && !spree_current_user.otp_required_for_login?
   %p= t("mfa.otp_setup_body")
   .qr
     = raw @qr.as_svg(module_size: 3)
