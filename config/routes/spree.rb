@@ -56,12 +56,13 @@ Spree::Core::Engine.routes.draw do
     get '/search/known_users' => "search#known_users", :as => :search_known_users
     get '/search/customers' => 'search#customers', :as => :search_customers
 
-    resources :users do
-      member do
-        patch :mark_activation_fee_paid
-        patch :reset_mfa
+      resources :users do
+        member do
+          patch :mark_activation_fee_paid
+          patch :reset_mfa
+          patch :generate_mfa_backup_codes
+        end
       end
-    end
 
     resources :products, except: [:index, :destroy] do
       member do

@@ -77,6 +77,24 @@ module Spree
         redirect_to edit_admin_user_path(@user)
       end
 
+      def generate_mfa_backup_codes
+        @user ||= Spree::User.find(params[:id])
+
+        codes = @user.generate_otp_backup_codes!
+        @user.save!
+
+        MfaAuditLog.create!(
+          user: @user,
+          admin: spree_current_user,
+          action: MfaAuditLog::ACTION_RESET,
+          metadata: { source: "admin/users#generate_mfa_backup_codes" }
+        )
+
+        flash[:success] = I18n.t("mfa.backup_codes_generated")
+        flash[:mfa_backup_codes] = codes.join(" ")
+        redirect_to edit_admin_user_path(@user)
+      end
+
       protected
 
       def collection

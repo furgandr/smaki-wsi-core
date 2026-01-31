@@ -24,3 +24,12 @@
 %div
   = form_with url: reset_mfa_admin_user_path(@user), method: :patch do
     = submit_tag t("mfa.reset_button"), class: "button"
+
+- if flash[:mfa_backup_codes].present?
+  %div
+    %p= t("mfa.backup_codes_label")
+    %pre= flash[:mfa_backup_codes]
+
+%div
+  = form_with url: generate_mfa_backup_codes_admin_user_path(@user), method: :patch do
+    = submit_tag t("mfa.generate_backup_codes_button"), class: "button"

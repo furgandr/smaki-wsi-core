@@ -21,6 +21,9 @@ pl:
     status: "MFA"
     reset_success: "MFA zresetowane dla użytkownika."
     reset_button: "Reset MFA"
+    backup_codes_generated: "Wygenerowano nowe kody zapasowe."
+    backup_codes_label: "Kody zapasowe (zapisz je teraz):"
+    generate_backup_codes_button: "Generuj kody zapasowe"
   activation_fee:
     page_title: "Opłata aktywacyjna"
     heading: "Opłata za aktywację konta"

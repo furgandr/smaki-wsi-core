@@ -41,6 +41,9 @@ en:
     status: "MFA"
     reset_success: "MFA reset for user."
     reset_button: "Reset MFA"
+    backup_codes_generated: "New backup codes generated."
+    backup_codes_label: "Backup codes (save them now):"
+    generate_backup_codes_button: "Generate backup codes"
   activation_fee:
     page_title: "Activation fee"
     heading: "Account activation fee"
