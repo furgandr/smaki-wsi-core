@@ -17,19 +17,23 @@
 = render partial: 'spree/admin/users/api_fields'
 
 .form-buttons.filter-actions.actions
+  - mfa_button_style = "display:block; width:100%; margin-bottom:8px; text-align:center;"
   - unless @user.activation_fee_paid?
     = button_link_to t("spree.admin.users.form.mark_activation_fee_paid"),
       mark_activation_fee_paid_admin_user_path(@user),
       method: :patch,
-      class: "button"
+      class: "button",
+      style: mfa_button_style
   = button_link_to t("mfa.reset_button"),
     reset_mfa_admin_user_path(@user),
     method: :patch,
-    class: "button"
+    class: "button",
+    style: mfa_button_style
   = button_link_to t("mfa.generate_backup_codes_button"),
     generate_mfa_backup_codes_admin_user_path(@user),
     method: :patch,
-    class: "button"
+    class: "button",
+    style: "display:block; width:100%; text-align:center;"
 
 - if flash[:mfa_backup_codes].present?
   %div
