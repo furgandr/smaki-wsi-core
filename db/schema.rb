@@ -1096,6 +1096,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_31_120400) do
     t.string "otp_secret"
     t.boolean "otp_required_for_login", default: false, null: false
     t.text "otp_backup_codes"
+    t.integer "consumed_timestep"
     t.string "mfa_method", default: "none", null: false
     t.index ["confirmation_token"], name: "index_spree_users_on_confirmation_token", unique: true
     t.index ["email"], name: "email_idx_unique", unique: true
