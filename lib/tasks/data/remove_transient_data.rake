@@ -5,7 +5,7 @@ namespace :ofn do
     desc 'Remove transient data'
     task remove_transient_data: :environment do
       require 'tasks/data/remove_transient_data'
-      RemoveTransientData.new.call
+      Tasks::Data::RemoveTransientData.new.call
     end
   end
 end
