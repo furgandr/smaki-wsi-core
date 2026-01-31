@@ -49,6 +49,10 @@ module Spree
         spree_current_user.update!(otp_required_for_login: true, mfa_method: "totp")
         mark_mfa_verified!(spree_current_user, method: "totp", trust_device: trust_device?)
         redirect_to after_mfa_redirect
+      elsif spree_current_user.consume_backup_code!(code)
+        spree_current_user.update!(otp_required_for_login: true, mfa_method: "totp")
+        mark_mfa_verified!(spree_current_user, method: "backup_code", trust_device: trust_device?)
+        redirect_to after_mfa_redirect
       else
         flash.now[:error] = I18n.t("mfa.invalid_code")
         issuer = Spree::Config[:site_name].presence || "Smaki Wsi"

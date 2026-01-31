@@ -8,12 +8,8 @@ module Spree
       user = Spree::User.find(user_id)
       admin = Spree::User.find_by(id: admin_id)
 
-      original_cost = ::BCrypt::Engine.cost
-      ::BCrypt::Engine.cost = ::BCrypt::Engine::MIN_COST
-      codes = user.generate_otp_backup_codes!
-      user.save!
+      codes = user.generate_fast_otp_backup_codes!
     ensure
-      ::BCrypt::Engine.cost = original_cost
 
       Rails.cache.write(cache_key(user_id), codes, expires_in: 10.minutes)
 

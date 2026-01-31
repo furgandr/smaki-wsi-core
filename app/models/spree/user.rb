@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "digest"
+require "bcrypt"
+
 module Spree
   class User < ApplicationRecord
     include SetUnusedAddressFields
@@ -86,6 +89,46 @@ module Spree
 
       self.otp_secret = ROTP::Base32.random
       save!(validate: false)
+    end
+
+    def generate_fast_otp_backup_codes!
+      count = if Devise.respond_to?(:otp_backup_codes_count)
+                Devise.otp_backup_codes_count
+              else
+                10
+              end
+      length = if Devise.respond_to?(:otp_backup_code_length)
+                 Devise.otp_backup_code_length
+               else
+                 10
+               end
+
+      codes = Array.new(count) { SecureRandom.hex((length / 2.0).ceil)[0, length] }
+      self.otp_backup_codes = codes.map { |code| Digest::SHA256.hexdigest(code) }
+      save!(validate: false)
+      codes
+    end
+
+    def consume_backup_code!(code)
+      return false if code.blank? || otp_backup_codes.blank?
+
+      hashed = Digest::SHA256.hexdigest(code)
+      if otp_backup_codes.delete(hashed)
+        update!(otp_backup_codes: otp_backup_codes)
+        return true
+      end
+
+      otp_backup_codes.each do |stored|
+        next unless stored.start_with?("$2")
+
+        if ::BCrypt::Password.new(stored).is_password?(code)
+          otp_backup_codes.delete(stored)
+          update!(otp_backup_codes: otp_backup_codes)
+          return true
+        end
+      end
+
+      false
     end
 
     # Send devise-based user emails asyncronously via ActiveJob
