@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -180,6 +180,29 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
     t.integer "enterprise_id"
     t.index ["enterprise_group_id"], name: "index_enterprise_groups_enterprises_on_enterprise_group_id"
     t.index ["enterprise_id"], name: "index_enterprise_groups_enterprises_on_enterprise_id"
+  end
+
+  create_table "enterprise_ratings", force: :cascade do |t|
+    t.bigint "enterprise_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "removed_at"
+    t.bigint "removed_by_id"
+    t.string "removal_reason"
+    t.boolean "excluded_from_stats", default: false, null: false
+    t.string "excluded_reason"
+    t.datetime "removal_requested_at"
+    t.bigint "removal_requested_by_id"
+    t.index ["enterprise_id"], name: "index_enterprise_ratings_on_enterprise_id"
+    t.index ["order_id", "enterprise_id", "user_id"], name: "index_enterprise_ratings_on_order_enterprise_user_active", unique: true, where: "(removed_at IS NULL)"
+    t.index ["order_id"], name: "index_enterprise_ratings_on_order_id"
+    t.index ["removal_requested_by_id"], name: "index_enterprise_ratings_on_removal_requested_by_id"
+    t.index ["removed_by_id"], name: "index_enterprise_ratings_on_removed_by_id"
+    t.index ["user_id"], name: "index_enterprise_ratings_on_user_id"
   end
 
   create_table "enterprise_relationship_permissions", id: :serial, force: :cascade do |t|
@@ -386,6 +409,39 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
     t.index ["property_id"], name: "index_producer_properties_on_property_id"
   end
 
+  create_table "product_reviews", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "removed_at"
+    t.string "removal_reason"
+    t.boolean "excluded_from_stats", default: false, null: false
+    t.string "excluded_reason"
+    t.text "seller_response"
+    t.datetime "seller_response_updated_at"
+    t.integer "seller_responder_id"
+    t.index ["order_id"], name: "index_product_reviews_on_order_id"
+    t.index ["product_id", "user_id"], name: "index_product_reviews_on_product_and_user", unique: true
+    t.index ["product_id"], name: "index_product_reviews_on_product_id"
+    t.index ["user_id"], name: "index_product_reviews_on_user_id"
+  end
+
+  create_table "promotion_plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "sku", null: false
+    t.integer "duration_days", null: false
+    t.integer "price_cents", null: false
+    t.string "currency", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sku"], name: "index_promotion_plans_on_sku", unique: true
+  end
+
   create_table "proxy_orders", id: :serial, force: :cascade do |t|
     t.integer "subscription_id", null: false
     t.integer "order_id"
@@ -414,6 +470,36 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
     t.string "name", limit: 255, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+  end
+
+  create_table "seller_promotion_products", force: :cascade do |t|
+    t.bigint "seller_promotion_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_seller_promotion_products_on_product_id"
+    t.index ["seller_promotion_id", "product_id"], name: "index_seller_promotion_products_on_promotion_and_product", unique: true
+    t.index ["seller_promotion_id"], name: "index_seller_promotion_products_on_seller_promotion_id"
+  end
+
+  create_table "seller_promotions", force: :cascade do |t|
+    t.bigint "supplier_id", null: false
+    t.bigint "distributor_id", null: false
+    t.bigint "promotion_plan_id", null: false
+    t.bigint "order_id"
+    t.datetime "starts_at", precision: nil
+    t.datetime "ends_at", precision: nil
+    t.string "status", default: "pending", null: false
+    t.datetime "reminder_sent_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distributor_id"], name: "index_seller_promotions_on_distributor_id"
+    t.index ["ends_at"], name: "index_seller_promotions_on_ends_at"
+    t.index ["order_id"], name: "index_seller_promotions_on_order_id"
+    t.index ["promotion_plan_id"], name: "index_seller_promotions_on_promotion_plan_id"
+    t.index ["status"], name: "index_seller_promotions_on_status"
+    t.index ["supplier_id", "distributor_id"], name: "index_seller_promotions_on_supplier_id_and_distributor_id"
+    t.index ["supplier_id"], name: "index_seller_promotions_on_supplier_id"
   end
 
   create_table "semantic_links", force: :cascade do |t|
@@ -617,6 +703,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
     t.decimal "included_tax_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "additional_tax_total", precision: 10, scale: 2, default: "0.0", null: false
     t.string "note", default: "", null: false
+    t.datetime "review_request_sent_at"
+    t.datetime "review_reminder_sent_at"
+    t.integer "activation_fee_user_id"
+    t.index ["activation_fee_user_id"], name: "index_spree_orders_on_activation_fee_user_id"
     t.index ["completed_at", "user_id", "created_by_id", "created_at"], name: "spree_orders_completed_at_user_id_created_by_id_created_at_idx"
     t.index ["customer_id"], name: "index_spree_orders_on_customer_id"
     t.index ["distributor_id"], name: "index_spree_orders_on_distributor_id"
@@ -963,6 +1053,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
     t.string "uid"
     t.datetime "terms_of_service_accepted_at"
     t.boolean "admin", default: false, null: false
+    t.datetime "activation_fee_paid_at"
+    t.boolean "activation_fee_exempt", default: false, null: false
     t.index ["confirmation_token"], name: "index_spree_users_on_confirmation_token", unique: true
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["persistence_token"], name: "index_users_on_persistence_token"
@@ -1170,6 +1262,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
   add_foreign_key "enterprise_groups", "spree_users", column: "owner_id", name: "enterprise_groups_owner_id_fk"
   add_foreign_key "enterprise_groups_enterprises", "enterprise_groups", name: "enterprise_groups_enterprises_enterprise_group_id_fk"
   add_foreign_key "enterprise_groups_enterprises", "enterprises", name: "enterprise_groups_enterprises_enterprise_id_fk"
+  add_foreign_key "enterprise_ratings", "enterprises"
+  add_foreign_key "enterprise_ratings", "spree_orders", column: "order_id"
+  add_foreign_key "enterprise_ratings", "spree_users", column: "removal_requested_by_id"
+  add_foreign_key "enterprise_ratings", "spree_users", column: "removed_by_id"
+  add_foreign_key "enterprise_ratings", "spree_users", column: "user_id"
   add_foreign_key "enterprise_relationship_permissions", "enterprise_relationships", name: "erp_enterprise_relationship_id_fk"
   add_foreign_key "enterprise_relationships", "enterprises", column: "child_id", name: "enterprise_relationships_child_id_fk"
   add_foreign_key "enterprise_relationships", "enterprises", column: "parent_id", name: "enterprise_relationships_parent_id_fk"
@@ -1193,10 +1290,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_27_205335) do
   add_foreign_key "order_cycles", "enterprises", column: "coordinator_id", name: "order_cycles_coordinator_id_fk"
   add_foreign_key "producer_properties", "enterprises", column: "producer_id", name: "producer_properties_producer_id_fk"
   add_foreign_key "producer_properties", "spree_properties", column: "property_id", name: "producer_properties_property_id_fk"
+  add_foreign_key "product_reviews", "spree_orders", column: "order_id"
+  add_foreign_key "product_reviews", "spree_products", column: "product_id"
+  add_foreign_key "product_reviews", "spree_users", column: "user_id"
   add_foreign_key "proxy_orders", "order_cycles", name: "proxy_orders_order_cycle_id_fk"
   add_foreign_key "proxy_orders", "spree_orders", column: "order_id", name: "order_id_fk"
   add_foreign_key "proxy_orders", "subscriptions", name: "proxy_orders_subscription_id_fk"
   add_foreign_key "report_rendering_options", "spree_users", column: "user_id"
+  add_foreign_key "seller_promotion_products", "seller_promotions"
+  add_foreign_key "seller_promotion_products", "spree_products", column: "product_id"
+  add_foreign_key "seller_promotions", "enterprises", column: "distributor_id"
+  add_foreign_key "seller_promotions", "enterprises", column: "supplier_id"
+  add_foreign_key "seller_promotions", "promotion_plans"
+  add_foreign_key "seller_promotions", "spree_orders", column: "order_id"
   add_foreign_key "semantic_links", "spree_variants", column: "variant_id"
   add_foreign_key "spree_addresses", "spree_countries", column: "country_id", name: "spree_addresses_country_id_fk"
   add_foreign_key "spree_addresses", "spree_states", column: "state_id", name: "spree_addresses_state_id_fk"

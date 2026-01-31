@@ -505,7 +505,7 @@ GEM
       net-protocol
     newrelic_rpm (9.22.0)
     nio4r (2.7.1)
-    nokogiri (1.18.10)
+    nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     nokogiri-html5-inference (0.3.0)
@@ -564,7 +564,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (1.6.2)
+    pg (1.6.3)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)

@@ -96,6 +96,25 @@ RSpec.describe Api::V0::EnterprisesController do
         end
       end
     end
+
+    describe "activation fee enforcement for visibility" do
+      around do |example|
+        original_enabled = Spree::Config[:activation_fee_enabled]
+        original_free_limit = Spree::Config[:activation_fee_free_limit]
+        Spree::Config[:activation_fee_enabled] = true
+        Spree::Config[:activation_fee_free_limit] = 0
+        example.run
+      ensure
+        Spree::Config[:activation_fee_enabled] = original_enabled
+        Spree::Config[:activation_fee_free_limit] = original_free_limit
+      end
+
+      it "forces visible to only_through_links even if public is requested" do
+        api_put :update, id: enterprise.id, enterprise: { visible: "public" }
+        expect(response).to have_http_status(:ok)
+        expect(enterprise.reload.visible).to eq("only_through_links")
+      end
+    end
   end
 
   context "as an enterprise manager" do
