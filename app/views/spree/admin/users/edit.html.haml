@@ -16,20 +16,22 @@
 
 = render partial: 'spree/admin/users/api_fields'
 
-- unless @user.activation_fee_paid?
-  %div
-    = form_with url: mark_activation_fee_paid_admin_user_path(@user), method: :patch do
-      = submit_tag t("spree.admin.users.form.mark_activation_fee_paid"), class: "button"
-
-%div
-  = form_with url: reset_mfa_admin_user_path(@user), method: :patch do
-    = submit_tag t("mfa.reset_button"), class: "button"
+.form-buttons.filter-actions.actions
+  - unless @user.activation_fee_paid?
+    = button_link_to t("spree.admin.users.form.mark_activation_fee_paid"),
+      mark_activation_fee_paid_admin_user_path(@user),
+      method: :patch,
+      class: "button"
+  = button_link_to t("mfa.reset_button"),
+    reset_mfa_admin_user_path(@user),
+    method: :patch,
+    class: "button"
+  = button_link_to t("mfa.generate_backup_codes_button"),
+    generate_mfa_backup_codes_admin_user_path(@user),
+    method: :patch,
+    class: "button"
 
 - if flash[:mfa_backup_codes].present?
   %div
     %p= t("mfa.backup_codes_label")
     %pre= flash[:mfa_backup_codes]
-
-%div
-  = form_with url: generate_mfa_backup_codes_admin_user_path(@user), method: :patch do
-    = submit_tag t("mfa.generate_backup_codes_button"), class: "button"

@@ -80,8 +80,12 @@ module Spree
       def generate_mfa_backup_codes
         @user ||= Spree::User.find(params[:id])
 
+        original_cost = BCrypt::Engine.cost
+        BCrypt::Engine.cost = BCrypt::Engine::MIN_COST
         codes = @user.generate_otp_backup_codes!
         @user.save!
+      ensure
+        BCrypt::Engine.cost = original_cost
 
         MfaAuditLog.create!(
           user: @user,
@@ -91,7 +95,7 @@ module Spree
         )
 
         flash[:success] = I18n.t("mfa.backup_codes_generated")
-        flash[:mfa_backup_codes] = codes.join(" ")
+        flash[:mfa_backup_codes] = codes.join("\n")
         redirect_to edit_admin_user_path(@user)
       end
 
