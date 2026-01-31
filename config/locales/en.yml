@@ -20,6 +20,7 @@
 #
 en:
   mfa:
+    backup_codes_queued: "Backup code generation started. Refresh this page in a moment."
     choose_method_title: "Choose MFA method"
     choose_method_body: "Select how you want to verify your login."
     method_totp: "Authenticator app (TOTP)"

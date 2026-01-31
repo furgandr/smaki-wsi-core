@@ -1,5 +1,6 @@
 pl:
   mfa:
+    backup_codes_queued: "Generowanie kodów zapasowych zostało rozpoczęte. Odśwież stronę za chwilę."
     choose_method_title: "Wybierz metodę MFA"
     choose_method_body: "Wybierz sposób potwierdzania logowania."
     method_totp: "Aplikacja uwierzytelniająca (TOTP)"
