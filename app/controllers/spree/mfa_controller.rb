@@ -36,7 +36,10 @@ module Spree
 
     def otp_setup
       spree_current_user.ensure_totp_secret!
-      @qr = RQRCode::QRCode.new(spree_current_user.otp_provisioning_uri(spree_current_user.email))
+      issuer = Spree::Config[:site_name].presence || "Smaki Wsi"
+      @qr = RQRCode::QRCode.new(
+        spree_current_user.otp_provisioning_uri(spree_current_user.email, issuer:)
+      )
     end
 
     def otp_verify
@@ -48,7 +51,10 @@ module Spree
         redirect_to after_mfa_redirect
       else
         flash.now[:error] = I18n.t("mfa.invalid_code")
-        @qr = RQRCode::QRCode.new(spree_current_user.otp_provisioning_uri(spree_current_user.email))
+        issuer = Spree::Config[:site_name].presence || "Smaki Wsi"
+        @qr = RQRCode::QRCode.new(
+          spree_current_user.otp_provisioning_uri(spree_current_user.email, issuer:)
+        )
         render :otp_setup, status: :unprocessable_entity
       end
     end
