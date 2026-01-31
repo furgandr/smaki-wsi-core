@@ -17,3 +17,11 @@ module Spree
     end
   end
 end
+
+# Zeitwerk expects this constant to match the file path.
+module Spree
+  module I18n
+    module Base
+    end
+  end
+end
