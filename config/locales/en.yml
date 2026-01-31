@@ -19,6 +19,28 @@
 #   https://github.com/openfoodfoundation/openfoodnetwork/wiki/Internationalisation-%28i18n%29#development
 #
 en:
+  mfa:
+    choose_method_title: "Choose MFA method"
+    choose_method_body: "Select how you want to verify your login."
+    method_totp: "Authenticator app (TOTP)"
+    method_email: "Email code"
+    continue: "Continue"
+    skip_for_now: "Skip for now"
+    otp_setup_title: "Authenticator setup"
+    otp_setup_body: "Scan the QR code in your authenticator app and enter the code."
+    enter_code: "Enter your verification code"
+    otp_code: "Authenticator code"
+    email_title: "Email verification"
+    email_body: "We sent a 6-digit code to your email."
+    email_code: "Email code"
+    verify: "Verify"
+    resend_code: "Resend code"
+    trust_device: "Trust this device for 30 days"
+    invalid_code: "Invalid verification code"
+    too_many_requests: "Please wait before requesting another code."
+    status: "MFA"
+    reset_success: "MFA reset for user."
+    reset_button: "Reset MFA"
   activation_fee:
     page_title: "Activation fee"
     heading: "Account activation fee"
@@ -5009,6 +5031,11 @@ en:
         subject: "Reset password instructions"
       confirmation_instructions:
         subject: "Please confirm your OFN account"
+      mfa_code:
+        subject: "Your verification code"
+        greeting: "Hi %{email},"
+        code_label: "Your verification code:"
+        expires_in: "This code expires in %{minutes} minutes."
     payment_mailer:
       authorize_payment:
         subject: "Please authorize your payment to %{distributor} on OFN"

@@ -10,6 +10,7 @@ module Spree
     include Spree::Core::ControllerHelpers::Common
     include Spree::Core::ControllerHelpers::Order
     include CablecarResponses
+    include MfaHelpers
 
     helper 'spree/base'
 
@@ -22,6 +23,7 @@ module Spree
       authenticate_spree_user!
 
       if spree_user_signed_in?
+        clear_mfa_session!
         flash[:success] = t('devise.success.logged_in_succesfully')
 
         render cable_ready: cable_car.redirect_to(
@@ -40,6 +42,7 @@ module Spree
       #   Here we store it before actually logging out so that the redirect works correctly
       @shopfront_redirect = session[:shopfront_redirect]
 
+      clear_mfa_session!
       super
     end
 

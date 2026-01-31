@@ -1,0 +1,17 @@
+%h1= t("mfa.email_title")
+
+%p= t("mfa.email_body")
+
+= form_with url: mfa_email_verify_path, method: :post, local: true do
+  .field
+    = label_tag :email_code, t("mfa.email_code")
+    = text_field_tag :email_code, nil, autocomplete: "one-time-code"
+  .field
+    %label
+      = check_box_tag :trust_device, "1"
+      = t("mfa.trust_device")
+  .actions
+    = submit_tag t("mfa.verify")
+
+= form_with url: mfa_email_path, method: :get, local: true do
+  = submit_tag t("mfa.resend_code")

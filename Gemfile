@@ -63,6 +63,8 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'devise-token_authenticatable'
+gem 'devise-two-factor'
+gem 'rqrcode'
 gem 'jwt', '~> 2.3'
 gem 'oauth2', '~> 1.4.7' # Used for Stripe Connect
 

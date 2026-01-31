@@ -1,0 +1,7 @@
+= Spree.t("spree.user_mailer.mfa_code.greeting", email: @user.email)
+= "\n"
+= Spree.t("spree.user_mailer.mfa_code.code_label")
+= "\n"
+= @code
+= "\n"
+= Spree.t("spree.user_mailer.mfa_code.expires_in", minutes: @expires_in)

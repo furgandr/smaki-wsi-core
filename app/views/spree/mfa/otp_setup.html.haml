@@ -1,0 +1,19 @@
+%h1= t("mfa.otp_setup_title")
+
+- if spree_current_user.otp_secret.present?
+  %p= t("mfa.otp_setup_body")
+  .qr
+    = raw @qr.as_svg(module_size: 3)
+
+%p= t("mfa.enter_code")
+
+= form_with url: otp_verify_path, method: :post, local: true do
+  .field
+    = label_tag :otp_code, t("mfa.otp_code")
+    = text_field_tag :otp_code, nil, autocomplete: "one-time-code"
+  .field
+    %label
+      = check_box_tag :trust_device, "1"
+      = t("mfa.trust_device")
+  .actions
+    = submit_tag t("mfa.verify")

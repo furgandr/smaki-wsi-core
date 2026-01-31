@@ -10,7 +10,7 @@ module Spree
 
     devise :database_authenticatable, :token_authenticatable, :registerable, :recoverable,
            :rememberable, :trackable, :validatable, :omniauthable,
-           :encryptable, :confirmable,
+           :encryptable, :confirmable, :two_factor_authenticatable, :two_factor_backupable,
            encryptor: 'authlogic_sha512', reconfirmable: true,
            omniauth_providers: [:openid_connect]
 
@@ -39,6 +39,9 @@ module Spree
     has_many :enterprise_ratings, class_name: "::EnterpriseRating", dependent: :destroy
     has_many :webhook_endpoints, dependent: :destroy
     has_many :column_preferences, dependent: :destroy
+    has_many :trusted_devices, class_name: "::TrustedDevice", dependent: :destroy
+    has_many :mfa_email_codes, class_name: "::MfaEmailCode", dependent: :destroy
+    has_many :mfa_login_tokens, class_name: "::MfaLoginToken", dependent: :destroy
     has_one :oidc_account, dependent: :destroy
 
     accepts_nested_attributes_for :enterprise_roles, allow_destroy: true
@@ -52,10 +55,37 @@ module Spree
     validates :email, 'valid_email_2/email': { mx: true }, if: :email_changed?
     validate :limit_owned_enterprises
 
+    MFA_METHODS = %w[none totp email].freeze
+
+    alias_attribute :otp_secret_key, :otp_secret
+
+    validates :mfa_method, inclusion: { in: MFA_METHODS }
+
     class DestroyWithOrdersError < StandardError; end
 
     def self.admin_created?
       User.admin.count > 0
+    end
+
+    def mfa_required?
+      return true if admin?
+
+      mfa_method.present? && mfa_method != "none"
+    end
+
+    def mfa_totp_only?
+      admin? || mfa_method == "totp"
+    end
+
+    def mfa_email?
+      mfa_method == "email"
+    end
+
+    def ensure_totp_secret!
+      return if otp_secret.present?
+
+      self.otp_secret = ROTP::Base32.random
+      save!(validate: false)
     end
 
     # Send devise-based user emails asyncronously via ActiveJob

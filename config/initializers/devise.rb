@@ -42,6 +42,9 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   config.pepper = Rails.configuration.secret_key_base
 
+  # Encryption key for devise-two-factor (TOTP secrets)
+  config.otp_secret_encryption_key = Rails.application.secret_key_base[0, 32]
+
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.

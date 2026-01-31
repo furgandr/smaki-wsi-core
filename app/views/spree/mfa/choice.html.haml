@@ -1,0 +1,18 @@
+%h1= t("mfa.choose_method_title")
+
+%p= t("mfa.choose_method_body")
+
+= form_with url: mfa_set_method_path, method: :post, local: true do
+  .field
+    %label
+      = radio_button_tag :mfa_method, "totp"
+      = t("mfa.method_totp")
+  .field
+    %label
+      = radio_button_tag :mfa_method, "email"
+      = t("mfa.method_email")
+  .actions
+    = submit_tag t("mfa.continue")
+
+= form_with url: mfa_skip_path, method: :post, local: true do
+  = submit_tag t("mfa.skip_for_now")

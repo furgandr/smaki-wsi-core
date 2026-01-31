@@ -1,0 +1,4 @@
+%p= Spree.t("spree.user_mailer.mfa_code.greeting", email: @user.email)
+%p= Spree.t("spree.user_mailer.mfa_code.code_label")
+%h2= @code
+%p= Spree.t("spree.user_mailer.mfa_code.expires_in", minutes: @expires_in)

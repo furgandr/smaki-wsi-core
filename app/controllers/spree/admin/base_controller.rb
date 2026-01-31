@@ -16,8 +16,10 @@ module Spree
       layout 'spree/layouts/admin'
 
       include I18nHelper
+      include MfaHelpers
 
       before_action :authorize_admin
+      before_action :ensure_mfa_verified_for_admin
       before_action :set_locale
       before_action :warn_invalid_order_cycles, if: :page_load_request?
 
@@ -58,6 +60,20 @@ module Spree
         end
         authorize! :admin, record
         authorize! resource_authorize_action, record
+      end
+
+      def ensure_mfa_verified_for_admin
+        return unless spree_current_user
+        return unless mfa_required_for_user?(spree_current_user)
+        return if mfa_verified_for_user?(spree_current_user)
+
+        session[:mfa_return_to] = request.fullpath
+
+        if spree_current_user.admin? && spree_current_user.otp_secret.blank?
+          redirect_to spree.otp_setup_path
+        else
+          redirect_to spree.mfa_choice_path
+        end
       end
 
       def resource_authorize_action

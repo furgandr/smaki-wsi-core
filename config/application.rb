@@ -48,7 +48,8 @@ module Openfoodnetwork
     # in config/environments, which are processed later.
     #
     config.time_zone = ENV["TIMEZONE"]
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
 
     # Store a description of the current version
     config.x.git_version = GitUtils::git_version

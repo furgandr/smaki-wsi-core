@@ -43,6 +43,17 @@ module Spree
       end
     end
 
+    def mfa_code(user, code)
+      @user = user
+      @code = code
+      @expires_in = MfaEmailCode::CODE_TTL / 60
+
+      I18n.with_locale valid_locale(@user) do
+        subject = t("spree.user_mailer.mfa_code.subject")
+        mail(to: @user.email, subject:)
+      end
+    end
+
     private
 
     def confirmation_email_address

@@ -55,6 +55,28 @@ module Spree
         redirect_to edit_admin_user_path(@user)
       end
 
+      def reset_mfa
+        @user ||= Spree::User.find(params[:id])
+
+        @user.update!(
+          otp_secret: nil,
+          otp_required_for_login: false,
+          otp_backup_codes: nil,
+          mfa_method: "none"
+        )
+        @user.trusted_devices.delete_all
+
+        MfaAuditLog.create!(
+          user: @user,
+          admin: spree_current_user,
+          action: MfaAuditLog::ACTION_RESET,
+          metadata: { source: "admin/users#reset_mfa" }
+        )
+
+        flash[:success] = I18n.t("mfa.reset_success")
+        redirect_to edit_admin_user_path(@user)
+      end
+
       protected
 
       def collection

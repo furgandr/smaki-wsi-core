@@ -1,4 +1,26 @@
 pl:
+  mfa:
+    choose_method_title: "Wybierz metodę MFA"
+    choose_method_body: "Wybierz sposób potwierdzania logowania."
+    method_totp: "Aplikacja uwierzytelniająca (TOTP)"
+    method_email: "Kod e-mail"
+    continue: "Dalej"
+    skip_for_now: "Pomiń na teraz"
+    otp_setup_title: "Konfiguracja aplikacji"
+    otp_setup_body: "Zeskanuj kod QR i wpisz kod z aplikacji."
+    enter_code: "Wpisz kod weryfikacyjny"
+    otp_code: "Kod z aplikacji"
+    email_title: "Weryfikacja e-mail"
+    email_body: "Wysłaliśmy 6-cyfrowy kod na e-mail."
+    email_code: "Kod e-mail"
+    verify: "Zweryfikuj"
+    resend_code: "Wyślij ponownie"
+    trust_device: "Zaufaj temu urządzeniu na 30 dni"
+    invalid_code: "Nieprawidłowy kod"
+    too_many_requests: "Odczekaj chwilę przed kolejną próbą."
+    status: "MFA"
+    reset_success: "MFA zresetowane dla użytkownika."
+    reset_button: "Reset MFA"
   activation_fee:
     page_title: "Opłata aktywacyjna"
     heading: "Opłata za aktywację konta"
@@ -4934,6 +4956,11 @@ pl:
         subject: "Instrukcje resetowania hasła"
       confirmation_instructions:
         subject: "Potwierdź rejestrację w Smaki Wsi"
+      mfa_code:
+        subject: "Kod weryfikacyjny"
+        greeting: "Cześć %{email},"
+        code_label: "Twój kod weryfikacyjny:"
+        expires_in: "Kod wygasa za %{minutes} minut."
     payment_mailer:
       authorize_payment:
         subject: "Prosimy o autoryzację płatności na %{distributor} w Smaki Wsi"

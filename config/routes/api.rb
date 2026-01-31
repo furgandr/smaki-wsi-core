@@ -90,6 +90,10 @@ Openfoodnetwork::Application.routes.draw do
     end
 
     namespace :v1 do
+      post "auth/login", to: "auth#login"
+      post "auth/verify_mfa", to: "auth#verify_mfa"
+      get "me/mfa", to: "auth#me_mfa"
+
       resources :customers
 
       resources :enterprises do

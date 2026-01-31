@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_31_120400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -343,6 +343,44 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
     t.datetime "updated_at", null: false
     t.boolean "cancelled", default: false, null: false
     t.index ["order_id"], name: "index_invoices_on_order_id"
+  end
+
+  create_table "mfa_audit_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "admin_id", null: false
+    t.string "action", null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_mfa_audit_logs_on_action"
+    t.index ["admin_id"], name: "index_mfa_audit_logs_on_admin_id"
+    t.index ["user_id"], name: "index_mfa_audit_logs_on_user_id"
+  end
+
+  create_table "mfa_email_codes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "code_digest", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "sent_at", null: false
+    t.datetime "consumed_at"
+    t.integer "attempts", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "consumed_at"], name: "index_mfa_email_codes_on_user_id_and_consumed_at"
+    t.index ["user_id"], name: "index_mfa_email_codes_on_user_id"
+  end
+
+  create_table "mfa_login_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token_digest", null: false
+    t.string "mfa_method", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "consumed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token_digest"], name: "index_mfa_login_tokens_on_token_digest", unique: true
+    t.index ["user_id", "consumed_at"], name: "index_mfa_login_tokens_on_user_id_and_consumed_at"
+    t.index ["user_id"], name: "index_mfa_login_tokens_on_user_id"
   end
 
   create_table "oidc_accounts", force: :cascade do |t|
@@ -1055,8 +1093,13 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
     t.boolean "admin", default: false, null: false
     t.datetime "activation_fee_paid_at"
     t.boolean "activation_fee_exempt", default: false, null: false
+    t.string "otp_secret"
+    t.boolean "otp_required_for_login", default: false, null: false
+    t.text "otp_backup_codes"
+    t.string "mfa_method", default: "none", null: false
     t.index ["confirmation_token"], name: "index_spree_users_on_confirmation_token", unique: true
     t.index ["email"], name: "email_idx_unique", unique: true
+    t.index ["mfa_method"], name: "index_spree_users_on_mfa_method"
     t.index ["persistence_token"], name: "index_users_on_persistence_token"
   end
 
@@ -1188,6 +1231,18 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "trusted_devices", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "fingerprint", null: false
+    t.string "mfa_method", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "last_used_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "fingerprint"], name: "index_trusted_devices_on_user_id_and_fingerprint", unique: true
+    t.index ["user_id"], name: "index_trusted_devices_on_user_id"
+  end
+
   create_table "variant_overrides", id: :serial, force: :cascade do |t|
     t.integer "variant_id", null: false
     t.integer "hub_id", null: false
@@ -1284,6 +1339,10 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
   add_foreign_key "inventory_items", "enterprises"
   add_foreign_key "inventory_items", "spree_variants", column: "variant_id"
   add_foreign_key "invoices", "spree_orders", column: "order_id"
+  add_foreign_key "mfa_audit_logs", "spree_users", column: "admin_id"
+  add_foreign_key "mfa_audit_logs", "spree_users", column: "user_id"
+  add_foreign_key "mfa_email_codes", "spree_users", column: "user_id"
+  add_foreign_key "mfa_login_tokens", "spree_users", column: "user_id"
   add_foreign_key "oidc_accounts", "spree_users", column: "user_id"
   add_foreign_key "order_cycle_schedules", "order_cycles", name: "oc_schedules_order_cycle_id_fk"
   add_foreign_key "order_cycle_schedules", "schedules", name: "oc_schedules_schedule_id_fk"
@@ -1363,6 +1422,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_24_120935) do
   add_foreign_key "subscriptions", "spree_payment_methods", column: "payment_method_id", name: "subscriptions_payment_method_id_fk"
   add_foreign_key "subscriptions", "spree_shipping_methods", column: "shipping_method_id", name: "subscriptions_shipping_method_id_fk"
   add_foreign_key "tag_rules", "enterprises"
+  add_foreign_key "trusted_devices", "spree_users", column: "user_id"
   add_foreign_key "variant_overrides", "enterprises", column: "hub_id", name: "variant_overrides_hub_id_fk"
   add_foreign_key "variant_overrides", "spree_variants", column: "variant_id", name: "variant_overrides_variant_id_fk"
   add_foreign_key "vouchers", "enterprises"

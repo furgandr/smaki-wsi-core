@@ -23,6 +23,13 @@ Spree::Core::Engine.routes.draw do
 
   resources :api_keys, :only => [:create, :destroy]
   resources :users, :only => [:edit, :update]
+  get '/users/mfa' => 'mfa#choice', as: :mfa_choice
+  post '/users/mfa/method' => 'mfa#set_method', as: :mfa_set_method
+  get '/users/otp_setup' => 'mfa#otp_setup', as: :otp_setup
+  post '/users/otp_verify' => 'mfa#otp_verify', as: :otp_verify
+  get '/users/mfa/email' => 'mfa#email_challenge', as: :mfa_email
+  post '/users/mfa/email_verify' => 'mfa#email_verify', as: :mfa_email_verify
+  post '/users/mfa/skip' => 'mfa#skip', as: :mfa_skip
 
   devise_scope :spree_user do
     post '/login' => 'user_sessions#create', :as => :create_new_session
@@ -52,6 +59,7 @@ Spree::Core::Engine.routes.draw do
     resources :users do
       member do
         patch :mark_activation_fee_paid
+        patch :reset_mfa
       end
     end
 
